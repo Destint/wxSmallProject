@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "add-applet-tip": "/components/add-applet-tip/index"
+  }
+}

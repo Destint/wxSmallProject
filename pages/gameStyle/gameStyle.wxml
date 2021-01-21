@@ -1,0 +1,11 @@
+<view class="page-gameStyle">
+  <view class="gameStyle-box" wx:for-items="{{gameStyleList}}" wx:key="index">
+    <image class="gameStyle-box-bg" src="/images/gameStyle_box_bg.png"></image>
+    <image class="gameStyle-icon" src="{{item.icon_path}}"></image>
+    <view class="gameStyle-content">{{item.name}}</view>
+    <view class="gameStyle-introduce">{{item.desc}}</view>
+    <view class="gameStyle-copyLink" style="color:{{clickIndex == index?'#8a8a8a':'#f2a351'}}"
+      bindtouchstart="clickCopyLinkStart" bindtouchend="clickCopyLinkEnd" bindtap="clickCopyLinkTap" data-id="{{index}}"
+      data-content="{{item.url}}">复制链接</view>
+  </view>
+</view>

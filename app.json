@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/gameStyle/gameStyle",
+    "pages/home/home",
+    "pages/pay/pay",
+    "pages/future/future"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "color": "#7E8185",
+    "selectedColor": "#FF8E44",
+    "backgroundColor": "#FFFFFF",
+    "list": [{
+        "pagePath": "pages/home/home",
+        "iconPath": "images/homeNormal.png",
+        "selectedIconPath": "images/homeHigh.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/pay/pay",
+        "iconPath": "images/payNormal.png",
+        "selectedIconPath": "images/payHigh.png",
+        "text": "充值"
+      },
+      {
+        "pagePath": "pages/future/future",
+        "iconPath": "images/futureNormal.png",
+        "selectedIconPath": "images/futureHigh.png",
+        "text": "敬请期待"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

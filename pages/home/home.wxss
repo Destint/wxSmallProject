@@ -1,0 +1,248 @@
+.page-home {
+  min-height: 100vh;
+  background-color: #f0eff5;
+}
+
+.header-box {
+  position: relative;
+  height: 320rpx;
+  width: 100%;
+}
+
+.header-box-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.user-avatar {
+  position: absolute;
+  z-index: 1;
+  left: 52rpx;
+  top: 116rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.user-nickName {
+  position: absolute;
+  z-index: 1;
+  margin-left: 175rpx;
+  margin-top: 118rpx;
+  font-size: 25rpx;
+  color: #ffffff;
+}
+
+.user-gameID {
+  position: absolute;
+  z-index: 1;
+  margin-left: 175rpx;
+  margin-top: 145rpx;
+  font-size: 25rpx;
+  color: #ffffff;
+}
+
+.user-diamond-box {
+  position: absolute;
+  z-index: 1;
+  margin-left: 175rpx;
+  margin-top: 180rpx;
+  width: 203rpx;
+  height: 39rpx;
+  border-radius: 90rpx;
+  background: #ffffff;
+}
+
+.diamond-icon {
+  z-index: 1;
+  position: absolute;
+  margin-top: 6rpx;
+  margin-left: 8rpx;
+  width: 28rpx;
+  height: 26rpx;
+}
+
+.diamond-content {
+  position: absolute;
+  z-index: 1;
+  font-size: 30rpx;
+  color: #f2a351;
+  float: left;
+  margin-left: 46rpx;
+  margin-top: -1rpx;
+}
+
+.pay-icon {
+  position: absolute;
+  z-index: 1;
+  margin-top: -5rpx;
+  margin-left: 156rpx;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.notice-box {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 47rpx;
+  bottom: 0;
+  left: 0;
+}
+
+.notice-box-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.notice-icon {
+  position: absolute;
+  z-index: 2;
+  margin-top: 8rpx;
+  margin-left: 52rpx;
+  width: 36rpx;
+  height: 30rpx;
+}
+
+.notice-content {
+  z-index: 2;
+  width: 100%;
+  margin-top: 3rpx;
+  margin-left: 105rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.notice-item {
+  font-size: 30rpx;
+  color: #ffffff;
+}
+
+.advertisements-box {
+  width: 100%;
+  padding-top: 20rpx;
+}
+
+.advertisements-box swiper {
+  height: 220rpx;
+}
+
+.advertisements-item {
+  margin-left: 18rpx;
+  width: 714rpx;
+  height: 178rpx;
+}
+
+.hotGame-logo {
+  position: relative;
+  width: 172rpx;
+  height: 42rpx;
+  margin-left: 30rpx;
+}
+
+.gameEntranceList-box {
+  position: relative;
+  width: 695rpx;
+  height: 305rpx;
+  margin-top: 10rpx;
+  margin-left: 27.5rpx;
+}
+
+.gameEntranceList-box-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.gameTitle {
+  position: absolute;
+  z-index: 2;
+  margin-left: 44rpx;
+  margin-top: 22rpx;
+  font-weight: bold;
+  font-size: 27.5rpx;
+}
+
+.gameArea {
+  position: absolute;
+  z-index: 2;
+  color: #1bc730;
+  font-size: 20rpx;
+  margin-left: 580rpx;
+  margin-top: 29.5rpx;
+}
+
+.area_icon {
+  position: absolute;
+  z-index: 2;
+  margin-left: 552rpx;
+  margin-top: 30rpx;
+  width: 20rpx;
+  height: 24rpx;
+}
+
+.gameIcon {
+  position: absolute;
+  z-index: 2;
+  margin-top: 72rpx;
+  margin-left: 44rpx;
+  width: 114rpx;
+  height: 114rpx;
+}
+
+.gameList-box {
+  position: absolute;
+  z-index: 2;
+  width: 480rpx;
+  height: 120rpx;
+  margin-left: 180rpx;
+  margin-top: 70rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.gameList-content-box {
+  width: 100%;
+}
+
+.gameList {
+  position: relative;
+  z-index: 2;
+  color: #8a8a8a;
+  float: left;
+  font-size: 22rpx;
+  padding: 10rpx 20rpx;
+}
+
+.game-link {
+  position: absolute;
+  z-index: 2;
+  width: 298rpx;
+  height: 64rpx;
+  margin-left: 32rpx;
+  margin-top: 210rpx;
+}
+
+.DPB-link {
+  position: absolute;
+  z-index: 2;
+  width: 298rpx;
+  height: 64rpx;
+  margin-left: 360rpx;
+  margin-top: 210rpx;
+}

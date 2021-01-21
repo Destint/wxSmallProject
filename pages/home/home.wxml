@@ -1,0 +1,63 @@
+<view class="page-home">
+  <add-applet-tip text="点击“•●•”,[添加到我的小程序]下次轻松找到它" duration="3" />
+  <view class="header-box">
+    <image class="header-box-bg" src="../../images/header_box_bg1.png"></image>
+    <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="user-nickName">{{userInfo.nickName}}</view>
+    <view class="user-gameID">ID : {{userGameID}}</view>
+    <view class="user-diamond-box">
+      <image class="diamond-icon" src="../../images/diamond_icon.png"></image>
+      <view class="diamond-content">{{userDiamond}}</view>
+      <image class="pay-icon" src="{{payIcon}}" bindtouchstart="clickPayStart" bindtouchend="clickPayEnd"
+        bindtap="clickPayTap"></image>
+    </view>
+    <view class="notice-box">
+      <image class="notice-box-bg" src="../../images/notice_box_bg.png"></image>
+      <image class="notice-icon" src="../../images/notice_icon.png"></image>
+      <view class="notice-content">
+        <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='300'>
+          <block wx:for='{{noticeList}}' wx:key='index'>
+            <swiper-item>
+              <view class="notice-item">{{item.content}}</view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+  <view class="advertisements-box">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="800" circular="true">
+      <block wx:for="{{advertisementList}}" wx:key="index">
+        <swiper-item>
+          <image class="advertisements-item" src="https://iy.fhabc.com/{{item.banner_path}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <image class="hotGame-logo" src="../../images/hotGame_logo.png"></image>
+  <view class="gameEntranceList-box" wx:for-items="{{gameEntranceList}}" wx:key="index">
+    <image class="gameEntranceList-box-bg" src="../../images/gameEntranceList_box_bg.png"></image>
+    <text class="gameTitle">{{item.title}}</text>
+    <text class="gameArea">{{item.area_desc}}</text>
+    <image class="area_icon" src="../../images/area_icon.png"></image>
+    <image class="gameIcon" src="{{item.icon_path}}"></image>
+    <view class="gameList-box">
+      <view class="gameList-content-box">
+        <view wx:if="{{item.type == 1}}">
+          <view class="gameList" wx:for-items="{{item.game_list}}" wx:key="index">{{item.name}}</view>
+        </view>
+        <view wx:else>
+          <view class="gameList">{{item.center_desc}}</view>
+        </view>
+      </view>
+    </view>
+    <image class="game-link"
+      src="{{clickIndex == index?item.button_1_icon_type == 1?gameLinkIconHigh:downloadLinkIconHigh:item.button_1_icon_type == 1?gameLinkIconNormal:downloadLinkIconNormal}}"
+      bindtouchstart="clickGameLinkStart" bindtouchend="clickGameLinkEnd" bindtap="clickGameLinkTap" data-id="{{index}}"
+      data-type="{{item.button_1_type}}" data-content="{{item.button_1}}">
+    </image>
+    <image class=" DPB-link" src="{{clickIndex1 == index?DPBIconHigh:DPBIconNormal}}" bindtouchstart="clickDPBLinkStart"
+      bindtouchend="clickDPBLinkEnd" bindtap="clickDPBLinkTap" data-id="{{index}}" data-content="{{item.button_2}}">
+    </image>
+  </view>
+</view>

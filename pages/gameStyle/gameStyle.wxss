@@ -1,0 +1,59 @@
+.page-gameStyle {
+  min-height: 100vh;
+  background-color: #f0eff5;
+}
+
+.gameStyle-box {
+  position: relative;
+  height: 192rpx;
+  width: 690rpx;
+  margin-left: 30rpx;
+  /* margin-top: 20rpx; */
+  /* background-color: aqua; */
+}
+
+.gameStyle-box-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.gameStyle-icon {
+  position: absolute;
+  width: 82rpx;
+  height: 70rpx;
+  margin-top: 62rpx;
+  margin-left: 42rpx;
+}
+
+.gameStyle-content {
+  position: absolute;
+  z-index: 1;
+  margin-top: 58rpx;
+  margin-left: 140rpx;
+  font-weight: 550;
+  font-size: 30rpx;
+}
+
+.gameStyle-introduce {
+  position: absolute;
+  z-index: 1;
+  margin-top: 104rpx;
+  margin-left: 140rpx;
+  font-size: 22rpx;
+  color: #8a8a8a;
+}
+
+.gameStyle-copyLink {
+  position: absolute;
+  z-index: 1;
+  margin-top: 82.5rpx;
+  margin-left: 534rpx;
+  font-size: 27rpx;
+  color: #f2a351;
+  font-weight: 480;
+  text-decoration-line: underline;
+}
