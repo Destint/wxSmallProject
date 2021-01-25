@@ -28,6 +28,16 @@
   border-radius: 50%;
 }
 
+.login-btn {
+  position: absolute;
+  z-index: 1;
+  left: 170rpx;
+  top: 128rpx;
+  border-radius: 80rpx;
+  color: #ffffff;
+  width: 40% !important;
+}
+
 .user-nickName {
   position: absolute;
   z-index: 1;

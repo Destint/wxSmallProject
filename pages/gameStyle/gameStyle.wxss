@@ -5,11 +5,11 @@
 
 .gameStyle-box {
   position: relative;
+  z-index: 0;
   height: 192rpx;
   width: 690rpx;
   margin-left: 30rpx;
-  /* margin-top: 20rpx; */
-  /* background-color: aqua; */
+  top: 20rpx;
 }
 
 .gameStyle-box-bg {
@@ -18,11 +18,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 
 .gameStyle-icon {
   position: absolute;
+  z-index: 2;
   width: 82rpx;
   height: 70rpx;
   margin-top: 62rpx;
@@ -31,7 +32,7 @@
 
 .gameStyle-content {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   margin-top: 58rpx;
   margin-left: 140rpx;
   font-weight: 550;
@@ -40,7 +41,7 @@
 
 .gameStyle-introduce {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   margin-top: 104rpx;
   margin-left: 140rpx;
   font-size: 22rpx;
@@ -49,11 +50,11 @@
 
 .gameStyle-copyLink {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   margin-top: 82.5rpx;
   margin-left: 534rpx;
   font-size: 27rpx;
   color: #f2a351;
   font-weight: 480;
-  text-decoration-line: underline;
+  text-decoration: underline;
 }

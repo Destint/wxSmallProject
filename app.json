@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/gameStyle/gameStyle",
     "pages/home/home",
+    "pages/gameStyle/gameStyle",
     "pages/pay/pay",
     "pages/future/future"
   ],
@@ -24,9 +23,9 @@
       },
       {
         "pagePath": "pages/pay/pay",
-        "iconPath": "images/payNormal.png",
-        "selectedIconPath": "images/payHigh.png",
-        "text": "充值"
+        "iconPath": "images/futureNormal.png",
+        "selectedIconPath": "images/futureHigh.png",
+        "text": "敬请期待"
       },
       {
         "pagePath": "pages/future/future",

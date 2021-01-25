@@ -1,5 +1,5 @@
 <view class="page-gameStyle">
-  <view class="gameStyle-box" wx:for-items="{{gameStyleList}}" wx:key="index">
+  <view class="gameStyle-box" wx:for-items="{{gameStyleList}}" wx:key="index" style="margin-top:{{index == 0?'0':'20rpx'}}">
     <image class="gameStyle-box-bg" src="/images/gameStyle_box_bg.png"></image>
     <image class="gameStyle-icon" src="{{item.icon_path}}"></image>
     <view class="gameStyle-content">{{item.name}}</view>

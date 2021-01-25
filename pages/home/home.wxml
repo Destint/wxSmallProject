@@ -1,15 +1,25 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”,[添加到我的小程序]下次轻松找到它" duration="3" />
   <view class="header-box">
-    <image class="header-box-bg" src="../../images/header_box_bg1.png"></image>
-    <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
-    <view class="user-nickName">{{userInfo.nickName}}</view>
-    <view class="user-gameID">ID : {{userGameID}}</view>
-    <view class="user-diamond-box">
-      <image class="diamond-icon" src="../../images/diamond_icon.png"></image>
-      <view class="diamond-content">{{userDiamond}}</view>
-      <image class="pay-icon" src="{{payIcon}}" bindtouchstart="clickPayStart" bindtouchend="clickPayEnd"
-        bindtap="clickPayTap"></image>
+    <image class="header-box-bg" src="../../images/header_box_bg.png"></image>
+    <view wx:if="{{isLogin}}">
+      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user-nickName">{{userInfo.nickName}}</view>
+      <view class="user-gameID">ID : {{userGameID}}</view>
+      <view class="user-diamond-box">
+        <image class="diamond-icon" src="../../images/diamond_icon.png"></image>
+        <view class="diamond-content">{{userDiamond}}</view>
+        <!-- <image class="pay-icon" src="{{payIcon}}" bindtouchstart="clickPayStart" bindtouchend="clickPayEnd"
+        bindtap="clickPayTap"></image> -->
+      </view>
+    </view>
+    <view wx:else>
+      <image class="user-avatar" src="/images/avatar_default.png"></image>
+      <view wx:if="{{canIUse}}">
+        <button class='login-btn' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="clickLoginBtn">
+          点击登录用户
+        </button>
+      </view>
     </view>
     <view class="notice-box">
       <image class="notice-box-bg" src="../../images/notice_box_bg.png"></image>

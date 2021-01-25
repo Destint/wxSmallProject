@@ -12,7 +12,7 @@ Page({
     var that = this;
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
-      console.log(data)
+      // console.log(data)
       that.setData({
         gameStyleList: data.data,
       })
@@ -39,9 +39,25 @@ Page({
   //点击复制链接按钮事件
   clickCopyLinkTap: function (e) {
     var content = e.currentTarget.dataset.content; // 获取复制链接按钮内容
+    var id = e.currentTarget.dataset.id; // 获取复制链接按钮id
     wx.setClipboardData({
       data: content,
-      success: function (res) {}
+      success: function (res) {
+        wx.hideToast()
+        if (id == 0) {
+          wx.showToast({
+            title: '复制成功，请粘贴到微信后使用',
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '复制成功，请粘贴发送给好友',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      }
     })
   }
 })
