@@ -17,16 +17,29 @@ Page({
     // 轮播图列表
     advertisementList: [],
     // 游戏入口列表
-    gameEntranceList: [],
-    gameLinkIconNormal: "/images/gameLink_normal.png",
-    downloadLinkIconNormal: "/images/download_normal.png",
-    gameLinkIconHigh: "/images/gameLink_high.png",
-    downloadLinkIconHigh: "/images/download_high.png",
-    DPBIconNormal: "/images/DPB_normal.png",
-    DPBIconHigh: "/images/DPB_high.png",
-    clickIndex: "-1", //点击游戏链接按钮标识
-    clickIndex1: "-1", //点击发展人按钮标识
-    clickIndex2: "-1", //点击登录按钮标识
+    // gameEntranceList: [],
+    // gameLinkIconNormal: "/images/gameLink_normal.png",
+    // downloadLinkIconNormal: "/images/download_normal.png",
+    // gameLinkIconHigh: "/images/gameLink_high.png",
+    // downloadLinkIconHigh: "/images/download_high.png",
+    // DPBIconNormal: "/images/DPB_normal.png",
+    // DPBIconHigh: "/images/DPB_high.png",
+    // clickIndex: "-1", //点击游戏链接按钮标识
+    // clickIndex1: "-1", //点击发展人按钮标识
+    // clickIndex2: "-1", //点击登录按钮标识
+    activityNoticeList: [{
+        content: "专属定制红包封面，让你与众不同"
+      },
+      {
+        content: "新春福利1：新注册用户及老用户回归免费送钻"
+      },
+      {
+        content:"新春福利2：除夕至初四，玩游戏，免费领福袋"
+      },
+      {
+        content:"新春福利3：新春道具免费送"
+      }
+    ],
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
@@ -66,31 +79,31 @@ Page({
 
     // 获取轮播图
     wx.request({
-        url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetBanners',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          // console.log(res.data.data)
-          that.setData({
-            advertisementList: res.data.data.list
-          })
-        }
-      }),
+      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetBanners',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data.data)
+        that.setData({
+          advertisementList: res.data.data.list
+        })
+      }
+    })
 
-      // 获取游戏入口
-      wx.request({
-        url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetGameEntrance',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success(res) {
-          // console.log(res.data.data)
-          that.setData({
-            gameEntranceList: res.data.data.list
-          })
-        }
-      })
+    // 获取游戏入口
+    // wx.request({
+    //   url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetGameEntrance',
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success(res) {
+    //     // console.log(res.data.data)
+    //     that.setData({
+    //       gameEntranceList: res.data.data.list
+    //     })
+    //   }
+    // })
   },
 
   // 授权登录按钮事件
@@ -188,81 +201,81 @@ Page({
   // },
 
   // 开始触摸游戏链接按钮事件
-  clickGameLinkStart: function (e) {
-    var id = e.currentTarget.dataset.id; // 获取游戏链接按钮id
-    var that = this;
-    that.setData({
-      clickIndex: id,
-    })
-  },
+  // clickGameLinkStart: function (e) {
+  //   var id = e.currentTarget.dataset.id; // 获取游戏链接按钮id
+  //   var that = this;
+  //   that.setData({
+  //     clickIndex: id,
+  //   })
+  // },
 
   // 结束触摸游戏链接按钮事件
-  clickGameLinkEnd: function (e) {
-    var that = this;
-    that.setData({
-      clickIndex: "-1",
-    })
-  },
+  // clickGameLinkEnd: function (e) {
+  //   var that = this;
+  //   that.setData({
+  //     clickIndex: "-1",
+  //   })
+  // },
 
   // 点击游戏链接按钮事件
-  clickGameLinkTap: function (e) {
-    var gameLinkType = e.currentTarget.dataset.type; // 获取游戏链接按钮样式
-    var gameLinkContent = e.currentTarget.dataset.content; // 获取游戏链接按钮样式列表
-    if (gameLinkType == 1) {
-      wx.setClipboardData({
-        data: gameLinkContent[0].url,
-        success: function (res) {
-          wx.hideToast()
-          wx.showToast({
-            title: '复制成功，请粘贴到微信后使用',
-            icon: 'none',
-            duration: 1500
-          })
-        }
-      })
-    } else if (gameLinkType == 2) {
-      wx.navigateTo({
-        url: '/pages/gameStyle/gameStyle',
-        success: function (res) {
-          // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit('acceptDataFromOpenerPage', {
-            data: gameLinkContent
-          })
-        }
-      })
-    }
-  },
+  // clickGameLinkTap: function (e) {
+  //   var gameLinkType = e.currentTarget.dataset.type; // 获取游戏链接按钮样式
+  //   var gameLinkContent = e.currentTarget.dataset.content; // 获取游戏链接按钮样式列表
+  //   if (gameLinkType == 1) {
+  //     wx.setClipboardData({
+  //       data: gameLinkContent[0].url,
+  //       success: function (res) {
+  //         wx.hideToast()
+  //         wx.showToast({
+  //           title: '复制成功，请粘贴到微信后使用',
+  //           icon: 'none',
+  //           duration: 1500
+  //         })
+  //       }
+  //     })
+  //   } else if (gameLinkType == 2) {
+  //     wx.navigateTo({
+  //       url: '/pages/gameStyle/gameStyle',
+  //       success: function (res) {
+  //         // 通过eventChannel向被打开页面传送数据
+  //         res.eventChannel.emit('acceptDataFromOpenerPage', {
+  //           data: gameLinkContent
+  //         })
+  //       }
+  //     })
+  //   }
+  // },
 
   // 开始触摸发展人按钮事件
-  clickDPBLinkStart: function (e) {
-    var id = e.currentTarget.dataset.id; // 获取发展人按钮id
-    var that = this;
-    that.setData({
-      clickIndex1: id,
-    })
-  },
+  // clickDPBLinkStart: function (e) {
+  //   var id = e.currentTarget.dataset.id; // 获取发展人按钮id
+  //   var that = this;
+  //   that.setData({
+  //     clickIndex1: id,
+  //   })
+  // },
 
   // 结束触摸发展人按钮事件
-  clickDPBLinkEnd: function () {
-    var that = this;
-    that.setData({
-      clickIndex1: "-1",
-    })
-  },
+  // clickDPBLinkEnd: function () {
+  //   var that = this;
+  //   that.setData({
+  //     clickIndex1: "-1",
+  //   })
+  // },
 
   // 点击发展人按钮事件
-  clickDPBLinkTap: function (e) {
-    var DPBLinkContent = e.currentTarget.dataset.content; // 获取发展人按钮样式列表
-    wx.setClipboardData({
-      data: DPBLinkContent[0].url,
-      success: function (res) {
-        wx.hideToast()
-        wx.showToast({
-          title: '复制成功，请粘贴到微信后使用',
-          icon: 'none',
-          duration: 1500
-        })
-      }
-    })
-  }
+  // clickDPBLinkTap: function (e) {
+  //   var DPBLinkContent = e.currentTarget.dataset.content; // 获取发展人按钮样式列表
+  //   wx.setClipboardData({
+  //     data: DPBLinkContent[0].url,
+  //     success: function (res) {
+  //       wx.hideToast()
+  //       wx.showToast({
+  //         title: '复制成功，请粘贴到微信后使用',
+  //         icon: 'none',
+  //         duration: 1500
+  //       })
+  //     }
+  //   })
+  // }
 })

@@ -1,0 +1,83 @@
+.page-redPacket {
+  min-height: 100vh;
+  background-color: #f0eff5;
+}
+
+.game-title {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.game-icon {
+  position: absolute;
+  width: 114rpx;
+  height: 114rpx;
+  margin-top: 60rpx;
+}
+
+.title {
+  position: absolute;
+  margin-top: 200rpx;
+}
+
+.game-video {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 280rpx;
+}
+.countdown{
+  position: absolute;
+  background-color:#778899;
+  width: 100rpx;
+  height: 40rpx;
+  border-radius: 40%;
+  display: flex;
+  justify-content: center;
+  margin-top: 300rpx;
+  margin-left: 540rpx;
+}
+.video {
+  width: 80%;
+  height: 700rpx;
+}
+
+.get {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.get-red-packet {
+  position: absolute;
+  margin-top: 1020rpx;
+  background-color: rgb(55, 0, 255);
+  color: #ffffff;
+}
+
+.share {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.share-page {
+  position: absolute;
+  margin-top: 1120rpx;
+  color: #0099ff;
+  height: 60rpx ! important;
+  background-color: #f0eff5;
+}
+
+.share-title {
+  position: absolute;
+  margin-top: -10rpx;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}

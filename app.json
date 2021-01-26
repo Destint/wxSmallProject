@@ -1,8 +1,7 @@
 {
   "pages": [
+    "pages/redPacket/redPacket",
     "pages/home/home",
-    "pages/gameStyle/gameStyle",
-    "pages/pay/pay",
     "pages/future/future"
   ],
   "window": {
@@ -22,10 +21,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/pay/pay",
+        "pagePath": "pages/redPacket/redPacket",
         "iconPath": "images/futureNormal.png",
         "selectedIconPath": "images/futureHigh.png",
-        "text": "敬请期待"
+        "text": "红包封面"
       },
       {
         "pagePath": "pages/future/future",

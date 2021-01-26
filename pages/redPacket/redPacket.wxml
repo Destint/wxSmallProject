@@ -1,0 +1,20 @@
+<view class="page-redPacket">
+  <view class="game-title">
+    <image class="game-icon" src="/images/gameIcon_3.png"></image>
+    <text class="title">宁波地区好友约局APP</text>
+  </view>
+  <view class="game-video">
+    <video class="video"
+      src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
+      binderror="videoErrorCallback" duration="3000" autoplay="true" bindtimeupdate="getCountdown" show-progress="{{false}}" enable-progress-gesture="{{false}}"></video>
+  </view>
+  <view class="countdown">{{countdown}}</view>
+  <view class="get">
+    <button class="get-red-packet" bindtap="getRedPacket">领取红包封面</button>
+  </view>
+  <view class="share">
+    <button class="share-page" open-type="share" hover-class='none'>
+      <text class="share-title">分享给更多的朋友</text>
+    </button>
+  </view>
+</view>

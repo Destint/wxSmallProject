@@ -154,7 +154,7 @@
   height: 178rpx;
 }
 
-.hotGame-logo {
+/* .hotGame-logo {
   position: relative;
   width: 172rpx;
   height: 42rpx;
@@ -255,4 +255,63 @@
   height: 64rpx;
   margin-left: 360rpx;
   margin-top: 210rpx;
+} */
+
+.activity-notice-title {
+  position: relative;
+  z-index: 1;
+  width: 130rpx;
+  margin-top: 10rpx;
+  margin-left: 30rpx;
+}
+
+.activity-notice-list {
+  position: relative;
+  z-index: 1;
+  width: 110%;
+  height: 80rpx;
+  border: 3rpx solid;
+  border-color: #dcdcdc;
+  margin-top: 4rpx;
+  margin-left: -10rpx;
+  background-color: #ffffff;
+}
+
+.activity-trailer {
+  position: absolute;
+  z-index: 1;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  width: 70rpx;
+  font-size: 26rpx;
+  border: 3rpx solid;
+  border-color: #4169E1;
+  color: #4169E1;
+  text-align-last: center;
+  text-align: center;
+}
+
+.activity-content {
+  position: absolute;
+  z-index: 1;
+  margin-top: 22rpx;
+  margin-left: 120rpx;
+  font-size: 24rpx;
+}
+
+.activity-entrance-icon {
+  position: absolute;
+  z-index: 1;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  margin-left: 680rpx;
+  color: #778899;
+}
+
+.game-introduction-title {
+  position: relative;
+  z-index: 1;
+  width: 130rpx;
+  margin-top: 10rpx;
+  margin-left: 30rpx;
 }

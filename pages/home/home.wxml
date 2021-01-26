@@ -44,7 +44,7 @@
       </block>
     </swiper>
   </view>
-  <image class="hotGame-logo" src="../../images/hotGame_logo.png"></image>
+  <!-- <image class="hotGame-logo" src="../../images/hotGame_logo.png"></image>
   <view class="gameEntranceList-box" wx:for-items="{{gameEntranceList}}" wx:key="index">
     <image class="gameEntranceList-box-bg" src="../../images/gameEntranceList_box_bg.png"></image>
     <text class="gameTitle">{{item.title}}</text>
@@ -69,5 +69,12 @@
     <image class=" DPB-link" src="{{clickIndex1 == index?DPBIconHigh:DPBIconNormal}}" bindtouchstart="clickDPBLinkStart"
       bindtouchend="clickDPBLinkEnd" bindtap="clickDPBLinkTap" data-id="{{index}}" data-content="{{item.button_2}}">
     </image>
+  </view> -->
+  <view class="activity-notice-title">活动公告</view>
+  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="bindtap">
+    <view class="activity-trailer">预告</view>
+    <view class="activity-content">{{item.content}}</view>
+    <view class="activity-entrance-icon">></view>
   </view>
+  <view class="game-introduction-title">游戏简介</view>
 </view>
