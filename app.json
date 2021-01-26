@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/redPacket/redPacket",
     "pages/home/home",
+    "pages/activity/activity",
+    "pages/introduced/introduced",
+    "pages/redPacket/redPacket",
     "pages/future/future"
   ],
   "window": {

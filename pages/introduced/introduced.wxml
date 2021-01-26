@@ -1,0 +1,5 @@
+<view class="page-introduced">
+  <view class="introduced-title">{{gameIntroduced.title}}</view>
+  <view class="introduced-content" style="white-space:pre-wrap">{{gameIntroduced.content}}</view>
+  <view class="introduced-list" style="white-space:pre-wrap">{{gameIntroduced.list}}</view>
+</view>

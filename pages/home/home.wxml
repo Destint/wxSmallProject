@@ -71,10 +71,15 @@
     </image>
   </view> -->
   <view class="activity-notice-title">活动公告</view>
-  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="bindtap">
+  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="clickActivity" data-data="{{item}}">
     <view class="activity-trailer">预告</view>
-    <view class="activity-content">{{item.content}}</view>
+    <view class="activity-content">{{item.title}}</view>
     <view class="activity-entrance-icon">></view>
   </view>
   <view class="game-introduction-title">游戏简介</view>
+  <view class="game-list">
+    <image class="game-icon" src="/images/gameIcon_3.png" bindtap="clickGameList"></image>
+    <view class="game-area">宁波地区</view>
+    <view class="game-content">宁波地区，宁波、北仑、慈溪、余姚地区多款游戏玩法</view>
+  </view>
 </view>

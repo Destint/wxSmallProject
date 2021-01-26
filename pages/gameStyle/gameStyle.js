@@ -1,4 +1,4 @@
-// 游戏方式页面
+// 游戏方式页面 未使用
 const app = getApp();
 
 Page({

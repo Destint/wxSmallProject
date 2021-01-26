@@ -268,12 +268,11 @@
 .activity-notice-list {
   position: relative;
   z-index: 1;
-  width: 110%;
+  width: 100%;
   height: 80rpx;
-  border: 3rpx solid;
-  border-color: #dcdcdc;
+  /* border: 3rpx solid; */
+  /* border-color: #dcdcdc; */
   margin-top: 4rpx;
-  margin-left: -10rpx;
   background-color: #ffffff;
 }
 
@@ -314,4 +313,36 @@
   width: 130rpx;
   margin-top: 10rpx;
   margin-left: 30rpx;
+}
+
+.game-list {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 400rpx;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.game-icon {
+  width: 300rpx;
+  height: 240rpx;
+}
+
+.game-area {
+  position: absolute;
+  width: 300rpx;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 200rpx;
+  background-color:#C0C0C0;
+  color: #000000;
+}
+.game-content {
+  position: absolute;
+  margin-top: 260rpx;
+  width: 300rpx;
+  z-index: 1;
 }
