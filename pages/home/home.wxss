@@ -260,7 +260,6 @@
 .activity-notice-title {
   position: relative;
   z-index: 1;
-  width: 130rpx;
   margin-top: 10rpx;
   margin-left: 30rpx;
 }
@@ -310,7 +309,6 @@
 .game-introduction-title {
   position: relative;
   z-index: 1;
-  width: 130rpx;
   margin-top: 10rpx;
   margin-left: 30rpx;
 }

@@ -28,9 +28,6 @@ Page({
     // clickIndex1: "-1", //点击发展人按钮标识
     // clickIndex2: "-1", //点击登录按钮标识
     activityNoticeList: [{
-        title: "专属定制红包封面，让你与众不同"
-      },
-      {
         title: "新春福利1：新注册用户及老用户回归免费送钻",
         time: "活动时间：2月9日-2月26日",
         content: "赠送对象:\n1、2月9日后首次登陆游戏的新用户\n2、1月9日后未游戏过的老用户\n领取方式：在活动期间内，满足以上两种情况的用户\n登陆游戏后系统自动发放"
@@ -297,7 +294,7 @@ Page({
     })
   },
 
-  clickGameList:function(){
+  clickGameList: function () {
     wx.navigateTo({
       url: '/pages/introduced/introduced',
     })
