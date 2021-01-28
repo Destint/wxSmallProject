@@ -26,7 +26,6 @@ App({
                         iv: res.iv
                       },
                       success(res) {
-                        // console.log(res.data)
                         that.globalData.userGameID = res.data.data.uid
                         that.globalData.userDiamond = res.data.data.money
                         that.globalData.isLogin = true
@@ -50,6 +49,6 @@ App({
     userInfo: null,
     userGameID: null,
     userDiamond: null,
-    isLogin: false
+    isLogin: null,
   }
 })
