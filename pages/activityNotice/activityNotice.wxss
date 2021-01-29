@@ -1,20 +1,20 @@
-.introduced-title {
+.activityNotice-title {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 20rpx;
 }
 
-.introduced-content {
+.activityNotice-time{
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 60rpx;
 }
 
-.introduced-list {
+.activityNotice-content {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 60rpx;
+  margin-top: 80rpx;
 }

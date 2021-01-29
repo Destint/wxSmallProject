@@ -1,4 +1,4 @@
-// 红包封面页面
+// 红包封面
 const app = getApp();
 
 Page({

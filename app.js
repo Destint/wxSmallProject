@@ -46,9 +46,9 @@ App({
 
   // 全局数据
   globalData: {
-    userInfo: null,
-    userGameID: null,
-    userDiamond: null,
-    isLogin: null,
+    userInfo: null, // 用户信息
+    userGameID: null, // 用户游戏ID
+    userDiamond: null, // 用户钻石数
+    isLogin: null, // 用户是否登录
   }
 })

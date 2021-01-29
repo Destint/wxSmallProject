@@ -4,7 +4,7 @@ const app = getApp();
 Page({
   // 初始数据
   data: {
-    activityContent: {
+    activityNoticeList: {
       title: "新春福利1：新注册用户及老用户回归免费送钻",
       time: "活动时间：2月9日-2月26日",
       content: "赠送对象:1、2月9日后首次登陆游戏的新用户\n2、1月9日后未游戏过的老用户\n领取方式：在活动期间内，满足以上两种情况的用户登陆游戏后系统自动发放"
@@ -17,7 +17,7 @@ Page({
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
       // console.log(data.data)
       that.setData({
-        activityContent: data.data,
+        activityNoticeList: data.data,
       })
     })
   },

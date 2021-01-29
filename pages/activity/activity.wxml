@@ -1,5 +1,0 @@
-<view class="page-activity">
-  <view class="activity-title">{{activityContent.title}}</view>
-  <view class="activity-time">{{activityContent.time}}</view>
-  <view class="activity-content" style="white-space:pre-wrap">{{activityContent.content}}</view>
-</view>

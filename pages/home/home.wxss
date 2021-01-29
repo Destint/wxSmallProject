@@ -38,6 +38,14 @@
   width: 40% !important;
 }
 
+.wxLowTip {
+  position: absolute;
+  z-index: 1;
+  color: #ffffff;
+  left: 170rpx;
+  top: 144rpx;
+}
+
 .user-nickName {
   position: absolute;
   z-index: 1;
@@ -86,14 +94,14 @@
   margin-top: -1rpx;
 }
 
-.pay-icon {
+/* .pay-icon {
   position: absolute;
   z-index: 1;
   margin-top: -5rpx;
   margin-left: 156rpx;
   width: 48rpx;
   height: 48rpx;
-}
+} */
 
 .notice-box {
   position: absolute;
@@ -154,114 +162,20 @@
   height: 178rpx;
 }
 
-/* .hotGame-logo {
+.activity-notice-header {
   position: relative;
-  width: 172rpx;
-  height: 42rpx;
-  margin-left: 30rpx;
-}
-
-.gameEntranceList-box {
-  position: relative;
-  width: 695rpx;
-  height: 305rpx;
-  margin-top: 10rpx;
-  margin-left: 27.5rpx;
-}
-
-.gameEntranceList-box-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.gameTitle {
-  position: absolute;
-  z-index: 2;
-  margin-left: 44rpx;
-  margin-top: 22rpx;
-  font-weight: bold;
-  font-size: 27.5rpx;
-}
-
-.gameArea {
-  position: absolute;
-  z-index: 2;
-  color: #1bc730;
-  font-size: 20rpx;
-  margin-left: 580rpx;
-  margin-top: 29.5rpx;
-}
-
-.area_icon {
-  position: absolute;
-  z-index: 2;
-  margin-left: 552rpx;
-  margin-top: 30rpx;
-  width: 20rpx;
-  height: 24rpx;
-}
-
-.gameIcon {
-  position: absolute;
-  z-index: 2;
-  margin-top: 72rpx;
-  margin-left: 44rpx;
-  width: 114rpx;
-  height: 114rpx;
-}
-
-.gameList-box {
-  position: absolute;
-  z-index: 2;
-  width: 480rpx;
-  height: 120rpx;
-  margin-left: 180rpx;
-  margin-top: 70rpx;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 10rpx;
 }
-
-.gameList-content-box {
-  width: 100%;
-}
-
-.gameList {
-  position: relative;
-  z-index: 2;
-  color: #8a8a8a;
-  float: left;
-  font-size: 22rpx;
-  padding: 10rpx 20rpx;
-}
-
-.game-link {
-  position: absolute;
-  z-index: 2;
-  width: 298rpx;
-  height: 64rpx;
-  margin-left: 32rpx;
-  margin-top: 210rpx;
-}
-
-.DPB-link {
-  position: absolute;
-  z-index: 2;
-  width: 298rpx;
-  height: 64rpx;
-  margin-left: 360rpx;
-  margin-top: 210rpx;
-} */
 
 .activity-notice-title {
-  position: relative;
-  z-index: 1;
-  margin-top: 10rpx;
   margin-left: 30rpx;
+}
+
+.activity-notice-more {
+  margin-left: 480rpx;
+  text-decoration: underline;
 }
 
 .activity-notice-list {
@@ -269,13 +183,11 @@
   z-index: 1;
   width: 100%;
   height: 80rpx;
-  /* border: 3rpx solid; */
-  /* border-color: #dcdcdc; */
   margin-top: 4rpx;
   background-color: #ffffff;
 }
 
-.activity-trailer {
+.activity-status {
   position: absolute;
   z-index: 1;
   margin-top: 20rpx;
@@ -289,7 +201,7 @@
   text-align: center;
 }
 
-.activity-content {
+.activity-title {
   position: absolute;
   z-index: 1;
   margin-top: 22rpx;
@@ -306,41 +218,46 @@
   color: #778899;
 }
 
-.game-introduction-title {
+.game-title {
   position: relative;
   z-index: 1;
   margin-top: 10rpx;
   margin-left: 30rpx;
 }
 
-.game-list {
+.game-entrance-list {
   position: relative;
   z-index: 1;
   width: 100%;
-  height: 400rpx;
   margin-top: 20rpx;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.game-icon {
-  width: 300rpx;
-  height: 240rpx;
+.game-entrance-icon {
+  width: 200rpx;
+  height: 200rpx;
 }
 
-.game-area {
-  position: absolute;
-  width: 300rpx;
-  z-index: 1;
+.game-entrance-title {
   display: flex;
   justify-content: center;
-  margin-top: 200rpx;
-  background-color:#C0C0C0;
+  width: 200rpx;
+  margin-top: -42rpx;
+  z-index: 1;
+  background-color: #C0C0C0;
   color: #000000;
 }
-.game-content {
-  position: absolute;
-  margin-top: 260rpx;
-  width: 300rpx;
+
+.game-entrance-feature {
+  margin-top: 20rpx;
   z-index: 1;
+  width: 90%;
+}
+
+.game-entrance-play {
+  margin-top: 20rpx;
+  z-index: 1;
+  width: 90%;
 }

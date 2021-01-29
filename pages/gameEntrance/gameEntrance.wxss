@@ -1,0 +1,38 @@
+.gameEntrance-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.gameEntrance-detailedFeature {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+
+.gameEntrance-detailedPlay {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60rpx;
+}
+.gameEntrance-link-box {
+  width: 100%;
+  margin-top: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.gameEntrance-gameLink{
+  color: 	#4169E1 !important;
+  border-color: #4169E1 !important;
+  width: 320rpx !important;
+}
+.gameEntrance-DPBLink{
+  color: #32CD32 !important;
+  border-color:#32CD32 !important;
+  width: 320rpx !important;
+}

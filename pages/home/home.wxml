@@ -1,13 +1,13 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”,[添加到我的小程序]下次轻松找到它" duration="3" />
   <view class="header-box">
-    <image class="header-box-bg" src="../../images/header_box_bg.png"></image>
+    <image class="header-box-bg" src="/images/header_box_bg.png"></image>
     <view wx:if="{{isLogin}}">
       <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
       <view class="user-nickName">{{userInfo.nickName}}</view>
       <view class="user-gameID">ID : {{userGameID}}</view>
       <view class="user-diamond-box">
-        <image class="diamond-icon" src="../../images/diamond_icon.png"></image>
+        <image class="diamond-icon" src="/images/diamond_icon.png"></image>
         <view class="diamond-content">{{userDiamond}}</view>
         <!-- <image class="pay-icon" src="{{payIcon}}" bindtouchstart="clickPayStart" bindtouchend="clickPayEnd"
         bindtap="clickPayTap"></image> -->
@@ -20,10 +20,11 @@
           点击登录用户
         </button>
       </view>
+      <view class="wxLowTip" wx:else>微信版本过低，请升级微信</view>
     </view>
     <view class="notice-box">
-      <image class="notice-box-bg" src="../../images/notice_box_bg.png"></image>
-      <image class="notice-icon" src="../../images/notice_icon.png"></image>
+      <image class="notice-box-bg" src="/images/notice_box_bg.png"></image>
+      <image class="notice-icon" src="/images/notice_icon.png"></image>
       <view class="notice-content">
         <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='300'>
           <block wx:for='{{noticeList}}' wx:key='index'>
@@ -44,42 +45,21 @@
       </block>
     </swiper>
   </view>
-  <!-- <image class="hotGame-logo" src="../../images/hotGame_logo.png"></image>
-  <view class="gameEntranceList-box" wx:for-items="{{gameEntranceList}}" wx:key="index">
-    <image class="gameEntranceList-box-bg" src="../../images/gameEntranceList_box_bg.png"></image>
-    <text class="gameTitle">{{item.title}}</text>
-    <text class="gameArea">{{item.area_desc}}</text>
-    <image class="area_icon" src="../../images/area_icon.png"></image>
-    <image class="gameIcon" src="{{item.icon_path}}"></image>
-    <view class="gameList-box">
-      <view class="gameList-content-box">
-        <view wx:if="{{item.type == 1}}">
-          <view class="gameList" wx:for-items="{{item.game_list}}" wx:key="index">{{item.name}}</view>
-        </view>
-        <view wx:else>
-          <view class="gameList">{{item.center_desc}}</view>
-        </view>
-      </view>
-    </view>
-    <image class="game-link"
-      src="{{clickIndex == index?item.button_1_icon_type == 1?gameLinkIconHigh:downloadLinkIconHigh:item.button_1_icon_type == 1?gameLinkIconNormal:downloadLinkIconNormal}}"
-      bindtouchstart="clickGameLinkStart" bindtouchend="clickGameLinkEnd" bindtap="clickGameLinkTap" data-id="{{index}}"
-      data-type="{{item.button_1_type}}" data-content="{{item.button_1}}">
-    </image>
-    <image class=" DPB-link" src="{{clickIndex1 == index?DPBIconHigh:DPBIconNormal}}" bindtouchstart="clickDPBLinkStart"
-      bindtouchend="clickDPBLinkEnd" bindtap="clickDPBLinkTap" data-id="{{index}}" data-content="{{item.button_2}}">
-    </image>
-  </view> -->
-  <view class="activity-notice-title">活动公告</view>
-  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="clickActivity" data-data="{{item}}">
-    <view class="activity-trailer">预告</view>
-    <view class="activity-content">{{item.title}}</view>
+  <view class="activity-notice-header">
+    <view class="activity-notice-title">活动公告</view>
+    <view class="activity-notice-more" bindtap="clickMore">更多</view>
+  </view>
+  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="clickActivityNotice"
+    data-data="{{item}}" wx:if="{{index < 9}}">
+    <view class="activity-status">{{item.status}}</view>
+    <view class="activity-title">{{item.title}}</view>
     <view class="activity-entrance-icon">></view>
   </view>
-  <view class="game-introduction-title">游戏简介</view>
-  <view class="game-list">
-    <image class="game-icon" src="/images/gameIcon_3.png" bindtap="clickGameList"></image>
-    <view class="game-area">宁波地区</view>
-    <view class="game-content">宁波地区，宁波、北仑、慈溪、余姚地区多款游戏玩法</view>
+  <view class="game-title">游戏简介</view>
+  <view class="game-entrance-list" wx:for-items="{{gameEntranceList}}" wx:key="index">
+    <image class="game-entrance-icon" src="{{item.icon}}" bindtap="clickGameEntrance" data-data="{{item}}"></image>
+    <view class="game-entrance-title">{{item.title}}</view>
+    <view class="game-entrance-feature">{{item.feature}}</view>
+    <view class="game-entrance-play">{{item.play}}</view>
   </view>
 </view>
