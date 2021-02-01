@@ -1,8 +1,0 @@
-<view class="page-moreActivityNotice">
-  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="clickActivityNotice"
-    data-data="{{item}}" style="margin-top:{{index==0?'0rpx':'4rpx'}}">
-    <view class="activity-status">{{item.status}}</view>
-    <view class="activity-title">{{item.title}}</view>
-    <view class="activity-entrance-icon">></view>
-  </view>
-</view>

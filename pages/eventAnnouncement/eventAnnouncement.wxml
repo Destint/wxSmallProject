@@ -1,0 +1,5 @@
+<view class="page-activityNotice">
+  <view class="activityNotice-title">{{eventAnnouncementData.title}}</view>
+  <view class="activityNotice-time">{{eventAnnouncementData.time}}</view>
+  <view class="activityNotice-content" style="white-space:pre-wrap">{{eventAnnouncementData.content}}</view>
+</view>

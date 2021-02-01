@@ -34,7 +34,7 @@ Page({
     ],
     // 游戏入口列表
     gameEntranceList: [{
-      icon: "/images/gameIcon_3.png",
+      icon: "/images/gameIcon_1.png",
       title: "同乡游麻将",
       feature: "特色：专为约局打造的俱乐部功能组局更方便",
       play: "游戏：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌的多款游戏不同玩法",

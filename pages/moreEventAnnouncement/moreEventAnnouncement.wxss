@@ -1,0 +1,30 @@
+.event-announcement-box {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx solid #f3f2f7;
+  border-bottom: 1rpx solid #f3f2f7;
+  top: 40rpx;
+  width: 100%;
+  height: 80rpx;
+}
+
+.event-announcement-type {
+  width: 38rpx;
+  height: 38rpx;
+  padding-left: 38rpx;
+}
+
+.event-announcement-title {
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  color: #535353;
+}
+
+.event-announcement-entrance {
+  position: absolute;
+  width: 52rpx;
+  height: 52rpx;
+  right: 30rpx;
+}

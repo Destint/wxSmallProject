@@ -52,12 +52,29 @@
     <text class="event-announcement">活动公告</text>
     <text class="event-announcement-more" bindtap="clickMore">更多</text>
   </view>
-  <block wx:for-items="{{eventAnnouncementList}}" wx:key="index" bindtap="clickEventAnnouncement" data-data="{{item}}"
-    wx:if="{{index < 9}}">
-    <view class="event-announcement-list">
+  <block wx:for-items="{{eventAnnouncementList}}" wx:key="index" wx:if="{{index < 9}}">
+    <view class="event-announcement-box" bindtap="clickEventAnnouncement" data-data="{{item}}">
       <image class="event-announcement-type" src="{{item.type}}"></image>
       <text class="event-announcement-title">{{item.title}}</text>
       <image class="event-announcement-entrance" src="/images/event_announcement_entrance_icon.png"></image>
+    </view>
+  </block>
+  <view class="game-introduction-header">
+    <text class="game-introduction">游戏简介</text>
+  </view>
+  <block wx:for-items="{{gameIntroductionList}}" wx:key="index" bindtap="clickGameIntroduction" data-data="{{item}}">
+    <view class="game-introduction-box" style="margin-top:{{index==0?'0':'50rpx'}}">
+      <image class="game-introduction-icon" src="{{item.icon}}"></image>
+      <view class="game-introduction-content-box">
+        <view class="game-introduction-feature-box">
+          <view class="game-introduction-feature">特色:</view>
+          <view class="game-introduction-feature-content">{{item.feature}}</view>
+        </view>
+        <view class="game-introduction-play-box">
+          <view class="game-introduction-play">玩法:</view>
+          <view class="game-introduction-play-content">{{item.play}}</view>
+        </view>
+      </view>
     </view>
   </block>
 </view>

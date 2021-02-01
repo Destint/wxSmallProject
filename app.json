@@ -2,8 +2,8 @@
   "pages": [
     "pages/home1/home1",
     "pages/home/home",
-    "pages/moreActivityNotice/moreActivityNotice",
-    "pages/activityNotice/activityNotice",
+    "pages/moreEventAnnouncement/moreEventAnnouncement",
+    "pages/eventAnnouncement/eventAnnouncement",
     "pages/gameEntrance/gameEntrance",
     "pages/redPacket/redPacket",
     "pages/future/future"

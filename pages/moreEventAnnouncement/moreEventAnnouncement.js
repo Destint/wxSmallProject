@@ -4,7 +4,7 @@ const app = getApp();
 Page({
   // 初始数据
   data: {
-    activityNoticeList: [],
+    eventAnnouncementList: [],
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
@@ -12,12 +12,12 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
       that.setData({
-        activityNoticeList: data.data,
+        eventAnnouncementList: data.data,
       })
     })
   },
   // 点击活动公告按钮事件
-  clickActivityNotice: function (e) {
+  clickEventAnnouncement: function (e) {
     var data = e.currentTarget.dataset.data; // 获取活动公告内容
     wx.navigateTo({
       url: '/pages/activityNotice/activityNotice',

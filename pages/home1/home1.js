@@ -31,6 +31,15 @@ Page({
         content: "在活动开始后，玩家首次登陆游戏，系统自动赠送新春道具5套，每个ID限送一次"
       }
     ],
+    // 游戏简介列表
+    gameIntroductionList: [{
+      icon: "/images/gameIcon_1.png",
+      title: "同乡游麻将",
+      feature: "专为约局打造的俱乐部功能组局更方便",
+      play: "宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌的多款游戏不同玩法",
+      detailedFeature: "        同乡游麻将专注宁波地区本土棋牌游戏，玩法齐全，规则多样，专注好友约局，俱乐部功能火热上线，私人定制俱乐部玩法，成员审核加入，管理更方便",
+      detailedPlay: "       包含的游戏有：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌",
+    }],
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
@@ -132,5 +141,31 @@ Page({
         }
       });
     }
+  },
+  // 点击更多按钮事件
+  clickMore: function () {
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/moreEventAnnouncement/moreEventAnnouncement',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', {
+          data: that.data.eventAnnouncementList
+        })
+      }
+    })
+  },
+  // 点击活动公告按钮事件
+  clickEventAnnouncement: function (e) {
+    var eventAnnouncementData = e.currentTarget.dataset.data; // 获取活动公告内容
+    wx.navigateTo({
+      url: '/pages/eventAnnouncement/eventAnnouncement',
+      success: function (res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', {
+          data: eventAnnouncementData
+        })
+      }
+    })
   },
 })
