@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home1/home1",
     "pages/home/home",
     "pages/moreActivityNotice/moreActivityNotice",
     "pages/activityNotice/activityNotice",
@@ -14,25 +15,26 @@
   },
   "tabBar": {
     "position": "bottom",
-    "color": "#7E8185",
-    "selectedColor": "#FF8E44",
-    "backgroundColor": "#FFFFFF",
+    "color": "#c8c9cb",
+    "selectedColor": "#ff8e44",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
     "list": [{
-        "pagePath": "pages/home/home",
-        "iconPath": "images/homeNormal.png",
-        "selectedIconPath": "images/homeHigh.png",
+        "pagePath": "pages/home1/home1",
+        "iconPath": "images/home_normal.png",
+        "selectedIconPath": "images/home_highlight.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/redPacket/redPacket",
-        "iconPath": "images/futureNormal.png",
-        "selectedIconPath": "images/futureHigh.png",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/redEnvelope_normal.png",
+        "selectedIconPath": "images/redEnvelope_highlight.png",
         "text": "红包封面"
       },
       {
         "pagePath": "pages/future/future",
-        "iconPath": "images/futureNormal.png",
-        "selectedIconPath": "images/futureHigh.png",
+        "iconPath": "images/future_normal.png",
+        "selectedIconPath": "images/future_highlight.png",
         "text": "敬请期待"
       }
     ]

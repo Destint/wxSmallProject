@@ -1,7 +1,7 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”,[添加到我的小程序]下次轻松找到它" duration="3" />
   <view class="header-box">
-    <image class="header-box-bg" src="/images/header_box_bg.png"></image>
+    <image class="header-box-bg" src="/images/home_header_box_bg.png"></image>
     <view wx:if="{{isLogin}}">
       <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
       <view class="user-nickName">{{userInfo.nickName}}</view>
@@ -26,7 +26,7 @@
       <image class="notice-box-bg" src="/images/notice_box_bg.png"></image>
       <image class="notice-icon" src="/images/notice_icon.png"></image>
       <view class="notice-content">
-        <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='300'>
+        <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='500'>
           <block wx:for='{{noticeList}}' wx:key='index'>
             <swiper-item>
               <view class="notice-item">{{item.content}}</view>
