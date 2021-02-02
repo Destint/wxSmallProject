@@ -1,32 +1,35 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”,[添加到我的小程序]下次轻松找到它" duration="3" />
-  <view class="header-box">
-    <image class="header-box-bg" src="/images/home_header_box_bg.png"></image>
-    <view wx:if="{{isLogin}}">
+  <view class="home-header-box">
+    <image class="home-header-box-bg" src="/images/home_header_box_bg.png"></image>
+    <block wx:if="{{isLogin}}">
       <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <view class="user-nickName">{{userInfo.nickName}}</view>
-      <view class="user-gameID">ID : {{userGameID}}</view>
-      <view class="user-diamond-box">
-        <image class="diamond-icon" src="/images/diamond_icon.png"></image>
-        <view class="diamond-content">{{userDiamond}}</view>
-        <!-- <image class="pay-icon" src="{{payIcon}}" bindtouchstart="clickPayStart" bindtouchend="clickPayEnd"
-        bindtap="clickPayTap"></image> -->
+      <view class="user-information-box">
+        <view class="user-nickName">{{userInfo.nickName}}</view>
+        <view class="user-gameID">ID : {{userGameID}}</view>
+        <view class="user-diamond-box">
+          <image class="user-diamond-box-bg" src="/images/user_diamond_box_bg.png"></image>
+          <image class="diamond-icon" src="/images/diamond_icon.png"></image>
+          <text class="diamond-number">{{userDiamond}}</text>
+        </view>
       </view>
-    </view>
-    <view wx:else>
+    </block>
+    <block wx:else>
       <image class="user-avatar" src="/images/avatar_default.png"></image>
-      <view wx:if="{{canIUse}}">
-        <button class='login-btn' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="clickLoginBtn">
-          点击登录用户
+      <block wx:if="{{canIUse}}">
+        <button class="login-btn" style="width:unset" open-type="getUserInfo" bindgetuserinfo="clickLoginBtn">
+          点击登录
         </button>
-      </view>
-      <view class="wxLowTip" wx:else>微信版本过低，请升级微信</view>
-    </view>
+      </block>
+      <block wx:else>
+        <text class="lowVersion-tip">微信版本过低，请升级微信</text>
+      </block>
+    </block>
     <view class="notice-box">
       <image class="notice-box-bg" src="/images/notice_box_bg.png"></image>
       <image class="notice-icon" src="/images/notice_icon.png"></image>
       <view class="notice-content">
-        <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='500'>
+        <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='300'>
           <block wx:for='{{noticeList}}' wx:key='index'>
             <swiper-item>
               <view class="notice-item">{{item.content}}</view>
@@ -36,30 +39,42 @@
       </view>
     </view>
   </view>
-  <view class="advertisements-box">
+  <view class="banner-box">
     <swiper indicator-dots="true" autoplay="true" interval="3000" duration="800" circular="true">
-      <block wx:for="{{advertisementList}}" wx:key="index">
+      <block wx:for="{{bannerList}}" wx:key="index">
         <swiper-item>
-          <image class="advertisements-item" src="https://iy.fhabc.com/{{item.banner_path}}"></image>
+          <image class="banner-item" src="https://iy.fhabc.com/{{item.banner_path}}"></image>
         </swiper-item>
       </block>
     </swiper>
   </view>
-  <view class="activity-notice-header">
-    <view class="activity-notice-title">活动公告</view>
-    <view class="activity-notice-more" bindtap="clickMore">更多</view>
+  <view class="event-announcement-header">
+    <text class="event-announcement">活动公告</text>
+    <text class="event-announcement-more" bindtap="clickMore">更多</text>
   </view>
-  <view class="activity-notice-list" wx:for-items="{{activityNoticeList}}" wx:key="index" bindtap="clickActivityNotice"
-    data-data="{{item}}" wx:if="{{index < 9}}">
-    <view class="activity-status">{{item.status}}</view>
-    <view class="activity-title">{{item.title}}</view>
-    <view class="activity-entrance-icon">></view>
+  <block wx:for-items="{{eventAnnouncementList}}" wx:key="index" wx:if="{{index < 9}}">
+    <view class="event-announcement-box" bindtap="clickEventAnnouncement" data-data="{{item}}">
+      <image class="event-announcement-type" src="{{item.type}}"></image>
+      <text class="event-announcement-title">{{item.title}}</text>
+      <image class="event-announcement-entrance" src="/images/event_announcement_entrance_icon.png"></image>
+    </view>
+  </block>
+  <view class="game-introduction-header">
+    <text class="game-introduction">游戏简介</text>
   </view>
-  <view class="game-title">游戏简介</view>
-  <view class="game-entrance-list" wx:for-items="{{gameEntranceList}}" wx:key="index">
-    <image class="game-entrance-icon" src="{{item.icon}}" bindtap="clickGameEntrance" data-data="{{item}}"></image>
-    <view class="game-entrance-title">{{item.title}}</view>
-    <view class="game-entrance-feature">{{item.feature}}</view>
-    <view class="game-entrance-play">{{item.play}}</view>
-  </view>
+  <block wx:for-items="{{gameIntroductionList}}" wx:key="index">
+    <view class="game-introduction-box" style="margin-top:{{index==0?'0':'50rpx'}}" bindtap="clickGameIntroduction" data-data="{{item}}">
+      <image class="game-introduction-icon" src="{{item.icon}}"></image>
+      <view class="game-introduction-content-box">
+        <view class="game-introduction-feature-box">
+          <view class="game-introduction-feature">特色:</view>
+          <view class="game-introduction-feature-content">{{item.feature}}</view>
+        </view>
+        <view class="game-introduction-play-box">
+          <view class="game-introduction-play">玩法:</view>
+          <view class="game-introduction-play-content">{{item.play}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
 </view>

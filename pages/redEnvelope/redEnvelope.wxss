@@ -1,0 +1,65 @@
+.game-introduction-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-introduction-icon {
+  width: 114rpx;
+  height: 114rpx;
+  margin-top: 60rpx;
+}
+
+.game-introduction-content {
+  color: #000000;
+  margin-top: 20rpx;
+}
+
+.game-introduction-video-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.game-introduction-video {
+  width: 80%;
+  height: 600rpx;
+}
+
+.countdown{
+  position: absolute;
+  background-color:#778899;
+  width: 100rpx;
+  height: 40rpx;
+  border-radius: 40%;
+  display: flex;
+  justify-content: center;
+  top: 280rpx;
+  margin-left: 540rpx;
+}
+
+.get-redEnvelope-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+}
+
+.get-redEnvelope {
+  color: #ffffff;
+}
+
+.share-box {
+  display: flex;
+  margin-top: 20rpx;
+  justify-content: center;
+}
+
+.share-btn {
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-top: 30rpx;
+  color: #578af8;
+  font-weight: 400;
+}

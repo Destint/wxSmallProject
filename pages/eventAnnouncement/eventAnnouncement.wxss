@@ -1,20 +1,35 @@
-.activityNotice-title {
+.eventAnnouncement-title {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20rpx;
+  margin-top: 50rpx;
+  color: #000000;
 }
 
-.activityNotice-time{
+.eventAnnouncement-time{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 60rpx;
+  margin-top: 10rpx;
+  color: #b2b2b2;
+  border-bottom: 1rpx solid #f3f2f7;
+  padding-bottom: 20rpx;
 }
 
-.activityNotice-content {
-  width: 100%;
+.eventAnnouncement-content-box {
   display: flex;
-  justify-content: center;
-  margin-top: 80rpx;
+  flex-direction: column;
+  margin-top: 30rpx;
+  width: 100%;
+}
+
+.eventAnnouncement-content-title {
+  color: #737373;
+  margin-left: 50rpx;
+}
+
+.eventAnnouncement-content-content {
+  color: #bababa;
+  margin-left: 50rpx;
+  padding-right: 50rpx;
 }

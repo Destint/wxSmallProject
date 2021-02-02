@@ -1,9 +1,0 @@
-<view class="page-gameEntrance">
-  <view class="gameEntrance-title">{{gameEntranceList.title}}</view>
-  <view class="gameEntrance-detailedFeature" style="white-space:pre-wrap">{{gameEntranceList.detailedFeature}}</view>
-  <view class="gameEntrance-detailedPlay" style="white-space:pre-wrap">{{gameEntranceList.detailedPlay}}</view>
-  <view class="gameEntrance-link-box">
-    <button class="gameEntrance-gameLink" bindtap="clickGameLink" plain="true">复制游戏链接</button>
-    <button class="gameEntrance-DPBLink" bindtap="clickDPBLink" plain="true">复制后台链接</button>
-  </view>
-</view>

@@ -1,11 +1,10 @@
 {
   "pages": [
-    "pages/home1/home1",
     "pages/home/home",
     "pages/moreEventAnnouncement/moreEventAnnouncement",
     "pages/eventAnnouncement/eventAnnouncement",
-    "pages/gameEntrance/gameEntrance",
-    "pages/redPacket/redPacket",
+    "pages/gameIntroduction/gameIntroduction",
+    "pages/redEnvelope/redEnvelope",
     "pages/future/future"
   ],
   "window": {
@@ -20,13 +19,13 @@
     "backgroundColor": "#ffffff",
     "borderStyle": "white",
     "list": [{
-        "pagePath": "pages/home1/home1",
+        "pagePath": "pages/home/home",
         "iconPath": "images/home_normal.png",
         "selectedIconPath": "images/home_highlight.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/redEnvelope/redEnvelope",
         "iconPath": "images/redEnvelope_normal.png",
         "selectedIconPath": "images/redEnvelope_highlight.png",
         "text": "红包封面"

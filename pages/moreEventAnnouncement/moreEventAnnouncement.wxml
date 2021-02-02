@@ -1,6 +1,6 @@
 <view class="page-moreEventAnnouncement">
-  <block wx:for-items="{{eventAnnouncementList}}" wx:key="index" bindtap="clickEventAnnouncement" data-data="{{item}}">
-    <view class="event-announcement-box">
+  <block wx:for-items="{{eventAnnouncementList}}" wx:key="index">
+    <view class="event-announcement-box" bindtap="clickEventAnnouncement" data-data="{{item}}">
       <image class="event-announcement-type" src="{{item.type}}"></image>
       <text class="event-announcement-title">{{item.title}}</text>
       <image class="event-announcement-entrance" src="/images/event_announcement_entrance_icon.png"></image>

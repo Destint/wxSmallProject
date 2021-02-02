@@ -1,5 +1,10 @@
-<view class="page-activityNotice">
-  <view class="activityNotice-title">{{eventAnnouncementData.title}}</view>
-  <view class="activityNotice-time">{{eventAnnouncementData.time}}</view>
-  <view class="activityNotice-content" style="white-space:pre-wrap">{{eventAnnouncementData.content}}</view>
+<view class="page-eventAnnouncement">
+  <view class="eventAnnouncement-title">{{eventAnnouncementData.title}}</view>
+  <view class="eventAnnouncement-time">{{eventAnnouncementData.time}}</view>
+  <block wx:for-items="{{eventAnnouncementData.content}}" wx:key="index">
+    <view class="eventAnnouncement-content-box" style="white-space:pre-wrap">
+      <view class="eventAnnouncement-content-title">{{item.title}}</view>
+      <view class="eventAnnouncement-content-content">{{item.content}}</view>
+    </view>
+  </block>
 </view>

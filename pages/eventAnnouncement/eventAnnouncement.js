@@ -4,7 +4,7 @@ const app = getApp();
 Page({
   // 初始数据
   data: {
-    eventAnnouncementData: {},
+    eventAnnouncementData: {}, // 活动公告数据
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {

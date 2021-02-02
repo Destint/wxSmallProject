@@ -1,0 +1,14 @@
+<view class="page-gameIntroduction">
+  <view class="gameIntroduction-title">{{gameIntroductionData.title}}</view>
+  <view class="gameIntroduction-detailedFeature" style="white-space:pre-wrap">{{gameIntroductionData.detailedFeature}}
+  </view>
+  <view class="gameIntroduction-detailedPlay" style="white-space:pre-wrap">{{gameIntroductionData.detailedPlay}}</view>
+  <block wx:if="{{gameIntroductionData.isShowBtn}}">
+    <view class="gameIntroduction-link-box">
+      <image class="gameIntroduction-gameLink" src="{{gameLinkIcon}}" bindtouchstart="clickGameLinkStart"
+        bindtouchend="clickGameLinkEnd" bindtap="clickGameLink"></image>
+      <image class="gameIntroduction-DPBLink" src="{{DPBLinkIcon}}" bindtouchstart="clickDPBLinkStart"
+        bindtouchend="clickDPBLinkEnd" bindtap="clickDPBLink"></image>
+    </view>
+  </block>
+</view>

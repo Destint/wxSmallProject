@@ -20,7 +20,7 @@ Page({
   clickEventAnnouncement: function (e) {
     var data = e.currentTarget.dataset.data; // 获取活动公告内容
     wx.navigateTo({
-      url: '/pages/activityNotice/activityNotice',
+      url: '/pages/eventAnnouncement/eventAnnouncement',
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
         res.eventChannel.emit('acceptDataFromOpenerPage', {

@@ -1,107 +1,86 @@
-.page-home {
-  min-height: 100vh;
-  background-color: #f0eff5;
-}
-
-.header-box {
+.home-header-box {
   position: relative;
-  height: 320rpx;
   width: 100%;
+  height: 320rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.header-box-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.home-header-box-bg {
   width: 100%;
   height: 100%;
-  z-index: 0;
 }
 
 .user-avatar {
   position: absolute;
-  z-index: 1;
-  left: 52rpx;
-  top: 116rpx;
   width: 90rpx;
   height: 90rpx;
+  left: 50rpx;
   border-radius: 50%;
 }
 
 .login-btn {
   position: absolute;
-  z-index: 1;
-  left: 170rpx;
-  top: 128rpx;
-  border-radius: 80rpx;
-  color: #ffffff;
-  width: 40% !important;
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  left: 160rpx;
+  color: #fff;
+  font-weight: 400;
 }
 
-.wxLowTip {
+.lowVersion-tip {
   position: absolute;
-  z-index: 1;
-  color: #ffffff;
-  left: 170rpx;
-  top: 144rpx;
+  color: #fff;
+  left: 160rpx
+}
+
+.user-information-box {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 160rpx;
 }
 
 .user-nickName {
-  position: absolute;
-  z-index: 1;
-  margin-left: 175rpx;
-  margin-top: 118rpx;
   font-size: 25rpx;
-  color: #ffffff;
+  color: #fff;
 }
 
 .user-gameID {
-  position: absolute;
-  z-index: 1;
-  margin-left: 175rpx;
-  margin-top: 145rpx;
   font-size: 25rpx;
-  color: #ffffff;
+  color: #fff;
 }
 
 .user-diamond-box {
-  position: absolute;
-  z-index: 1;
-  margin-left: 175rpx;
-  margin-top: 180rpx;
+  position: relative;
   width: 203rpx;
   height: 39rpx;
-  border-radius: 90rpx;
-  background: #ffffff;
+}
+
+.user-diamond-box-bg {
+  width: 100%;
+  height: 100%;
 }
 
 .diamond-icon {
-  z-index: 1;
   position: absolute;
-  margin-top: 6rpx;
-  margin-left: 8rpx;
   width: 28rpx;
   height: 26rpx;
+  left: 8rpx;
+  top: 6rpx;
 }
 
-.diamond-content {
+.diamond-number {
   position: absolute;
-  z-index: 1;
   font-size: 30rpx;
   color: #f2a351;
-  float: left;
-  margin-left: 46rpx;
-  margin-top: -1rpx;
+  left: 46rpx;
+  top: -1rpxs;
 }
-
-/* .pay-icon {
-  position: absolute;
-  z-index: 1;
-  margin-top: -5rpx;
-  margin-left: 156rpx;
-  width: 48rpx;
-  height: 48rpx;
-} */
 
 .notice-box {
   position: absolute;
@@ -115,27 +94,22 @@
 
 .notice-box-bg {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
 }
 
 .notice-icon {
   position: absolute;
-  z-index: 2;
-  margin-top: 8rpx;
-  margin-left: 52rpx;
+  top: 8rpx;
+  left: 52rpx;
   width: 36rpx;
   height: 30rpx;
 }
 
 .notice-content {
-  z-index: 2;
   width: 100%;
-  margin-top: 3rpx;
   margin-left: 105rpx;
+  padding-top: 3rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -144,120 +118,144 @@
 
 .notice-item {
   font-size: 30rpx;
-  color: #ffffff;
+  color: #fff;
 }
 
-.advertisements-box {
+.banner-box {
+  position: relative;
   width: 100%;
-  padding-top: 20rpx;
+  top: 20rpx;
 }
 
-.advertisements-box swiper {
+.banner-box swiper {
   height: 220rpx;
 }
 
-.advertisements-item {
+.banner-item {
   margin-left: 18rpx;
   width: 714rpx;
   height: 178rpx;
 }
 
-.activity-notice-header {
+.event-announcement-header {
   position: relative;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: 10rpx;
+  top: 24rpx;
 }
 
-.activity-notice-title {
+.event-announcement {
+  color: #000000;
   margin-left: 30rpx;
 }
 
-.activity-notice-more {
+.event-announcement-more {
+  color: #737373;
   margin-left: 480rpx;
   text-decoration: underline;
 }
 
-.activity-notice-list {
+.event-announcement-box {
   position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1rpx solid #f3f2f7;
+  border-bottom: 1rpx solid #f3f2f7;
+  top: 40rpx;
   width: 100%;
   height: 80rpx;
-  margin-top: 4rpx;
-  background-color: #ffffff;
 }
 
-.activity-status {
-  position: absolute;
-  z-index: 1;
-  margin-top: 20rpx;
+.event-announcement-type {
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 38rpx;
+}
+
+.event-announcement-title {
   margin-left: 20rpx;
-  width: 70rpx;
-  font-size: 26rpx;
-  border: 3rpx solid;
-  border-color: #4169E1;
-  color: #4169E1;
-  text-align-last: center;
-  text-align: center;
-}
-
-.activity-title {
-  position: absolute;
-  z-index: 1;
-  margin-top: 22rpx;
-  margin-left: 120rpx;
   font-size: 24rpx;
+  color: #535353;
 }
 
-.activity-entrance-icon {
+.event-announcement-entrance {
   position: absolute;
-  z-index: 1;
-  font-size: 28rpx;
-  margin-top: 20rpx;
-  margin-left: 680rpx;
-  color: #778899;
+  width: 52rpx;
+  height: 52rpx;
+  right: 30rpx;
 }
 
-.game-title {
+.game-introduction-header {
   position: relative;
-  z-index: 1;
-  margin-top: 10rpx;
+  width: 100%;
+  top: 60rpx;
+}
+
+.game-introduction {
+  color: #000000;
   margin-left: 30rpx;
 }
 
-.game-entrance-list {
+.game-introduction-box {
   position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  top: 80rpx;
   width: 100%;
-  margin-top: 20rpx;
+  height: 180rpx;
+}
+
+.game-introduction-icon {
+  position: absolute;
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 30rpx;
+}
+
+.game-introduction-content-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-left: 210rpx;
 }
 
-.game-entrance-icon {
-  width: 200rpx;
-  height: 200rpx;
-}
-
-.game-entrance-title {
+.game-introduction-feature-box {
   display: flex;
-  justify-content: center;
-  width: 200rpx;
-  margin-top: -42rpx;
-  z-index: 1;
-  background-color: #C0C0C0;
-  color: #000000;
+  flex-direction: row;
 }
 
-.game-entrance-feature {
-  margin-top: 20rpx;
-  z-index: 1;
-  width: 90%;
+.game-introduction-feature {
+  position: absolute;
+  color: #2a2a2a;
+  font-size: 26rpx;
+  margin-left: 15rpx;
+  height: 100%rpx;
 }
 
-.game-entrance-play {
-  margin-top: 20rpx;
-  z-index: 1;
-  width: 90%;
+.game-introduction-feature-content {
+  color: #737373;
+  font-size: 26rpx;
+  margin-left: 76rpx;
+}
+
+.game-introduction-play-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-introduction-play {
+  position: absolute;
+  color: #2a2a2a;
+  font-size: 26rpx;
+  margin-left: 15rpx;
+  padding-top: 10rpx;
+  height: 100%rpx;
+}
+
+.game-introduction-play-content {
+  color: #737373;
+  font-size: 26rpx;
+  padding-top: 10rpx;
+  margin-left: 76rpx;
 }
