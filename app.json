@@ -5,7 +5,8 @@
     "pages/eventAnnouncement/eventAnnouncement",
     "pages/gameIntroduction/gameIntroduction",
     "pages/redEnvelope/redEnvelope",
-    "pages/future/future"
+    "pages/future/future",
+    "pages/gameLinkType/gameLinkType"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,33 +1,26 @@
-.page-gameStyle {
+/* .page-gameLinkType {
   min-height: 100vh;
   background-color: #f0eff5;
+} */
+
+.gameLinkType-box {
+  position: relative;
+  top: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.gameStyle-box {
-  position: relative;
-  z-index: 0;
+.gameLinkType-box-bg {
   height: 192rpx;
   width: 690rpx;
-  margin-left: 30rpx;
-  top: 20rpx;
 }
 
-.gameStyle-box-bg {
+.gameLinkType-icon {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.gameStyle-icon {
-  position: absolute;
-  z-index: 2;
-  width: 82rpx;
-  height: 70rpx;
-  margin-top: 62rpx;
-  margin-left: 42rpx;
+  width: 80rpx;
+  height: 72rpx;
+  left: 80rpx;
 }
 
 .gameStyle-content {

@@ -1,0 +1,13 @@
+<view class="page-gameLinkType">
+  <block wx:for-items="{{gameLinkTypeList}}" wx:key="index">
+    <view class="gameLinkType-box" style="margin-top:{{index == 0?'0':'20rpx'}}">
+      <image class="gameLinkType-box-bg" src="/images/gameLinkType_box_bg.png"></image>
+      <image class="gameLinkType-icon" src="{{item.icon_path}}"></image>
+      <!-- <view class="gameStyle-content">{{item.name}}</view>
+      <view class="gameStyle-introduce">{{item.desc}}</view>
+      <view class="gameStyle-copyLink" style="color:{{clickIndex == index?'#8a8a8a':'#f2a351'}}"
+        bindtouchstart="clickCopyLinkStart" bindtouchend="clickCopyLinkEnd" bindtap="clickCopyLinkTap"
+        data-id="{{index}}" data-content="{{item.link}}">复制链接</view> -->
+    </view>
+  </block>
+</view>

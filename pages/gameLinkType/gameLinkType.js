@@ -1,10 +1,10 @@
-// 游戏方式页面 未使用
+// 游戏链接类型
 const app = getApp();
 
 Page({
   // 页面的初始数据
   data: {
-    gameStyleList: [], // 游戏方式列表
+    gameLinkTypeList: [], // 游戏链接类型列表
     clickIndex: "-1" // 复制链接按钮标识
   },
   // 页面加载（一个页面只会调用一次）
@@ -12,14 +12,13 @@ Page({
     var that = this;
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
-      // console.log(data)
       that.setData({
-        gameStyleList: data.data,
+        gameLinkTypeList: data.data.gameLinkType,
       })
     })
   },
 
-  // 开始触摸复制链接按钮事件
+  // 开始点击复制链接按钮事件
   clickCopyLinkStart: function (e) {
     var id = e.currentTarget.dataset.id; // 获取复制链接按钮id
     var that = this;
@@ -28,7 +27,7 @@ Page({
     })
   },
 
-  // 结束触摸复制链接按钮事件
+  // 结束点击复制链接按钮事件
   clickCopyLinkEnd: function () {
     var that = this;
     that.setData({

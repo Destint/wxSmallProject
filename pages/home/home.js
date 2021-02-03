@@ -47,14 +47,51 @@ Page({
     ],
     // 游戏简介列表
     gameIntroductionList: [{
-      icon: "/images/gameIcon_1.png",
-      title: "同乡游麻将",
-      feature: "专为约局打造的俱乐部功能组局更方便",
-      play: "宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌的多款游戏不同玩法",
-      detailedFeature: "\t同乡游麻将专注宁波地区本土棋牌游戏，玩法齐全，规则多样，专注好友约局，俱乐部功能火热上线，私人定制俱乐部玩法，成员审核加入，管理更方便",
-      detailedPlay: "\t包含的游戏有：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌",
-      isShowBtn: "true",
-    }],
+        isShowGameIntroduction: true,
+        icon: "/images/gameIcon_1.png",
+        title: "同乡游麻将",
+        content1: "特色：专为约局打造的俱乐部功能组局更方便",
+        content2: "玩法：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌的多款游戏不同玩法",
+        content3: "\t同乡游麻将专注宁波地区本土棋牌游戏，玩法齐全，规则多样，专注好友约局，俱乐部功能火热上线，私人定制俱乐部玩法，成员审核加入，管理更方便\n\t包含的游戏有：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌",
+        isShowBtn: "true",
+        DPBLink: "abc",
+        gameLinkType: [{
+            icon_path: "/images/gameStyle_wx_icon.png",
+            name: "和微信好友玩",
+            desc: "方便快捷，操作简单",
+            link: "adsadsad"
+          },
+          {
+            icon_path: "/images/gameStyle_other_icon.png",
+            name: "在其他聊天软件上玩",
+            desc: "支持企业微信，聊天宝等",
+            link: "adsadsad"
+          }
+        ],
+      },
+      {
+        isShowGameIntroduction: true, // 是否显示游戏简介
+        icon: "/images/gameIcon_1.png", // 游戏icon
+        title: "同乡游麻将",
+        content1: "特色：专为约局打造的俱乐部功能组局更方便",
+        content2: "玩法：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌的多款游戏不同玩法",
+        content3: "\t同乡游麻将专注宁波地区本土棋牌游戏，玩法齐全，规则多样，专注好友约局，俱乐部功能火热上线，私人定制俱乐部玩法，成员审核加入，管理更方便\n\t包含的游戏有：宁波麻将、北仑麻将、慈溪麻将、余姚麻将、推倒胡、关牌",
+        isShowBtn: "true", // 是否显示按钮
+        DPBLink: "abcdefg", // 发展人链接
+        // 游戏链接类型
+        gameLinkType: [{
+          icon_path: "/images/gameStyle_wx_icon.png",
+          name: "和微信好友玩",
+          desc: "方便快捷，操作简单",
+          link: "adsadsad"
+        }, {
+          icon_path: "/images/gameStyle_other_icon.png",
+          name: "在其他聊天软件上玩",
+          desc: "支持企业微信，聊天宝等",
+          link: "adsadsad"
+        }],
+      }
+    ],
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {

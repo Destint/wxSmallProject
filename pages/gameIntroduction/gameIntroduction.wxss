@@ -6,16 +6,9 @@
   margin-top: 30rpx;
 }
 
-.gameIntroduction-detailedFeature {
+.gameIntroduction-content {
   color: #bababa;
   margin-top: 30rpx;
-  margin-left: 30rpx;
-  padding-right: 30rpx;
-  font-size: 28rpx;
-}
-
-.gameIntroduction-detailedPlay {
-  color: #bababa;
   margin-left: 30rpx;
   padding-right: 30rpx;
   font-size: 28rpx;
