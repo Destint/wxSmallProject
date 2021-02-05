@@ -16,7 +16,15 @@ Page({
       that.setData({
         gameIntroductionData: data.data,
       })
+      wx.setNavigationBarTitle({
+        title: data.data.title
+      })
     })
+  },
+  onShow: function () {
+    // wx.setNavigationBarTitle({
+    //   title: '撒大打赏'//this.data.gameIntroductionData.title
+    // })
   },
   // 开始点击游戏链接按钮事件
   clickGameLinkStart: function () {
@@ -40,7 +48,7 @@ Page({
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
         res.eventChannel.emit('acceptDataFromOpenerPage', {
-          data: that.data.gameIntroductionData
+          data: that.data.gameIntroductionData.button_1
         })
       }
     })
@@ -63,7 +71,7 @@ Page({
   clickDPBLink: function () {
     var that = this;
     wx.setClipboardData({
-      data: that.data.gameIntroductionData.DPBLink,
+      data: that.data.gameIntroductionData.button_2[0].url,
       success: function (res) {
         wx.hideToast()
         wx.showToast({

@@ -1,12 +1,14 @@
 <view class="page-gameIntroduction">
-  <view class="gameIntroduction-title">{{gameIntroductionData.title}}</view>
-  <view class="gameIntroduction-content" style="white-space:pre-wrap">{{gameIntroductionData.content3}}</view>
-  <block wx:if="{{gameIntroductionData.isShowBtn}}">
-    <view class="gameIntroduction-link-box">
+  <!-- <view class="gameIntroduction-title">{{gameIntroductionData.title}}</view> -->
+  <view class="gameIntroduction-content" style="white-space:pre-wrap">{{gameIntroductionData.inside_desc_1}}</view>
+  <view class="gameIntroduction-link-box">
+    <block wx:if="{{gameIntroductionData.button_1_open_status == 1}}">
       <image class="gameIntroduction-gameLink" src="{{gameLinkIcon}}" bindtouchstart="clickGameLinkStart"
         bindtouchend="clickGameLinkEnd" bindtap="clickGameLink"></image>
+    </block>
+    <block wx:if="{{gameIntroductionData.button_2_open_status == 1}}">
       <image class="gameIntroduction-DPBLink" src="{{DPBLinkIcon}}" bindtouchstart="clickDPBLinkStart"
         bindtouchend="clickDPBLinkEnd" bindtap="clickDPBLink"></image>
-    </view>
-  </block>
+    </block>
+  </view>
 </view>

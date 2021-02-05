@@ -1,18 +1,28 @@
 <view class="page-redEnvelope">
   <view class="game-introduction-box">
-    <image class="game-introduction-icon" src="/images/gameIcon_1.png"></image>
-    <text class="game-introduction-content">宁波地区好友约局APP</text>
+    <image class="game-introduction-qrcode" src="/images/game_qrcode.png"></image>
   </view>
   <view class="game-introduction-video-box">
-    <video class="game-introduction-video" src="https://iy.fhabc.com/video/dbc1570bf59c202c4c38db081ab073fc.mp4"
-      binderror="videoErrorCallback" autoplay="true" bindtimeupdate="getCountdown" show-progress="{{false}}"
-      enable-progress-gesture="{{false}}" id="myVideo"></video>
+    <video class="game-introduction-video" src="{{redEnvelopeData.video_url}}" binderror="videoErrorCallback"
+      autoplay="true" bindtimeupdate="getCountdown" show-progress="{{false}}" enable-progress-gesture="{{false}}"
+      id="myVideo" object-fit="fill"></video>
+    <view class="countdown-box">
+      <image class="countdown-bg" src="/images/countdown-bg.png"></image>
+      <text>{{countdown}}</text>
+    </view>
   </view>
-  <view class="countdown">{{countdown}}</view>
-  <view class="get-redEnvelope-box">
-    <button class="get-redEnvelope" style="background-color:{{isClick?'#ff0000':'#c0c0c0'}}"
-      disabled="{{isClick?false:true}}" bindtap="getRedEnvelope">领取红包封面</button>
-  </view>
+  <block wx:if="{{redEnvelopeData.hongbao_href_open_status!=3}}">
+    <view class="get-redEnvelope-box">
+      <button class="get-redEnvelope" style="background-color:{{isClick?'#ff0000':'#c0c0c0'}}"
+        disabled="{{isClick?false:true}}"
+        bindtap="getRedEnvelope">{{redEnvelopeData.hongbao_href_open_status==1?'领取红包封面':'预约红包封面'}}</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="get-redEnvelope-box">
+      <button class="get-redEnvelope" style="background-color:#c0c0c0" disabled="{{false}}">已领完</button>
+    </view>
+  </block>
   <view class="share-box">
     <button class="share-btn" open-type="share" hover-class='none' style="width:unset">
       分享给更多的朋友

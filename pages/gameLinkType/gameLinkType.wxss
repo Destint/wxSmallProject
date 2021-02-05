@@ -1,8 +1,3 @@
-/* .page-gameLinkType {
-  min-height: 100vh;
-  background-color: #f0eff5;
-} */
-
 .gameLinkType-box {
   position: relative;
   top: 20rpx;
@@ -12,8 +7,8 @@
 }
 
 .gameLinkType-box-bg {
-  height: 192rpx;
-  width: 690rpx;
+  height: 184rpx;
+  width: 682rpx;
 }
 
 .gameLinkType-icon {
@@ -23,31 +18,29 @@
   left: 80rpx;
 }
 
-.gameStyle-content {
+.gameLinkType-introduce {
   position: absolute;
-  z-index: 2;
-  margin-top: 58rpx;
-  margin-left: 140rpx;
+  display: flex;
+  flex-direction: column;
+  left: 180rpx;
+}
+
+.gameLinkType-name {
+  color: #323232;
   font-weight: 550;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
 
-.gameStyle-introduce {
-  position: absolute;
-  z-index: 2;
-  margin-top: 104rpx;
-  margin-left: 140rpx;
-  font-size: 22rpx;
-  color: #8a8a8a;
+.gameLinkType-desc {
+  font-size: 28rpx;
+  color: #b2b2b2;
 }
 
-.gameStyle-copyLink {
+.gameLinkType-copyLink {
   position: absolute;
-  z-index: 2;
-  margin-top: 82.5rpx;
-  margin-left: 534rpx;
+  right: 90rpx;
   font-size: 27rpx;
-  color: #f2a351;
+  color: #ff7d33;
   font-weight: 480;
   text-decoration: underline;
 }

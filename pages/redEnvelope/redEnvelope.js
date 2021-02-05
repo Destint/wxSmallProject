@@ -3,8 +3,25 @@ const app = getApp();
 
 Page({
   data: {
+    redEnvelopeData: {}, //红包封面页面数据
     countdown: "", // 视频倒计时
     isClick: false, // 是否可点击领取红包封面
+  },
+  // 页面加载（一个页面只会调用一次）
+  onLoad: function () {
+    var that = this;
+    // 获取红包封面数据
+    wx.request({
+      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetHongbaoSettings',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        that.setData({
+          redEnvelopeData: res.data.data
+        })
+      }
+    })
   },
   // 页面显示（每次打开页面都会调用一次）
   onShow: function () {
@@ -34,10 +51,27 @@ Page({
   },
   // 点击领取红包封面按钮事件
   getRedEnvelope: function () {
-    wx.showToast({
-      title: '预约成功',
-      icon: 'none',
-      duration: 2000
-    })
+    var that = this;
+    if (that.data.redEnvelopeData.hongbao_href_open_status != 1) {
+      wx.showToast({
+        title: '预约成功',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      wx.showRedPackage({
+        url: that.data.redEnvelopeData.hongbao_href,
+        success(res) {
+          // 领取成功
+        },
+        fail(err) {
+          wx.showToast({
+            title: '封面已领完',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
   }
 })

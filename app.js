@@ -43,7 +43,6 @@ App({
       }
     });
   },
-
   // 全局数据
   globalData: {
     userInfo: null, // 用户信息

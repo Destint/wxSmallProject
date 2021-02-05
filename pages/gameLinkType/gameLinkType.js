@@ -13,11 +13,10 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
       that.setData({
-        gameLinkTypeList: data.data.gameLinkType,
+        gameLinkTypeList: data.data,
       })
     })
   },
-
   // 开始点击复制链接按钮事件
   clickCopyLinkStart: function (e) {
     var id = e.currentTarget.dataset.id; // 获取复制链接按钮id
@@ -26,7 +25,6 @@ Page({
       clickIndex: id,
     })
   },
-
   // 结束点击复制链接按钮事件
   clickCopyLinkEnd: function () {
     var that = this;
@@ -34,7 +32,6 @@ Page({
       clickIndex: "-1",
     })
   },
-
   //点击复制链接按钮事件
   clickCopyLinkTap: function (e) {
     var content = e.currentTarget.dataset.content; // 获取复制链接按钮内容
