@@ -10,6 +10,7 @@ Page({
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
+    wx.showShareMenu(); // 开启分享
     var that = this;
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', function (data) {

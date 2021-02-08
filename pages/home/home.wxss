@@ -231,7 +231,7 @@
 
 .game-introduction-content2 {
   color: #737373;
-  font-size: 25rpx;
+  font-size: 24rpx;
   padding-top: 10rpx;
   padding-right: 10rpx;
 }

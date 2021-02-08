@@ -6,9 +6,11 @@ Page({
     redEnvelopeData: {}, //红包封面页面数据
     countdown: "", // 视频倒计时
     isClick: false, // 是否可点击领取红包封面
+    getRedEnvelopeType: '', // 领取红包按钮状态
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
+    wx.showShareMenu(); // 开启分享
     var that = this;
     // 获取红包封面数据
     wx.request({
@@ -17,6 +19,17 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        if (res.data.data.hongbao_href_open_status != 3) {
+          if (res.data.data.hongbao_href_open_status == 1) {
+            that.setData({
+              getRedEnvelopeType: '看视频领红包封面'
+            })
+          } else {
+            that.setData({
+              getRedEnvelopeType: '预约红包封面'
+            })
+          }
+        }
         that.setData({
           redEnvelopeData: res.data.data
         })
@@ -46,6 +59,7 @@ Page({
     if (countdown == 0) {
       that.setData({
         isClick: true,
+        getRedEnvelopeType: '领取红包封面'
       })
     }
   },
@@ -59,19 +73,28 @@ Page({
         duration: 2000
       })
     } else {
-      wx.showRedPackage({
-        url: that.data.redEnvelopeData.hongbao_href,
-        success(res) {
-          // 领取成功
-        },
-        fail(err) {
-          wx.showToast({
-            title: '封面已领完',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      })
+      if (wx.canIUse('showRedPackage')) {
+        wx.showRedPackage({
+          url: that.data.redEnvelopeData.hongbao_href,
+          success(res) {
+            // 领取成功
+          },
+          fail(err) {
+            wx.showToast({
+              title: '封面已领完',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',
+          showCancel: false,
+          confirmText: '确定',
+        })
+      }
     }
   }
 })

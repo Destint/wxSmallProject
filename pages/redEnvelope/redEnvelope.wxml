@@ -15,7 +15,7 @@
     <view class="get-redEnvelope-box">
       <button class="get-redEnvelope" style="background-color:{{isClick?'#ff0000':'#c0c0c0'}}"
         disabled="{{isClick?false:true}}"
-        bindtap="getRedEnvelope">{{redEnvelopeData.hongbao_href_open_status==1?'领取红包封面':'预约红包封面'}}</button>
+        bindtap="getRedEnvelope">{{getRedEnvelopeType}}</button>
     </view>
   </block>
   <block wx:else>

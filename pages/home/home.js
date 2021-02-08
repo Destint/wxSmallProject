@@ -58,6 +58,7 @@ Page({
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
+    wx.showShareMenu(); // 开启分享
     var that = this;
     // 判断app.js onLaunch是否执行完毕
     if (app.globalData.isLogin) {
@@ -108,8 +109,24 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        var arr = res.data.data.list;
+        var gameIntroductionList = new Array();
+        for (var i in arr) {
+          if (arr[i].open_status == 1) {
+            gameIntroductionList.push(arr[i])
+          }
+        }
+        // 对象数组按照对象字段降序
+        function compare(property) {
+          return function (a, b) {
+            var value1 = a[property];
+            var value2 = b[property];
+            return value2 - value1;
+          }
+        };
+        gameIntroductionList = gameIntroductionList.sort(compare('sort'))
         that.setData({
-          gameIntroductionList: res.data.data.list
+          gameIntroductionList: gameIntroductionList
         })
       }
     })
@@ -206,6 +223,13 @@ Page({
           data: gameIntroductionData
         })
       }
+    })
+  },
+  // 点击轮播图跳转到其他页面
+  goToOtherPage: function (e) {
+    wx.switchTab({
+      url: `${e.currentTarget.dataset.url}`,
+      success: function (res) {}
     })
   },
 })
