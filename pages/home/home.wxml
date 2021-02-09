@@ -1,5 +1,5 @@
 <view class="page-home">
-  <add-applet-tip text="点击“•●•”,[添加到我的小程序]下次轻松找到它" duration="3" />
+  <add-applet-tip text="点击“•●•”[添加到我的小程序],下次轻松找到它" duration="3" />
   <view class="home-header-box">
     <image class="home-header-box-bg" src="/images/home_header_box_bg.png"></image>
     <block wx:if="{{isLogin}}">

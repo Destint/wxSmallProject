@@ -57,6 +57,9 @@
 
 .user-diamond-box {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 203rpx;
   height: 39rpx;
 }
@@ -71,7 +74,6 @@
   width: 28rpx;
   height: 26rpx;
   left: 8rpx;
-  top: 6rpx;
 }
 
 .diamond-number {
@@ -79,7 +81,6 @@
   font-size: 30rpx;
   color: #f2a351;
   left: 46rpx;
-  top: -1rpxs;
 }
 
 .notice-box {
