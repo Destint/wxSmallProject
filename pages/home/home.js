@@ -134,9 +134,9 @@ Page({
   // 分享给朋友的页面设置
   onShareAppMessage: function (res) {
     return {
-      title: '自定义转发标题',
+      title: '新春红包封面免费领！让你的祝福与众不同！',
       path: '/pages/home/home',
-      imageUrl: '/images/gameIcon_1.png'
+      imageUrl: '/images/share_bg.png'
     }
   },
   // 点击登录按钮事件

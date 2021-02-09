@@ -22,7 +22,7 @@ Page({
         if (res.data.data.hongbao_href_open_status != 3) {
           if (res.data.data.hongbao_href_open_status == 1) {
             that.setData({
-              getRedEnvelopeType: '看视频领红包封面'
+              getRedEnvelopeType: '看完视频领取封面'
             })
           } else {
             that.setData({
@@ -96,5 +96,13 @@ Page({
         })
       }
     }
-  }
+  },
+  // 分享给朋友的页面设置
+  onShareAppMessage: function (res) {
+    return {
+      title: '新春红包封面免费领！让你的祝福与众不同！',
+      path: '/pages/home/home',
+      imageUrl: '/images/share_bg.png'
+    }
+  },
 })

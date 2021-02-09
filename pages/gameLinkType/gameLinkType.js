@@ -18,6 +18,14 @@ Page({
       })
     })
   },
+  // 分享给朋友的页面设置
+  onShareAppMessage: function (res) {
+    return {
+      title: '新春红包封面免费领！让你的祝福与众不同！',
+      path: '/pages/home/home',
+      imageUrl: '/images/share_bg.png'
+    }
+  },
   // 开始点击复制链接按钮事件
   clickCopyLinkStart: function (e) {
     var id = e.currentTarget.dataset.id; // 获取复制链接按钮id

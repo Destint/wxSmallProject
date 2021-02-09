@@ -28,13 +28,18 @@
   align-items: center;
   margin-top: 20rpx;
   margin-left: 280rpx;
-  color: #000000;
 }
 
 .countdown-bg {
   position: absolute;
   width: 92rpx;
   height: 40rpx;
+}
+
+.countdown-content {
+  z-index: 2;
+  color: #ffffff;
+  font-size: 24rpx;
 }
 
 .get-redEnvelope-box {
