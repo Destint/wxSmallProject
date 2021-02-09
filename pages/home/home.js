@@ -131,6 +131,14 @@ Page({
       }
     })
   },
+  // 分享给朋友的页面设置
+  onShareAppMessage: function (res) {
+    return {
+      title: '自定义转发标题',
+      path: '/pages/home/home',
+      imageUrl: '/images/gameIcon_1.png'
+    }
+  },
   // 点击登录按钮事件
   clickLoginBtn: function (e) {
     var that = this;

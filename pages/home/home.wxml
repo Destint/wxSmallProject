@@ -43,7 +43,8 @@
     <swiper indicator-dots="true" autoplay="true" interval="3000" duration="800" circular="true">
       <block wx:for="{{bannerList}}" wx:key="index">
         <swiper-item>
-          <image class="banner-item" src="https://iy.fhabc.com/{{item.banner_path}}" data-url="{{item.href_url}}" bindtap="goToOtherPage"></image>
+          <image class="banner-item" src="https://iy.fhabc.com/{{item.banner_path}}" data-url="{{item.href_url}}"
+            bindtap="goToOtherPage"></image>
         </swiper-item>
       </block>
     </swiper>
