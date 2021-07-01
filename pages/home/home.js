@@ -14,7 +14,7 @@ Page({
     gameArea: '宁波地区', // 游戏区域
     gameLink: '', // 游戏链接
     referrerLink: '', // 发展人链接
-    areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区', '同乡游'], // 区域选择
+    areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 区域选择
     // 活动公告列表
     eventAnnouncementList: [{
         type: "/images/event_icon.png",
@@ -82,12 +82,6 @@ Page({
         name: '奉化地区',
         platform: 1264,
         baseId: 888,
-      },
-      {
-        id: 4,
-        name: '同乡游',
-        platform: 800,
-        baseId: 800,
       }
     ]
   },
