@@ -22,23 +22,6 @@
   overflow: hidden;
 }
 
-.login-btn {
-  position: absolute;
-  text-decoration: underline;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  left: 236rpx;
-  color: #fff;
-  font-weight: 400;
-}
-
-.lowVersion-tip {
-  position: absolute;
-  color: #fff;
-  left: 235rpx
-}
-
 .user-information-box {
   position: absolute;
   display: flex;

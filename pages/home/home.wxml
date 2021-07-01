@@ -2,31 +2,18 @@
   <add-applet-tip text="点击“•●•”[添加到我的小程序],下次轻松找到它" duration="3" />
   <view class="home-header-box">
     <image class="home-header-box-bg" src="/images/home_header_box_bg.png"></image>
-    <block wx:if="{{isLogin}}">
-      <open-data class="user-avatar" type="userAvatarUrl"></open-data>
-      <view class="user-information-box">
-        <view class="user-nickName">
-          <open-data type="userNickName"></open-data>
-        </view>
-        <view class="user-gameID">ID:{{userGameID}}</view>
-        <view class="user-diamond-box">
-          <image class="user-diamond-box-bg" src="/images/user_diamond_box_bg.png"></image>
-          <image class="diamond-icon" src="/images/diamond_icon.png"></image>
-          <text class="diamond-number">{{userDiamond}}</text>
-        </view>
+    <open-data class="user-avatar" type="userAvatarUrl"></open-data>
+    <view class="user-information-box">
+      <view class="user-nickName">
+        <open-data type="userNickName"></open-data>
       </view>
-    </block>
-    <block wx:else>
-      <image class="user-avatar" src="/images/avatar_default.png"></image>
-      <block wx:if="{{canIUse}}">
-        <button class="login-btn" style="width:unset" open-type="getUserInfo" bindgetuserinfo="clickLoginBtn">
-          点击登录
-        </button>
-      </block>
-      <block wx:else>
-        <text class="lowVersion-tip">微信版本过低，请升级微信</text>
-      </block>
-    </block>
+      <view class="user-gameID">ID:{{userGameID}}</view>
+      <view class="user-diamond-box">
+        <image class="user-diamond-box-bg" src="/images/user_diamond_box_bg.png"></image>
+        <image class="diamond-icon" src="/images/diamond_icon.png"></image>
+        <text class="diamond-number">{{userDiamond}}</text>
+      </view>
+    </view>
     <view class="choose-area-tip-box">
       <image class="choose-area" src="/images/choose_area.png"></image>
     </view>

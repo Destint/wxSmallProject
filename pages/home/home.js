@@ -5,13 +5,14 @@ Page({
   // 初始数据
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'), // 判断小程序的API，回调，参数，组件等是否在当前版本可用
-    isLogin: false, // 用户是否登录
     userGameID: "", // 用户游戏id
     userDiamond: "", // 用户钻石数
+    userLastGamePlatform: '', // 用户上一次游戏平台
+    gameBaseId: '', // 游戏基础id
     noticeList: [], // 文字广播列表
     bannerList: [], // 轮播图列表
     isShowGameLink: true, // 是否显示游戏链接界面
-    gameArea: '宁波地区', // 游戏区域
+    gameArea: '', // 游戏区域
     gameLink: '', // 游戏链接
     referrerLink: '', // 发展人链接
     areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 区域选择
@@ -89,25 +90,25 @@ Page({
   onLoad: function () {
     wx.showShareMenu(); // 开启分享
     let that = this;
-    // 判断app.js onLaunch是否执行完毕
-    if (app.globalData.isLogin) {
-      that.setData({
-        userGameID: app.globalData.userGameID,
-        userDiamond: app.globalData.userDiamond,
-        isLogin: app.globalData.isLogin,
-      })
-      that.showGameAreaAndLink();
-    } else {
-      app.isLoginReadyCallback = res => {
-        that.setData({
-          userGameID: app.globalData.userGameID,
-          userDiamond: app.globalData.userDiamond,
-          isLogin: app.globalData.isLogin,
-        })
-        that.showGameAreaAndLink();
-      };
+    that.getNotices(); // 获取喇叭公告
+    that.getBanners(); // 获取轮播图
+  },
+  // 页面加载（每次都调用）
+  onShow: function () {
+    let that = this;
+    that.getUserInfo(); // 登录获取用户uid和钻石及地区链接
+  },
+  // 分享给朋友的页面设置
+  onShareAppMessage: function (res) {
+    return {
+      title: '发展人、游戏链接入口在这里！赶快收藏呀~',
+      path: '/pages/home/home',
+      imageUrl: '/images/share_bg.png'
     }
-    // 获取文字广播
+  },
+  // 获取喇叭公告
+  getNotices: function () {
+    let that = this;
     wx.request({
       url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetNotices',
       header: {
@@ -119,7 +120,10 @@ Page({
         })
       }
     })
-    // 获取轮播图
+  },
+  // 获取轮播图
+  getBanners: function () {
+    let that = this;
     wx.request({
       url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetBanners',
       header: {
@@ -132,8 +136,8 @@ Page({
       }
     })
   },
-  // 页面加载（每次都调用）
-  onShow: function () {
+  // 登录获取用户uid和钻石及地区链接
+  getUserInfo: function () {
     let that = this;
     wx.getSetting({
       // 判断用户是否授权登录
@@ -141,7 +145,6 @@ Page({
         if (res.authSetting['scope.userInfo']) {
           // 用户已授权登录信息
           wx.login({
-            // 获取用户游戏id和钻石
             success: function (res_login) {
               if (res_login.code) {
                 wx.getUserInfo({
@@ -156,30 +159,26 @@ Page({
                         encrypted_data: res.encryptedData,
                         iv: res.iv
                       },
-                      success(res) {
-                        app.globalData.userGameID = res.data.data.uid
-                        app.globalData.userDiamond = res.data.data.money
-                        app.globalData.userPlatform = res.data.data.before_login_platform
-                        app.globalData.baseId = res.data.data.base_id
-                        that.setData({
-                          userGameID: res.data.data.uid,
-                          userDiamond: res.data.data.money,
-                          isLogin: true,
-                        })
+                      success(res_userInfo) {
                         wx.request({
                           url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
                           header: {
                             'Content-Type': 'application/json'
                           },
                           data: {
-                            user_id: res.data.data.uid,
-                            platform: res.data.data.before_login_platform,
+                            user_id: res_userInfo.data.data.uid,
+                            platform: res_userInfo.data.data.before_login_platform,
                           },
-                          success(res) {
-                            app.globalData.gameLink = res.data.data.game_url
-                            app.globalData.referrerLink = res.data.data.referrer_url
-                            app.globalData.isLogin = true
-                            that.showGameAreaAndLink();
+                          success(res_url) {
+                            that.setData({
+                              userGameID: res_userInfo.data.data.uid,
+                              userDiamond: res_userInfo.data.data.money,
+                              userLastGamePlatform: res_userInfo.data.data.before_login_platform,
+                              gameBaseId: res_userInfo.data.data.base_id,
+                              gameLink: res_url.data.data.game_url,
+                              referrerLink: res_url.data.data.referrer_url
+                            })
+                            that.showAreaAndGamePlatformChanged();
                           }
                         })
                       }
@@ -193,114 +192,19 @@ Page({
       }
     });
   },
-  // 分享给朋友的页面设置
-  onShareAppMessage: function (res) {
-    return {
-      title: '发展人、游戏链接入口在这里！赶快收藏呀~',
-      path: '/pages/home/home',
-      imageUrl: '/images/share_bg.png'
-    }
-  },
-  // 点击登录按钮事件
-  clickLoginBtn: function (e) {
-    let that = this;
-    if (e.detail.userInfo) {
-      // 用户成功授权登录
-      wx.login({
-        // 获取用户游戏ID和钻石
-        success: function (res_login) {
-          if (res_login.code) {
-            wx.getUserInfo({
-              success: function (res) {
-                wx.request({
-                  url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaAuth.GetUserInfoByJsCode', // 请求地址
-                  header: {
-                    'Content-Type': 'application/json' // 默认值
-                  },
-                  // 发送给后台的数据
-                  data: {
-                    js_code: res_login.code,
-                    encrypted_data: res.encryptedData,
-                    iv: res.iv
-                  },
-                  success(res) {
-                    app.globalData.userGameID = res.data.data.uid
-                    app.globalData.userDiamond = res.data.data.money
-                    app.globalData.userPlatform = res.data.data.before_login_platform
-                    app.globalData.baseId = res.data.data.base_id
-                    wx.request({
-                      url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
-                      header: {
-                        'Content-Type': 'application/json'
-                      },
-                      data: {
-                        user_id: app.globalData.userGameID,
-                        platform: app.globalData.userPlatform,
-                      },
-                      success(res) {
-                        app.globalData.gameLink = res.data.data.game_url
-                        app.globalData.referrerLink = res.data.data.referrer_url
-                        app.globalData.isLogin = true
-                        that.setData({
-                          userGameID: app.globalData.userGameID,
-                          userDiamond: app.globalData.userDiamond,
-                          isLogin: app.globalData.isLogin,
-                        })
-                        that.showGameAreaAndLink();
-                      }
-                    })
-                  }
-                })
-              }
-            })
-          }
-        }
-      })
-    } else {
-      // 用户拒绝了授权 弹出警告
-      wx.showModal({
-        title: '无法登陆完成',
-        content: '为了获取您的游戏信息，请先进行授权哦',
-        showCancel: false,
-        confirmText: '返回授权',
-        success: function (res) {
-          if (res.confirm) {
-            // 用户点了返回授权
-          }
-        }
-      });
-    }
-  },
   // 选择区域事件
   chooseArea: function (e) {
     let that = this;
-    if (!app.globalData.isLogin) {
-      // 用户未登录，无法切换地区
-      wx.showModal({
-        title: '无法切换地区',
-        content: '请点击登录后才可切换地区',
-        showCancel: false,
-        confirmText: '返回登录',
-        success: function (res) {
-          if (res.confirm) {
-            // 用户点了返回授权
-          }
-        }
-      });
-      return;
-    }
     wx.request({
       url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
       header: {
         'Content-Type': 'application/json'
       },
       data: {
-        user_id: app.globalData.userGameID,
+        user_id: that.data.userGameID,
         platform: that.data.platformArr[e.detail.value].platform,
       },
       success(res) {
-        app.globalData.gameLink = res.data.data.game_url
-        app.globalData.referrerLink = res.data.data.referrer_url
         that.setData({
           gameArea: that.data.areaArray[e.detail.value],
           gameLink: res.data.data.game_url,
@@ -386,20 +290,18 @@ Page({
       }
     })
   },
-  // 游戏地区及链接显示
-  showGameAreaAndLink: function () {
+  // 显示地区及游戏平台号变更
+  showAreaAndGamePlatformChanged: function () {
     let that = this;
-    let platformArr = that.data.platformArr
+    let platformArr = that.data.platformArr;
     for (var i = 0; i < platformArr.length; i++) {
-      if (app.globalData.baseId == platformArr[i].baseId) {
-        if (app.globalData.userPlatform != platformArr[i].platform) {
-          platformArr[i].platform = app.globalData.userPlatform
+      if (that.data.gameBaseId == platformArr[i].baseId) {
+        if (that.data.userLastGamePlatform != platformArr[i].platform) {
+          platformArr[i].platform = that.data.userLastGamePlatform;
         }
         that.setData({
           platformArr: platformArr,
           gameArea: platformArr[i].name,
-          gameLink: app.globalData.gameLink,
-          referrerLink: app.globalData.referrerLink
         })
         break;
       }
