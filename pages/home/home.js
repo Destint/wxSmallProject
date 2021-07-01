@@ -6,11 +6,15 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'), // 判断小程序的API，回调，参数，组件等是否在当前版本可用
     isLogin: false, // 用户是否登录
-    userInfo: {}, // 用户微信信息
     userGameID: "", // 用户游戏id
     userDiamond: "", // 用户钻石数
     noticeList: [], // 文字广播列表
     bannerList: [], // 轮播图列表
+    isShowGameLink: true, // 是否显示游戏链接界面
+    gameArea: '宁波地区', // 游戏区域
+    gameLink: '', // 游戏链接
+    referrerLink: '', // 发展人链接
+    areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区', '同乡游'], // 区域选择
     // 活动公告列表
     eventAnnouncementList: [{
         type: "/images/event_icon.png",
@@ -54,28 +58,59 @@ Page({
         }],
       }
     ],
-    gameIntroductionList: [], // 游戏简介列表
+    // 游戏不同地区平台列表
+    platformArr: [{
+        id: 0,
+        name: '宁波地区',
+        platform: 777,
+        baseId: 777,
+      },
+      {
+        id: 1,
+        name: '象山地区',
+        platform: 1172,
+        baseId: 999,
+      },
+      {
+        id: 2,
+        name: '宁海地区',
+        platform: 1244,
+        baseId: 1244,
+      },
+      {
+        id: 3,
+        name: '奉化地区',
+        platform: 1264,
+        baseId: 888,
+      },
+      {
+        id: 4,
+        name: '同乡游',
+        platform: 800,
+        baseId: 800,
+      }
+    ]
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
     wx.showShareMenu(); // 开启分享
-    var that = this;
+    let that = this;
     // 判断app.js onLaunch是否执行完毕
     if (app.globalData.isLogin) {
       that.setData({
-        userInfo: app.globalData.userInfo,
         userGameID: app.globalData.userGameID,
         userDiamond: app.globalData.userDiamond,
         isLogin: app.globalData.isLogin,
       })
+      that.showGameAreaAndLink();
     } else {
       app.isLoginReadyCallback = res => {
         that.setData({
-          userInfo: app.globalData.userInfo,
           userGameID: app.globalData.userGameID,
           userDiamond: app.globalData.userDiamond,
           isLogin: app.globalData.isLogin,
         })
+        that.showGameAreaAndLink();
       };
     }
     // 获取文字广播
@@ -102,49 +137,20 @@ Page({
         })
       }
     })
-    // 获取游戏简介列表
-    wx.request({
-      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetGameEntrance',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        var arr = res.data.data.list;
-        var gameIntroductionList = new Array();
-        for (var i in arr) {
-          if (arr[i].open_status == 1) {
-            gameIntroductionList.push(arr[i])
-          }
-        }
-        // 对象数组按照对象字段降序
-        function compare(property) {
-          return function (a, b) {
-            var value1 = a[property];
-            var value2 = b[property];
-            return value2 - value1;
-          }
-        };
-        gameIntroductionList = gameIntroductionList.sort(compare('sort'))
-        that.setData({
-          gameIntroductionList: gameIntroductionList
-        })
-      }
-    })
   },
   // 分享给朋友的页面设置
   onShareAppMessage: function (res) {
     return {
-      title: '新春红包封面免费领！让你的祝福与众不同！',
+      title: '发展人、游戏链接入口在这里！赶快收藏呀~',
       path: '/pages/home/home',
       imageUrl: '/images/share_bg.png'
     }
   },
   // 点击登录按钮事件
   clickLoginBtn: function (e) {
-    var that = this;
+    let that = this;
     if (e.detail.userInfo) {
       // 用户成功授权登录
-      app.globalData.userInfo = e.detail.userInfo; // 获取用户的信息
       wx.login({
         // 获取用户游戏ID和钻石
         success: function (res_login) {
@@ -165,12 +171,28 @@ Page({
                   success(res) {
                     app.globalData.userGameID = res.data.data.uid
                     app.globalData.userDiamond = res.data.data.money
-                    app.globalData.isLogin = true
-                    that.setData({
-                      userInfo: app.globalData.userInfo,
-                      userGameID: app.globalData.userGameID,
-                      userDiamond: app.globalData.userDiamond,
-                      isLogin: app.globalData.isLogin,
+                    app.globalData.userPlatform = res.data.data.before_login_platform
+                    app.globalData.baseId = res.data.data.base_id
+                    wx.request({
+                      url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
+                      header: {
+                        'Content-Type': 'application/json'
+                      },
+                      data: {
+                        user_id: app.globalData.userGameID,
+                        platform: app.globalData.userPlatform,
+                      },
+                      success(res) {
+                        app.globalData.gameLink = res.data.data.game_url
+                        app.globalData.referrerLink = res.data.data.referrer_url
+                        app.globalData.isLogin = true
+                        that.setData({
+                          userGameID: app.globalData.userGameID,
+                          userDiamond: app.globalData.userDiamond,
+                          isLogin: app.globalData.isLogin,
+                        })
+                        that.showGameAreaAndLink();
+                      }
                     })
                   }
                 })
@@ -194,9 +216,47 @@ Page({
       });
     }
   },
+  // 选择区域事件
+  chooseArea: function (e) {
+    let that = this;
+    if (!app.globalData.isLogin) {
+      // 用户未登录，无法切换地区
+      wx.showModal({
+        title: '无法切换地区',
+        content: '请点击登录后才可切换地区',
+        showCancel: false,
+        confirmText: '返回登录',
+        success: function (res) {
+          if (res.confirm) {
+            // 用户点了返回授权
+          }
+        }
+      });
+      return;
+    }
+    wx.request({
+      url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      data: {
+        user_id: app.globalData.userGameID,
+        platform: that.data.platformArr[e.detail.value].platform,
+      },
+      success(res) {
+        app.globalData.gameLink = res.data.data.game_url
+        app.globalData.referrerLink = res.data.data.referrer_url
+        that.setData({
+          gameArea: that.data.areaArray[e.detail.value],
+          gameLink: res.data.data.game_url,
+          referrerLink: res.data.data.referrer_url
+        })
+      }
+    })
+  },
   // 点击更多按钮事件
   clickMore: function () {
-    var that = this;
+    let that = this;
     wx.navigateTo({
       url: '/pages/moreEventAnnouncement/moreEventAnnouncement',
       success: function (res) {
@@ -209,7 +269,7 @@ Page({
   },
   // 点击活动公告按钮事件
   clickEventAnnouncement: function (e) {
-    var eventAnnouncementData = e.currentTarget.dataset.data; // 获取活动公告内容
+    let eventAnnouncementData = e.currentTarget.dataset.data; // 获取活动公告内容
     wx.navigateTo({
       url: '/pages/eventAnnouncement/eventAnnouncement',
       success: function (res) {
@@ -220,24 +280,74 @@ Page({
       }
     })
   },
-  // 点击游戏简介按钮事件
-  clickGameIntroduction: function (e) {
-    var gameIntroductionData = e.currentTarget.dataset.data; // 获取游戏简介内容
-    wx.navigateTo({
-      url: '/pages/gameIntroduction/gameIntroduction',
-      success: function (res) {
-        // 通过eventChannel向被打开页面传送数据
-        res.eventChannel.emit('acceptDataFromOpenerPage', {
-          data: gameIntroductionData
-        })
-      }
-    })
-  },
   // 点击轮播图跳转到其他页面
   goToOtherPage: function (e) {
     wx.switchTab({
       url: `${e.currentTarget.dataset.url}`,
       success: function (res) {}
     })
+  },
+  // 选择游戏链接
+  chooseGameLink: function () {
+    let that = this;
+    that.setData({
+      isShowGameLink: true
+    })
+  },
+  // 选择游戏公告
+  chooseGameAnnouncement: function () {
+    let that = this;
+    that.setData({
+      isShowGameLink: false
+    })
+  },
+  // 复制游戏链接
+  copyGameLink: function () {
+    let that = this;
+    wx.setClipboardData({
+      data: that.data.gameLink,
+      success: function (res) {
+        wx.hideToast()
+        wx.showToast({
+          title: '复制成功，请粘贴到微信后使用',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    })
+  },
+  // 复制发展人链接
+  copyReferrerLink: function () {
+    let that = this;
+    wx.setClipboardData({
+      data: that.data.referrerLink,
+      success: function (res) {
+        wx.hideToast()
+        wx.showToast({
+          title: '复制成功，请粘贴到微信后使用',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    })
+  },
+  // 游戏地区及链接显示
+  showGameAreaAndLink: function () {
+    let that = this;
+    let platformArr = that.data.platformArr
+    for (var i = 0; i < platformArr.length; i++) {
+      if (app.globalData.baseId == platformArr[i].baseId) {
+        if (app.globalData.userPlatform != platformArr[i].platform) {
+          platformArr[i].platform = app.globalData.userPlatform
+        }
+        that.setData({
+          platformArr: platformArr,
+          gameArea: platformArr[i].name,
+          gameLink: app.globalData.gameLink,
+          referrerLink: app.globalData.referrerLink
+        })
+        break;
+      }
+    }
   },
 })

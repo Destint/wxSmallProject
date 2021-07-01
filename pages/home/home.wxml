@@ -3,10 +3,12 @@
   <view class="home-header-box">
     <image class="home-header-box-bg" src="/images/home_header_box_bg.png"></image>
     <block wx:if="{{isLogin}}">
-      <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <open-data class="user-avatar" type="userAvatarUrl"></open-data>
       <view class="user-information-box">
-        <view class="user-nickName">{{userInfo.nickName}}</view>
-        <view class="user-gameID">ID : {{userGameID}}</view>
+        <view class="user-nickName">
+          <open-data type="userNickName"></open-data>
+        </view>
+        <view class="user-gameID">ID:{{userGameID}}</view>
         <view class="user-diamond-box">
           <image class="user-diamond-box-bg" src="/images/user_diamond_box_bg.png"></image>
           <image class="diamond-icon" src="/images/diamond_icon.png"></image>
@@ -25,8 +27,16 @@
         <text class="lowVersion-tip">微信版本过低，请升级微信</text>
       </block>
     </block>
+    <view class="choose-area-tip-box">
+      <image class="choose-area" src="/images/choose_area.png"></image>
+    </view>
+    <view class="choose-area-box">
+      <image class="choose-area-bg" src="/images/choose_area_bg.png"></image>
+      <picker bindchange="chooseArea" value="{{index}}" range="{{areaArray}}">
+        <text class="area-name">{{gameArea}}</text>
+      </picker>
+    </view>
     <view class="notice-box">
-      <image class="notice-box-bg" src="/images/notice_box_bg.png"></image>
       <image class="notice-icon" src="/images/notice_icon.png"></image>
       <view class="notice-content">
         <swiper vertical="true" autoplay="true" circular="true" interval="5000" duration='300'>
@@ -49,29 +59,48 @@
       </block>
     </swiper>
   </view>
-  <view class="event-announcement-header">
-    <text class="event-announcement">活动公告</text>
-    <text class="event-announcement-more" bindtap="clickMore">更多</text>
+  <view class="game-type-header">
+    <text class="game-link" style="color:{{isShowGameLink?'#5276e9' : '#000000'}}" bindtap="chooseGameLink">游戏链接
+      <block wx:if="{{isShowGameLink}}">
+        <text class="game-type-boreder-bottom"></text>
+      </block>
+    </text>
+    <text class="event-announcement" style="color:{{isShowGameLink?'#000000' : '#5276e9'}}"
+      bindtap="chooseGameAnnouncement">游戏公告
+      <block wx:if="{{isShowGameLink == false}}">
+        <text class="game-type-boreder-bottom"></text>
+      </block>
+    </text>
   </view>
-  <block wx:for-items="{{eventAnnouncementList}}" wx:key="index" wx:if="{{index < 9}}">
-    <view class="event-announcement-box" bindtap="clickEventAnnouncement" data-data="{{item}}"
-      style="border-top:{{index==0?'1rpx solid #e7e7e7':''}}">
-      <image class="event-announcement-type" src="{{item.type}}"></image>
-      <text class="event-announcement-title">{{item.title}}</text>
-      <image class="event-announcement-entrance" src="/images/event_announcement_entrance_icon.png"></image>
+  <block wx:if="{{isShowGameLink}}">
+    <view class="show-area-box">
+      <image class="show-area-bg" src="/images/show_area_bg.png"></image>
+      <text class="show-area-name">【{{gameArea}}】</text>
     </view>
+    <view class="game-link-box">
+      <image class="game-link-flag" src="/images/game_link_flag.png"></image>
+      <text class="game-link-tip">游戏链接</text>
+      <image class="copy-game-link-bg" src="/images/copy_link_bg.png" bindtap="copyGameLink"></image>
+    </view>
+    <view class="game-link-content">{{gameLink}}</view>
+    <view class="referrer-link-box">
+      <image class="referrer-link-flag" src="/images/game_referrer_flag.png"></image>
+      <text class="referrer-link-tip">发展人链接</text>
+      <image class="copy-game-link-bg" src="/images/copy_link_bg.png" bindtap="copyReferrerLink"></image>
+    </view>
+    <view class="referrer-link-content">{{referrerLink}}</view>
   </block>
-  <view class="game-introduction-header">
-    <text class="game-introduction">热门游戏</text>
-  </view>
-  <block wx:for-items="{{gameIntroductionList}}" wx:key="index" wx:if="{{item.open_status == 1}}">
-    <view class="game-introduction-box" style="margin-top:{{index==0?'0':'50rpx'}}" bindtap="clickGameIntroduction"
-      data-data="{{item}}">
-      <image class="game-introduction-icon" src="{{item.icon_path}}"></image>
-      <view class="game-introduction-content-box">
-        <view class="game-introduction-content1">{{item.outside_desc_1}}</view>
-        <view class="game-introduction-content2">{{item.outside_desc_2}}</view>
-      </view>
+  <block wx:else>
+    <view class="event-announcement-more">
+      <text bindtap="clickMore">更多</text>
     </view>
+    <block wx:for-items="{{eventAnnouncementList}}" wx:key="index" wx:if="{{index < 9}}">
+      <view class="event-announcement-box" bindtap="clickEventAnnouncement" data-data="{{item}}"
+        style="border-top:{{index==0?'1rpx solid #e7e7e7':''}}">
+        <image class="event-announcement-type" src="{{item.type}}"></image>
+        <text class="event-announcement-title">{{item.title}}</text>
+        <image class="event-announcement-entrance" src="/images/event_announcement_entrance_icon.png"></image>
+      </view>
+    </block>
   </block>
 </view>

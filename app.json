@@ -3,10 +3,8 @@
     "pages/home/home",
     "pages/moreEventAnnouncement/moreEventAnnouncement",
     "pages/eventAnnouncement/eventAnnouncement",
-    "pages/gameIntroduction/gameIntroduction",
     "pages/redEnvelope/redEnvelope",
-    "pages/future/future",
-    "pages/gameLinkType/gameLinkType"
+    "pages/future/future"
   ],
   "window": {
     "backgroundTextStyle": "light",

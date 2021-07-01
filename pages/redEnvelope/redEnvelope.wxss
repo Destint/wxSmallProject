@@ -27,7 +27,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20rpx;
-  margin-left: 280rpx;
+  right: 80rpx;
 }
 
 .countdown-bg {

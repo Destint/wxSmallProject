@@ -15,7 +15,7 @@ Component({
     },
     custom: {
       type: Boolean,
-      value: true
+      value: false
     }
   },
   lifetimes: {
