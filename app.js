@@ -54,47 +54,18 @@ App({
               }
             }
           })
-        } else {
-          // 用户未登录显示的地区链接
-          wx.request({
-            url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
-            header: {
-              'Content-Type': 'application/json'
-            },
-            data: {
-              user_id: 0,
-              platform: 777,
-            },
-            success(res) {
-              that.globalData.gameLink = res.data.data.game_url
-              that.globalData.referrerLink = res.data.data.referrer_url
-              that.globalData.baseId = 777
-              that.globalData.userPlatform = 777
-              that.globalData.isLogin = false
-              if (that.isLoginReadyCallback) {
-                that.isLoginReadyCallback(res);
-              }
-            }
-          })
         }
       }
     });
     // 更新小程序版本
     if (wx.canIUse('getUpdateManager')) {
-      const updateManager = wx.getUpdateManager()
+      const updateManager = wx.getUpdateManager();
       updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
         if (res.hasUpdate) {
           updateManager.onUpdateReady(function () {
             updateManager.applyUpdate()
           })
-          // updateManager.onUpdateFailed(function () {
-          //   // 新的版本下载失败
-          //   wx.showModal({
-          //     title: '已经有新版本了哟~',
-          //     content: '新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~'
-          //   })
-          // })
         }
       })
     }
