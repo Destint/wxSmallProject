@@ -14,7 +14,7 @@ Page({
     gameArea: '宁波地区', // 游戏区域
     gameLink: '', // 游戏链接
     referrerLink: '', // 发展人链接
-    areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区', '同乡游'], // 区域选择
+    areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 区域选择
     // 活动公告列表
     eventAnnouncementList: [{
         type: "/images/event_icon.png",
@@ -82,12 +82,6 @@ Page({
         name: '奉化地区',
         platform: 1264,
         baseId: 888,
-      },
-      {
-        id: 4,
-        name: '同乡游',
-        platform: 800,
-        baseId: 800,
       }
     ]
   },
@@ -137,6 +131,67 @@ Page({
         })
       }
     })
+  },
+  // 页面加载（每次都调用）
+  onShow: function () {
+    let that = this;
+    wx.getSetting({
+      // 判断用户是否授权登录
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 用户已授权登录信息
+          wx.login({
+            // 获取用户游戏id和钻石
+            success: function (res_login) {
+              if (res_login.code) {
+                wx.getUserInfo({
+                  success: function (res) {
+                    wx.request({
+                      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaAuth.GetUserInfoByJsCode',
+                      header: {
+                        'Content-Type': 'application/json'
+                      },
+                      data: {
+                        js_code: res_login.code,
+                        encrypted_data: res.encryptedData,
+                        iv: res.iv
+                      },
+                      success(res) {
+                        app.globalData.userGameID = res.data.data.uid
+                        app.globalData.userDiamond = res.data.data.money
+                        app.globalData.userPlatform = res.data.data.before_login_platform
+                        app.globalData.baseId = res.data.data.base_id
+                        that.setData({
+                          userGameID: res.data.data.uid,
+                          userDiamond: res.data.data.money,
+                          isLogin: true,
+                        })
+                        wx.request({
+                          url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
+                          header: {
+                            'Content-Type': 'application/json'
+                          },
+                          data: {
+                            user_id: res.data.data.uid,
+                            platform: res.data.data.before_login_platform,
+                          },
+                          success(res) {
+                            app.globalData.gameLink = res.data.data.game_url
+                            app.globalData.referrerLink = res.data.data.referrer_url
+                            app.globalData.isLogin = true
+                            that.showGameAreaAndLink();
+                          }
+                        })
+                      }
+                    })
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
+    });
   },
   // 分享给朋友的页面设置
   onShareAppMessage: function (res) {
