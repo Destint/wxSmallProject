@@ -50,7 +50,8 @@
     </view>
   </view>
   <view class="banner-box">
-    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="800" circular="true">
+    <swiper indicator-dots="{{bannerList.length==1?false:true}}" autoplay="true" interval="3000" duration="800"
+      circular="true">
       <block wx:for="{{bannerList}}" wx:key="index">
         <swiper-item>
           <image class="banner-item" src="https://iy.fhabc.com/{{item.banner_path}}" data-url="{{item.href_url}}"

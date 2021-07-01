@@ -1,6 +1,6 @@
 <view class="page-redEnvelope">
   <view class="game-introduction-box">
-    <image class="game-introduction-qrcode" src="/images/game_qrcode.png"></image>
+    <!-- <image class="game-introduction-qrcode" src="/images/game_qrcode.png"></image> -->
   </view>
   <view class="game-introduction-video-box">
     <video class="game-introduction-video" src="{{redEnvelopeData.video_url}}" binderror="videoErrorCallback"
@@ -14,8 +14,7 @@
   <block wx:if="{{redEnvelopeData.hongbao_href_open_status!=3}}">
     <view class="get-redEnvelope-box">
       <button class="get-redEnvelope" style="background-color:{{isClick?'#ff0000':'#c0c0c0'}}"
-        disabled="{{isClick?false:true}}"
-        bindtap="getRedEnvelope">{{getRedEnvelopeType}}</button>
+        disabled="{{isClick?false:true}}" bindtap="getRedEnvelope">{{getRedEnvelopeType}}</button>
     </view>
   </block>
   <block wx:else>
