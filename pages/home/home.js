@@ -60,31 +60,7 @@ Page({
       }
     ],
     // 游戏不同地区平台列表
-    platformArr: [{
-        id: 0,
-        name: '宁波地区',
-        platform: 777,
-        baseId: 777,
-      },
-      {
-        id: 1,
-        name: '象山地区',
-        platform: 1172,
-        baseId: 999,
-      },
-      {
-        id: 2,
-        name: '宁海地区',
-        platform: 1244,
-        baseId: 1244,
-      },
-      {
-        id: 3,
-        name: '奉化地区',
-        platform: 1264,
-        baseId: 888,
-      }
-    ]
+    platformArr: []
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
@@ -293,7 +269,31 @@ Page({
   // 显示地区及游戏平台号变更
   showAreaAndGamePlatformChanged: function () {
     let that = this;
-    let platformArr = that.data.platformArr;
+    let platformArr = [{
+        id: 0,
+        name: '宁波地区',
+        platform: 777,
+        baseId: 777,
+      },
+      {
+        id: 1,
+        name: '象山地区',
+        platform: 1172,
+        baseId: 999,
+      },
+      {
+        id: 2,
+        name: '宁海地区',
+        platform: 1244,
+        baseId: 1244,
+      },
+      {
+        id: 3,
+        name: '奉化地区',
+        platform: 1264,
+        baseId: 888,
+      }
+    ];
     for (var i = 0; i < platformArr.length; i++) {
       if (that.data.gameBaseId == platformArr[i].baseId) {
         if (that.data.userLastGamePlatform != platformArr[i].platform) {

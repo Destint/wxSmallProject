@@ -10,7 +10,7 @@ Page({
   onLoad: function () {
     wx.showShareMenu(); // 开启分享
     let that = this;
-    const eventChannel = this.getOpenerEventChannel()
+    const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
       that.setData({
         eventAnnouncementData: data.data,
