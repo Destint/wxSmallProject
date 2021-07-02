@@ -10,36 +10,35 @@ Page({
   },
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
-    wx.showShareMenu(); // 开启分享
     let that = this;
-    // 获取红包封面数据
-    wx.request({
-      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetHongbaoSettings',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        if (res.data.data.hongbao_href_open_status != 3) {
-          if (res.data.data.hongbao_href_open_status == 1) {
-            that.setData({
-              getRedEnvelopeType: '看完视频领取封面'
-            })
-          } else {
-            that.setData({
-              getRedEnvelopeType: '预约红包封面'
-            })
-          }
-        }
-        that.setData({
-          redEnvelopeData: res.data.data
-        })
-      }
-    })
+    wx.showShareMenu(); // 开启分享
+    that.getRedEnvelopeData(); // 获取红包封面数据
   },
   // 页面显示（每次打开页面都会调用一次）
   onShow: function () {
     this.videoContext = wx.createVideoContext('myVideo') // 获取视频内容
     this.videoContext.seek(0) // 使视频从头播放
+  },
+  // 获取红包封面数据
+  getRedEnvelopeData: function () {
+    let that = this;
+    let tip = '';
+    wx.request({
+      url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetHongbaoSettings',
+      success(res) {
+        if (res.data.data.hongbao_href_open_status != 3) {
+          if (res.data.data.hongbao_href_open_status == 1) {
+            tip = '看完视频领取封面';
+          } else {
+            tip = '预约红包封面';
+          }
+        }
+        that.setData({
+          redEnvelopeData: res.data.data,
+          getRedEnvelopeType: tip
+        })
+      }
+    })
   },
   // 视频播放出错回调
   videoErrorCallback: function (e) {
@@ -53,13 +52,15 @@ Page({
   getCountdown: function (e) {
     let that = this;
     let countdown = parseInt(e.detail.duration - e.detail.currentTime);
-    that.setData({
-      countdown: countdown,
-    })
     if (countdown == 0) {
       that.setData({
         isClick: true,
-        getRedEnvelopeType: '领取红包封面'
+        getRedEnvelopeType: '领取红包封面',
+        countdown: countdown
+      })
+    } else {
+      that.setData({
+        countdown: countdown
       })
     }
   },

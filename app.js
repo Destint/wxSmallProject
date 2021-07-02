@@ -9,12 +9,15 @@ App({
         // 请求完新版本信息的回调
         if (res.hasUpdate) {
           updateManager.onUpdateReady(function () {
-            updateManager.applyUpdate()
+            updateManager.applyUpdate();
           })
         }
       })
     }
   },
   // 全局数据
-  globalData: {}
+  globalData: {
+    baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
+    baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
+  }
 })

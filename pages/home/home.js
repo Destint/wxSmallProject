@@ -86,10 +86,7 @@ Page({
   getNotices: function () {
     let that = this;
     wx.request({
-      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetNotices',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetNotices',
       success(res) {
         that.setData({
           noticeList: res.data.data.list
@@ -101,10 +98,7 @@ Page({
   getBanners: function () {
     let that = this;
     wx.request({
-      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaMedia.GetBanners',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
+      url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetBanners',
       success(res) {
         that.setData({
           bannerList: res.data.data.list
@@ -126,10 +120,7 @@ Page({
                 wx.getUserInfo({
                   success: function (res) {
                     wx.request({
-                      url: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaAuth.GetUserInfoByJsCode',
-                      header: {
-                        'Content-Type': 'application/json'
-                      },
+                      url: app.globalData.baseUrl1 + 'ApiWxApp.WxaAuth.GetUserInfoByJsCode',
                       data: {
                         js_code: res_login.code,
                         encrypted_data: res.encryptedData,
@@ -137,10 +128,7 @@ Page({
                       },
                       success(res_userInfo) {
                         wx.request({
-                          url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
-                          header: {
-                            'Content-Type': 'application/json'
-                          },
+                          url: app.globalData.baseUrl2 + 'App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
                           data: {
                             user_id: res_userInfo.data.data.uid,
                             platform: res_userInfo.data.data.before_login_platform,
@@ -172,10 +160,7 @@ Page({
   chooseArea: function (e) {
     let that = this;
     wx.request({
-      url: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
-      header: {
-        'Content-Type': 'application/json'
-      },
+      url: app.globalData.baseUrl2 + 'App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
       data: {
         user_id: that.data.userGameID,
         platform: that.data.platformArr[e.detail.value].platform,
