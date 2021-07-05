@@ -15,9 +15,10 @@
       </view>
     </view>
     <view class="choose-area-box">
-      <image class="choose-area-bg" src="/images/choose_area_bg.png"></image>
       <picker bindchange="chooseArea" value="{{index}}" range="{{areaArray}}">
-        <text class="area-name">{{gameArea}}</text>
+        <image class="choose-area-bg" src="/images/choose_area_bg.png">
+          <text class="area-name">{{gameArea}}</text>
+        </image>
       </picker>
     </view>
     <view class="notice-box">
