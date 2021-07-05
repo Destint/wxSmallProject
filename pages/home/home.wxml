@@ -14,9 +14,6 @@
         <text class="diamond-number">{{userDiamond}}</text>
       </view>
     </view>
-    <view class="choose-area-tip-box">
-      <image class="choose-area" src="/images/choose_area.png"></image>
-    </view>
     <view class="choose-area-box">
       <image class="choose-area-bg" src="/images/choose_area_bg.png"></image>
       <picker bindchange="chooseArea" value="{{index}}" range="{{areaArray}}">

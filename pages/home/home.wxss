@@ -73,23 +73,10 @@
   left: 55rpx;
 }
 
-.choose-area-tip-box {
-  position: absolute;
-  width: 141rpx;
-  height: 56rpx;
-  top: 50rpx;
-  right: 0;
-}
-
-.choose-area {
-  width: 100%;
-  height: 100%;
-}
-
 .choose-area-box {
   position: absolute;
-  width: 183rpx;
-  height: 58rpx;
+  width: 200rpx;
+  height: 66rpx;
   right: 0;
 }
 
@@ -101,9 +88,9 @@
 .area-name {
   position: absolute;
   color: #6292f4;
-  font-size: 28rpx;
-  left: 56rpx;
-  top: 8rpx;
+  font-size: 30rpx;
+  left: 60rpx;
+  top: 10rpx;
 }
 
 .notice-box {
