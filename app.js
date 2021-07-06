@@ -5,6 +5,28 @@ App({
     let that = this;
     that.checkForUpdate();
   },
+  // 登录获取用户uid
+  getLoginForUserId: function () {
+    let that = this;
+    wx.login({
+      success: function (res_login) {
+        if (res_login.code) {
+          wx.getUserInfo({
+            success: function (res_userInfo) {
+              wx.request({
+                url: that.globalData.baseUrl1 + 'ApiWxApp.WxaAuth.GetUserInfoByJsCode',
+                data: {
+                  js_code: res_login.code,
+                  encrypted_data: res_userInfo.encryptedData,
+                  iv: res_userInfo.iv
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+  },
   // 小程序版本更新检测
   checkForUpdate: function () {
     if (wx.canIUse('getUpdateManager')) {
