@@ -4,11 +4,8 @@ const app = getApp();
 Page({
   // 初始数据
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'), // 判断小程序的API，回调，参数，组件等是否在当前版本可用
     userGameID: "", // 用户游戏id
     userDiamond: "", // 用户钻石数
-    userLastGamePlatform: '', // 用户上一次游戏平台
-    gameBaseId: '', // 游戏基础id
     noticeList: [], // 文字广播列表
     bannerList: [], // 轮播图列表
     isShowGameLink: true, // 是否显示游戏链接界面
@@ -59,9 +56,11 @@ Page({
         }],
       }
     ],
-    // 游戏不同地区平台列表
-    platformArr: []
   },
+  // 公共数据
+  platformArr: [], // 游戏不同地区平台列表
+  userLastGamePlatform: '', // 用户上一次游戏平台
+  gameBaseId: '', // 游戏基础id
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
     wx.showShareMenu(); // 开启分享
@@ -134,11 +133,11 @@ Page({
                             platform: res_userInfo.data.data.before_login_platform,
                           },
                           success(res_url) {
+                            that.userLastGamePlatform = res_userInfo.data.data.before_login_platform;
+                            that.gameBaseId = res_userInfo.data.data.base_id;
                             that.setData({
                               userGameID: res_userInfo.data.data.uid,
                               userDiamond: res_userInfo.data.data.money,
-                              userLastGamePlatform: res_userInfo.data.data.before_login_platform,
-                              gameBaseId: res_userInfo.data.data.base_id,
                               gameLink: res_url.data.data.game_url,
                               referrerLink: res_url.data.data.referrer_url
                             })
@@ -163,7 +162,7 @@ Page({
       url: app.globalData.baseUrl2 + 'App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
       data: {
         user_id: that.data.userGameID,
-        platform: that.data.platformArr[e.detail.value].platform,
+        platform: that.platformArr[e.detail.value].platform,
       },
       success(res) {
         that.setData({
@@ -280,12 +279,12 @@ Page({
       }
     ];
     for (var i = 0; i < platformArr.length; i++) {
-      if (that.data.gameBaseId == platformArr[i].baseId) {
-        if (that.data.userLastGamePlatform != platformArr[i].platform) {
-          platformArr[i].platform = that.data.userLastGamePlatform;
+      if (that.gameBaseId == platformArr[i].baseId) {
+        if (that.userLastGamePlatform != platformArr[i].platform) {
+          platformArr[i].platform = that.userLastGamePlatform;
         }
+        that.platformArr = platformArr;
         that.setData({
-          platformArr: platformArr,
           gameArea: platformArr[i].name,
         })
         break;

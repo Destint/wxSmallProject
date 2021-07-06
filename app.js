@@ -2,7 +2,11 @@
 App({
   // 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
   onLaunch() {
-    // 更新小程序版本
+    let that = this;
+    that.checkForUpdate();
+  },
+  // 小程序版本更新检测
+  checkForUpdate: function () {
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager();
       updateManager.onCheckForUpdate(function (res) {

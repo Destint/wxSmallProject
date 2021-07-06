@@ -186,7 +186,7 @@
   color: #737373;
   padding-right: 80rpx;
   margin-top: 40rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
   text-decoration: underline;
   text-align: right;
 }
