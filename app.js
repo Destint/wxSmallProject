@@ -5,8 +5,9 @@ App({
     let that = this;
     that.checkForUpdate();
   },
+
   // 登录获取用户uid
-  getLoginForUserId: function () {
+  getLoginForUserID: function () {
     let that = this;
     wx.login({
       success: function (res_login) {
@@ -19,6 +20,12 @@ App({
                   js_code: res_login.code,
                   encrypted_data: res_userInfo.encryptedData,
                   iv: res_userInfo.iv
+                },
+                success(res) {
+                  that.globalData.userGameID = res.data.data.uid;
+                  if (that.isLoginReadyCallback) {
+                    that.isLoginReadyCallback(res);
+                  }
                 }
               })
             }
@@ -27,6 +34,7 @@ App({
       }
     })
   },
+
   // 小程序版本更新检测
   checkForUpdate: function () {
     if (wx.canIUse('getUpdateManager')) {
@@ -41,9 +49,11 @@ App({
       })
     }
   },
+  
   // 全局数据
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
     baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
+    userGameID: '', // 用户游戏id
   }
 })

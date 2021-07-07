@@ -8,17 +8,20 @@ Page({
     isClick: false, // 是否可点击领取红包封面
     getRedEnvelopeType: '', // 领取红包按钮状态
   },
+
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
     let that = this;
     wx.showShareMenu(); // 开启分享
     that.getRedEnvelopeData(); // 获取红包封面数据
   },
+
   // 页面显示（每次打开页面都会调用一次）
   onShow: function () {
-    this.videoContext = wx.createVideoContext('myVideo') // 获取视频内容
-    this.videoContext.seek(0) // 使视频从头播放
+    this.videoContext = wx.createVideoContext('myVideo'); // 获取视频内容
+    this.videoContext.seek(0); // 使视频从头播放
   },
+
   // 获取红包封面数据
   getRedEnvelopeData: function () {
     let that = this;
@@ -40,6 +43,7 @@ Page({
       }
     })
   },
+
   // 视频播放出错回调
   videoErrorCallback: function (e) {
     wx.showToast({
@@ -48,6 +52,7 @@ Page({
       duration: 2000
     })
   },
+
   // 获取视频倒计时
   getCountdown: function (e) {
     let that = this;
@@ -64,6 +69,7 @@ Page({
       })
     }
   },
+
   // 点击领取红包封面按钮事件
   getRedEnvelope: function () {
     let that = this;
@@ -98,8 +104,9 @@ Page({
       }
     }
   },
+
   // 分享给朋友的页面设置
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function () {
     return {
       title: '发展人、游戏链接入口在这里！赶快收藏呀~',
       path: '/pages/home/home',

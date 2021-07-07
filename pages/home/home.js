@@ -57,10 +57,12 @@ Page({
       }
     ],
   },
+
   // 公共数据
   platformArr: [], // 游戏不同地区平台列表
   userLastGamePlatform: '', // 用户上一次游戏平台
-  gameBaseId: '', // 游戏基础id
+  gameBaseID: '', // 游戏基础id
+
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
     wx.showShareMenu(); // 开启分享
@@ -68,19 +70,22 @@ Page({
     that.getNotices(); // 获取喇叭公告
     that.getBanners(); // 获取轮播图
   },
+
   // 页面加载（每次都调用）
   onShow: function () {
     let that = this;
     that.getUserInfo(); // 登录获取用户uid和钻石及地区链接
   },
+
   // 分享给朋友的页面设置
-  onShareAppMessage: function (res) {
+  onShareAppMessage: function () {
     return {
       title: '发展人、游戏链接入口在这里！赶快收藏呀~',
       path: '/pages/home/home',
       imageUrl: '/images/share_bg.png'
     }
   },
+
   // 获取喇叭公告
   getNotices: function () {
     let that = this;
@@ -93,6 +98,7 @@ Page({
       }
     })
   },
+
   // 获取轮播图
   getBanners: function () {
     let that = this;
@@ -105,6 +111,7 @@ Page({
       }
     })
   },
+
   // 登录获取用户uid和钻石及地区链接
   getUserInfo: function () {
     let that = this;
@@ -134,7 +141,7 @@ Page({
                           },
                           success(res_url) {
                             that.userLastGamePlatform = res_userInfo.data.data.before_login_platform;
-                            that.gameBaseId = res_userInfo.data.data.base_id;
+                            that.gameBaseID = res_userInfo.data.data.base_id;
                             that.setData({
                               userGameID: res_userInfo.data.data.uid,
                               userDiamond: res_userInfo.data.data.money,
@@ -155,6 +162,7 @@ Page({
       }
     });
   },
+
   // 选择区域事件
   chooseArea: function (e) {
     let that = this;
@@ -173,6 +181,7 @@ Page({
       }
     })
   },
+
   // 点击更多按钮事件
   clickMore: function () {
     let that = this;
@@ -186,6 +195,7 @@ Page({
       }
     })
   },
+
   // 点击活动公告按钮事件
   clickEventAnnouncement: function (e) {
     let eventAnnouncementData = e.currentTarget.dataset.data; // 获取活动公告内容
@@ -199,13 +209,14 @@ Page({
       }
     })
   },
+
   // 点击轮播图跳转到其他页面
   goToOtherPage: function (e) {
     wx.switchTab({
-      url: `${e.currentTarget.dataset.url}`,
-      success: function (res) {}
+      url: `${e.currentTarget.dataset.url}`
     })
   },
+
   // 选择游戏链接
   chooseGameLink: function () {
     let that = this;
@@ -213,6 +224,7 @@ Page({
       isShowGameLink: true
     })
   },
+
   // 选择游戏公告
   chooseGameAnnouncement: function () {
     let that = this;
@@ -220,6 +232,7 @@ Page({
       isShowGameLink: false
     })
   },
+
   // 复制游戏链接
   copyGameLink: function () {
     let that = this;
@@ -235,6 +248,7 @@ Page({
       }
     })
   },
+
   // 复制发展人链接
   copyReferrerLink: function () {
     let that = this;
@@ -250,6 +264,7 @@ Page({
       }
     })
   },
+  
   // 显示地区及游戏平台号变更
   showAreaAndGamePlatformChanged: function () {
     let that = this;
@@ -257,29 +272,29 @@ Page({
         id: 0,
         name: '宁波地区',
         platform: 777,
-        baseId: 777,
+        baseID: 777,
       },
       {
         id: 1,
         name: '象山地区',
         platform: 1172,
-        baseId: 999,
+        baseID: 999,
       },
       {
         id: 2,
         name: '宁海地区',
         platform: 1244,
-        baseId: 1244,
+        baseID: 1244,
       },
       {
         id: 3,
         name: '奉化地区',
         platform: 1264,
-        baseId: 888,
+        baseID: 888,
       }
     ];
     for (var i = 0; i < platformArr.length; i++) {
-      if (that.gameBaseId == platformArr[i].baseId) {
+      if (that.gameBaseID == platformArr[i].baseID) {
         if (that.userLastGamePlatform != platformArr[i].platform) {
           platformArr[i].platform = that.userLastGamePlatform;
         }
