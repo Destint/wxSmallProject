@@ -92,8 +92,13 @@ Page({
     wx.request({
       url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetNotices',
       success(res) {
+        let noticeList = [];
+        let data = res.data.data.list;
+        for (let i = 0; i < data.length; i++) {
+          noticeList.push(data[i].content);
+        }
         that.setData({
-          noticeList: res.data.data.list
+          noticeList: noticeList
         })
       }
     })
@@ -105,8 +110,16 @@ Page({
     wx.request({
       url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetBanners',
       success(res) {
+        let bannerList = [];
+        let data = res.data.data.list;
+        for (let i = 0; i < data.length; i++) {
+          let obj = {};
+          obj.banner_path = data[i].banner_path;
+          obj.href_url = data[i].href_url;
+          bannerList.push(obj);
+        }
         that.setData({
-          bannerList: res.data.data.list
+          bannerList: bannerList
         })
       }
     })
@@ -213,7 +226,8 @@ Page({
   // 点击轮播图跳转到其他页面
   goToOtherPage: function (e) {
     wx.switchTab({
-      url: `${e.currentTarget.dataset.url}`
+      url: `${e.currentTarget.dataset.url}`,
+      success: function (res) {}
     })
   },
 
@@ -264,7 +278,7 @@ Page({
       }
     })
   },
-  
+
   // 显示地区及游戏平台号变更
   showAreaAndGamePlatformChanged: function () {
     let that = this;
@@ -272,35 +286,35 @@ Page({
         id: 0,
         name: '宁波地区',
         platform: 777,
-        baseID: 777,
+        baseID: 777
       },
       {
         id: 1,
         name: '象山地区',
         platform: 1172,
-        baseID: 999,
+        baseID: 999
       },
       {
         id: 2,
         name: '宁海地区',
         platform: 1244,
-        baseID: 1244,
+        baseID: 1244
       },
       {
         id: 3,
         name: '奉化地区',
         platform: 1264,
-        baseID: 888,
+        baseID: 888
       }
     ];
-    for (var i = 0; i < platformArr.length; i++) {
+    for (let i = 0; i < platformArr.length; i++) {
       if (that.gameBaseID == platformArr[i].baseID) {
         if (that.userLastGamePlatform != platformArr[i].platform) {
           platformArr[i].platform = that.userLastGamePlatform;
         }
         that.platformArr = platformArr;
         that.setData({
-          gameArea: platformArr[i].name,
+          gameArea: platformArr[i].name
         })
         break;
       }
