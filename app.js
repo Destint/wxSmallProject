@@ -4,6 +4,29 @@ App({
   onLaunch() {
     let that = this;
     that.checkForUpdate();
+    that.checkForIDByStorage();
+  },
+
+  // 检测本地缓存中有无用户uid
+  checkForIDByStorage: function () {
+    let that = this;
+    wx.getStorage({
+      key: 'userGameID',
+      success(res) {
+        console.log(res);
+        that.globalData.userGameID = res.data;
+        if (that.isLoginReadyCallback) {
+          console.log('登录完成1');
+          that.isLoginReadyCallback(res);
+        }
+      },
+      fail(err) {
+        console.log(err)
+        console.log('No ID In Storage');
+        // 本地缓存中没有uid
+        that.getLoginForUserID(); // 登录获取用户uid
+      }
+    })
   },
 
   // 登录获取用户uid
@@ -23,9 +46,17 @@ App({
                 },
                 success(res) {
                   that.globalData.userGameID = res.data.data.uid;
-                  if (that.isLoginReadyCallback) {
-                    that.isLoginReadyCallback(res);
-                  }
+                  wx.setStorage({
+                    key: 'userGameID',
+                    data: res.data.data.uid,
+                    complete(res) {
+                      console.log(res);
+                      if (that.isLoginReadyCallback) {
+                        console.log('登录完成2');
+                        that.isLoginReadyCallback(res);
+                      }
+                    }
+                  })
                 }
               })
             }
@@ -49,7 +80,7 @@ App({
       })
     }
   },
-  
+
   // 全局数据
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
