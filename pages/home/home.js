@@ -69,13 +69,16 @@ Page({
     wx.showShareMenu(); // 开启分享
     that.getNotices(); // 获取喇叭公告
     that.getBanners(); // 获取轮播图
-    that.getUserInfo();
   },
 
   // 页面加载（每次都调用）
   onShow: function () {
     let that = this;
-    that.getUserInfo(); // 登录获取用户uid和钻石及地区链接
+    if(app.globalData.enterFromBackstage == 1) {
+      that.getUserInfo();
+      app.globalData.enterFromBackstage = 0;
+    }
+    // that.getUserInfo(); // 登录获取用户uid和钻石及地区链接
     // if (wx.getStorageSync('userGameID') == '') {
     //   app.isLoginReadyCallback = res => {
     //     if (res != '') {}
@@ -85,8 +88,8 @@ Page({
 
   // 页面隐藏时调用
   onHide: function () {
-    // let that = this;
-    // that.getUserInfo();
+    let that = this;
+    that.getUserInfo();
   },
 
   // 分享给朋友的页面设置
@@ -203,7 +206,7 @@ Page({
       url: app.globalData.baseUrl2 + 'App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
       data: {
         user_id: that.data.userGameID,
-        platform: that.platformArr[e.detail.value].platform,
+        platform: that.platformArr[e.detail.value].platform
       },
       success(res) {
         that.setData({

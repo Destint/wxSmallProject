@@ -7,6 +7,12 @@ App({
     that.checkForIDByStorage();
   },
 
+  // 当小程序切到后台时执行
+  onHide() {
+    let that = this;
+    that.globalData.enterFromBackstage = 1;
+  },
+
   // 检测本地缓存中有无用户uid
   checkForIDByStorage: function () {
     let that = this;
@@ -65,5 +71,6 @@ App({
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
     baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
+    enterFromBackstage: 1,
   }
 })
