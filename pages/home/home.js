@@ -4,10 +4,10 @@ const app = getApp();
 Page({
   // 初始数据
   data: {
-    userGameID: "", // 用户游戏id
+    userGameID: wx.getStorageSync('userGameID'), // 用户游戏id
     userDiamond: "", // 用户钻石数
-    noticeList: [], // 文字广播列表
-    bannerList: [], // 轮播图列表
+    noticeList: wx.getStorageSync('noticesData'), // 文字广播列表
+    bannerList: wx.getStorageSync('bannersData'), // 轮播图列表
     isShowGameLink: true, // 是否显示游戏链接界面
     gameArea: '', // 游戏区域
     gameLink: '', // 游戏链接
@@ -29,7 +29,7 @@ Page({
             title: "领取方式：",
             content: "在活动期间内，满足以上两种情况的用户登录游戏后系统自动发放"
           }
-        ],
+        ]
       },
       {
         type: "/images/event_icon.png",
@@ -41,7 +41,7 @@ Page({
         }, {
           title: "活动内容：",
           content: "活动期间，每天13:00、21：00两个时间点，在牌局中的用户可以在游戏界面领取福袋，每个时间段每个ID仅可领取一次，名额有限，抢完为止",
-        }],
+        }]
       },
       {
         type: "/images/event_icon.png",
@@ -53,9 +53,9 @@ Page({
         }, {
           title: "活动内容：",
           content: "活动期间，玩家首次登录游戏，系统自动赠送新春道具5套，每个ID限送一次",
-        }],
+        }]
       }
-    ],
+    ]
   },
 
   // 公共数据
@@ -65,16 +65,28 @@ Page({
 
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
-    wx.showShareMenu(); // 开启分享
     let that = this;
+    wx.showShareMenu(); // 开启分享
     that.getNotices(); // 获取喇叭公告
     that.getBanners(); // 获取轮播图
+    that.getUserInfo();
   },
 
   // 页面加载（每次都调用）
   onShow: function () {
     let that = this;
     that.getUserInfo(); // 登录获取用户uid和钻石及地区链接
+    // if (wx.getStorageSync('userGameID') == '') {
+    //   app.isLoginReadyCallback = res => {
+    //     if (res != '') {}
+    //   }
+    // }
+  },
+
+  // 页面隐藏时调用
+  onHide: function () {
+    // let that = this;
+    // that.getUserInfo();
   },
 
   // 分享给朋友的页面设置
@@ -89,6 +101,7 @@ Page({
   // 获取喇叭公告
   getNotices: function () {
     let that = this;
+    let noticesData = wx.getStorageSync('noticesData');
     wx.request({
       url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetNotices',
       success(res) {
@@ -97,9 +110,12 @@ Page({
         for (let i = 0; i < data.length; i++) {
           noticeList.push(data[i].content);
         }
-        that.setData({
-          noticeList: noticeList
-        })
+        if (noticesData == '' || JSON.stringify(noticesData) != JSON.stringify(noticeList)) {
+          that.setData({
+            noticeList: noticeList
+          })
+          wx.setStorageSync('noticesData', noticeList);
+        }
       }
     })
   },
@@ -107,6 +123,7 @@ Page({
   // 获取轮播图
   getBanners: function () {
     let that = this;
+    let bannersData = wx.getStorageSync('bannersData');
     wx.request({
       url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetBanners',
       success(res) {
@@ -118,9 +135,12 @@ Page({
           obj.href_url = data[i].href_url;
           bannerList.push(obj);
         }
-        that.setData({
-          bannerList: bannerList
-        })
+        if (bannersData == '' || JSON.stringify(bannersData) != JSON.stringify(bannerList)) {
+          that.setData({
+            bannerList: bannerList
+          })
+          wx.setStorageSync('bannersData', bannerList);
+        }
       }
     })
   },

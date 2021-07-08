@@ -10,23 +10,10 @@ App({
   // 检测本地缓存中有无用户uid
   checkForIDByStorage: function () {
     let that = this;
-    wx.getStorage({
-      key: 'userGameID',
-      success(res) {
-        console.log(res);
-        that.globalData.userGameID = res.data;
-        if (that.isLoginReadyCallback) {
-          console.log('登录完成1');
-          that.isLoginReadyCallback(res);
-        }
-      },
-      fail(err) {
-        console.log(err)
-        console.log('No ID In Storage');
-        // 本地缓存中没有uid
-        that.getLoginForUserID(); // 登录获取用户uid
-      }
-    })
+    let userGameID = wx.getStorageSync('userGameID');
+    if (userGameID == '') {
+      that.getLoginForUserID();
+    }
   },
 
   // 登录获取用户uid
@@ -45,18 +32,11 @@ App({
                   iv: res_userInfo.iv
                 },
                 success(res) {
-                  that.globalData.userGameID = res.data.data.uid;
-                  wx.setStorage({
-                    key: 'userGameID',
-                    data: res.data.data.uid,
-                    complete(res) {
-                      console.log(res);
-                      if (that.isLoginReadyCallback) {
-                        console.log('登录完成2');
-                        that.isLoginReadyCallback(res);
-                      }
-                    }
-                  })
+                  wx.setStorageSync('userGameID', res.data.data.uid);
+                  if (that.isLoginReadyCallback) {
+                    console.log('登录完成');
+                    that.isLoginReadyCallback(res);
+                  }
                 }
               })
             }
@@ -85,6 +65,5 @@ App({
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
     baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
-    userGameID: '', // 用户游戏id
   }
 })

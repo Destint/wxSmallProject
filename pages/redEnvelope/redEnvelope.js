@@ -3,10 +3,10 @@ const app = getApp();
 
 Page({
   data: {
-    redEnvelopeData: {}, //红包封面页面数据
+    redEnvelopeData: wx.getStorageSync('redEnvelopeData'), //红包封面页面数据
     countdown: "", // 视频倒计时
     isClick: false, // 是否可点击领取红包封面
-    getRedEnvelopeType: '', // 领取红包按钮状态
+    getRedEnvelopeType: '看完视频领取封面', // 领取红包按钮状态
   },
 
   // 页面加载（一个页面只会调用一次）
@@ -26,20 +26,32 @@ Page({
   getRedEnvelopeData: function () {
     let that = this;
     let tip = '';
+    let redEnvelopeData = wx.getStorageSync('redEnvelopeData');
     wx.request({
       url: app.globalData.baseUrl1 + 'ApiWxApp.WxaMedia.GetHongbaoSettings',
       success(res) {
-        if (res.data.data.hongbao_href_open_status != 3) {
-          if (res.data.data.hongbao_href_open_status == 1) {
-            tip = '看完视频领取封面';
-          } else {
-            tip = '预约红包封面';
+        if (redEnvelopeData == '' || JSON.stringify(redEnvelopeData) != JSON.stringify(res.data.data)) {
+          if (res.data.data.hongbao_href_open_status != 3) {
+            if (res.data.data.hongbao_href_open_status == 1) {
+              tip = '看完视频领取封面';
+            } else {
+              tip = '预约红包封面';
+            }
+          }
+          that.setData({
+            redEnvelopeData: res.data.data,
+            getRedEnvelopeType: tip
+          })
+          wx.setStorageSync('redEnvelopeData', res.data.data);
+        } else {
+          if (res.data.data.hongbao_href_open_status != 3) {
+            if (res.data.data.hongbao_href_open_status != 1) {
+              that.setData({
+                getRedEnvelopeType: '预约红包封面'
+              })
+            }
           }
         }
-        that.setData({
-          redEnvelopeData: res.data.data,
-          getRedEnvelopeType: tip
-        })
       }
     })
   },
