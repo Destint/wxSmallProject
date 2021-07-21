@@ -1,0 +1,129 @@
+.page-home {
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.canvas-qrcode {
+  position: fixed;
+  left: 10000rpx
+}
+
+.box-game {
+  position: absolute;
+  width: 702rpx;
+  height: 637rpx;
+  background: #ffffff;
+  border: 0rpx solid #000000;
+  box-shadow: 0rpx 3rpx 5rpx 0rpx rgba(0, 0, 0, 0.15);
+  border-radius: 12rpx;
+  left: 24rpx;
+  top: 27rpx;
+}
+
+.img-location {
+  position: absolute;
+  width: 22rpx;
+  height: 30rpx;
+  left: 32rpx;
+  top: 27rpx;
+}
+
+.text-currentArea {
+  position: absolute;
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #333333;
+  left: 72rpx;
+  top: 22rpx;
+}
+
+.img-switchMark {
+  position: absolute;
+  width: 12rpx;
+  height: 8rpx;
+  left: 204rpx;
+  top: 39rpx;
+}
+
+.img-gamePicture {
+  position: absolute;
+  width: 654rpx;
+  height: 400rpx;
+  left: 24rpx;
+  top: 77rpx;
+}
+
+.img-savePhone {
+  position: absolute;
+  width: 72rpx;
+  height: 72rpx;
+  left: 101rpx;
+  top: 505rpx;
+}
+
+.text-savePhone {
+  position: absolute;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #808080;
+  left: 90rpx;
+  top: 586rpx;
+}
+
+.text-line {
+  position: absolute;
+  width: 2rpx;
+  height: 116rpx;
+  background: #f0f0f0;
+  border: 0rpx solid #000000;
+  border-radius: 1rpx;
+  left: 270rpx;
+  top: 503rpx;
+}
+
+.text-tip {
+  position: absolute;
+  width: 316rpx;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #333333;
+  line-height: 40rpx;
+  left: 327rpx;
+  top: 520rpx;
+}
+
+.box-recruitReferrer {
+  position: absolute;
+  width: 702rpx;
+  height: 450rpx;
+  background: #ffffff;
+  border: 0rpx solid #000000;
+  box-shadow: 0rpx 3rpx 5rpx 0rpx rgba(0, 0, 0, 0.15);
+  border-radius: 12rpx;
+  left: 24rpx;
+  top: 684rpx;
+}
+
+.img-recruitReferrer {
+  position: absolute;
+  width: 654rpx;
+  height: 280rpx;
+  left: 24rpx;
+  top: 50rpx;
+}
+
+.img-becomeReferrer {
+  position: absolute;
+  width: 311rpx;
+  height: 70rpx;
+  left: 58rpx;
+  top: 356rpx;
+}
+
+.img-knowDetail {
+  position: absolute;
+  width: 211rpx;
+  height: 70rpx;
+  left: 420rpx;
+  top: 356rpx;
+}

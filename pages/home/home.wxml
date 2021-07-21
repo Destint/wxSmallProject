@@ -1,3 +1,25 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”[添加到我的小程序],下次轻松找到它" duration="3" />
+  <canvas class='canvas-qrcode' canvas-id='qrcode'></canvas>
+  <block wx:if="{{showGameInterface}}">
+    <view class="box-game">
+      <image class="img-location" src="../../images/img_location.png"></image>
+      <picker bindchange="switchArea" value="{{index}}" range="{{areaArray}}">
+        <text class="text-currentArea">{{currentArea}}</text>
+        <image class="img-switchMark" src="../../images/img_switch_mark.png"></image>
+      </picker>
+      <image class="img-gamePicture" src="../../images/img_game_picture.png" show-menu-by-longpress="true"></image>
+      <image class="img-savePhone" src="../../images/img_save_phone.png"></image>
+      <text class="text-savePhone">保存图片</text>
+      <text class="text-line"></text>
+      <text class="text-tip">保存图片到手机，微信识别二维码即可进入游戏</text>
+    </view>
+    <view class="box-recruitReferrer">
+      <image class="img-recruitReferrer" src="../../images/img_recruit_referrer.png"></image>
+      <image class="img-becomeReferrer" src="../../images/img_become_referrer.png"></image>
+      <image class="img-knowDetail" src="../../images/img_know_detail.png"></image>
+    </view>
+  </block>
+  <block wx:else>
+  </block>
 </view>
