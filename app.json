@@ -1,41 +1,11 @@
 {
   "pages": [
-    "pages/home/home",
-    "pages/moreEventAnnouncement/moreEventAnnouncement",
-    "pages/eventAnnouncement/eventAnnouncement",
-    "pages/redEnvelope/redEnvelope",
-    "pages/future/future"
+    "pages/home/home"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "position": "bottom",
-    "color": "#c8c9cb",
-    "selectedColor": "#ff8e44",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "white",
-    "list": [{
-        "pagePath": "pages/home/home",
-        "iconPath": "images/home_normal.png",
-        "selectedIconPath": "images/home_highlight.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/redEnvelope/redEnvelope",
-        "iconPath": "images/redEnvelope_normal.png",
-        "selectedIconPath": "images/redEnvelope_highlight.png",
-        "text": "红包封面"
-      },
-      {
-        "pagePath": "pages/future/future",
-        "iconPath": "images/future_normal.png",
-        "selectedIconPath": "images/future_highlight.png",
-        "text": "敬请期待"
-      }
-    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
