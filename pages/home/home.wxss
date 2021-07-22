@@ -5,10 +5,10 @@
 
 .canvas-qrcode {
   position: fixed;
-  left: 10000rpx
+  left: 10000rpx;
 }
 
-.canvas-sharePicture {
+.canvas-sharePic {
   position: fixed;
   left: 10000rpx;
 }
