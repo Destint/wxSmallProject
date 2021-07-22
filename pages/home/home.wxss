@@ -117,12 +117,23 @@
   top: 50rpx;
 }
 
-.img-becomeReferrer {
+.btn-becomeReferrer {
   position: absolute;
-  width: 311rpx;
+  width: 311rpx !important;
   height: 70rpx;
   left: 58rpx;
   top: 356rpx;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.img-becomeReferrer {
+  width: 311rpx;
+  height: 70rpx;
 }
 
 .img-knowDetail {

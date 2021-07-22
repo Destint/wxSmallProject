@@ -15,7 +15,7 @@ Page({
     qrcode_w: '', // 二维码的宽高
     sharePic_w: '', // 分享的图片的宽
     sharePic_h: '', // 分享的图片的高
-    showReferrerPopup: '', // 注册发展人成功弹窗
+    showReferrerPopup: '', // 显示注册发展人成功弹窗
   },
 
   platformArr: [], // 不同地区平台列表
@@ -28,7 +28,7 @@ Page({
     wx.showShareMenu(); // 开启分享
     if (app.globalData.userID == '') {
       app.isLoginReadyCallback = res => {
-        if (res != '') {
+        if (res) {
           console.log("登录获取ID成功" + app.globalData.userID);
           that.getUserReferrerOrGameInfo(app.globalData.userID);
         }
@@ -37,11 +37,6 @@ Page({
       console.log("缓存获取ID成功" + app.globalData.userID);
       that.getUserReferrerOrGameInfo(app.globalData.userID);
     }
-  },
-
-  // 页面加载（每次都调用）
-  onShow: function () {
-    let that = this;
   },
 
   // 分享给朋友的页面设置
@@ -54,17 +49,17 @@ Page({
   },
 
   // 获取用户发展人或游戏信息（是否是发展人和上次登录的链接）
-  getUserReferrerOrGameInfo: function (userID, baseID) {
+  getUserReferrerOrGameInfo: function (userID, platform) {
     let that = this;
     wx.showLoading({
       title: '图片生成中...',
     })
-    baseID = baseID || '';
+    platform = platform || '';
     wx.request({
       url: 'http://bjtest.bianjiwangluo.cn/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
       data: {
         user_id: 10998793,
-        platform: baseID
+        platform: platform
       },
       success(res) {
         that.lastPlatform = res.data.data.platform;
@@ -83,8 +78,8 @@ Page({
   switchArea: function (e) {
     let that = this;
     let userID = app.globalData.userID;
-    let baseID = that.platformArr[e.detail.value].platform;
-    that.getUserReferrerOrGameInfo(userID, baseID);
+    let platform = that.platformArr[e.detail.value].platform;
+    that.getUserReferrerOrGameInfo(userID, platform);
   },
 
   // 生成二维码图片返回路径
@@ -178,7 +173,8 @@ Page({
         let qrcodeY;
         let areaX;
         let areaY;
-        ctx.font = "12px bold";
+        let fontSize = (24 / rate) + 'px bold';
+        ctx.font = fontSize;
         ctx.fillStyle = '#ffffff';
         if (that.data.showReferrerInterface) {
           qrcodeX = 90 / rate;
@@ -340,14 +336,6 @@ Page({
     })
   },
 
-  // 立即成为发展人事件
-  becomeReferrer: function () {
-    let that = this;
-    that.setData({
-      showReferrerPopup: 1
-    })
-  },
-
   // 关闭发展人弹窗事件
   closePopup: function () {
     let that = this;
@@ -356,4 +344,30 @@ Page({
     })
   },
 
+  // 获取用户手机号
+  getPhoneNumber: function (e) {
+    let that = this;
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      wx.login({
+        success: function (res_login) {
+          if (res_login.code) {
+            wx.request({
+              url: 'http://nbmjtest.fhabc.com:8001/?s=ApiWxApp.WxaAuth.GetUserPhoneRegisterReferrer',
+              data: {
+                js_code: res_login.code,
+                encrypted_data: e.detail.encryptedData,
+                iv: e.detail.iv
+              },
+              success(res) {
+                console.log(res)
+              }
+            })
+          }
+        }
+      })
+    }
+  },
 })

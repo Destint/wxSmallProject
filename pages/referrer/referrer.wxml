@@ -1,6 +1,8 @@
 <view class="page-referrer">
   <image class="img-becomeReferrerDetail" src="../../images/img_recruit_referrer_detail.png"></image>
-  <image class="img-becomeReferrer" src="../../images/img_become_referrer.png" bindtap="becomeReferrer"></image>
+  <button class="btn-becomeReferrer" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+    <image class="img-becomeReferrer" src="../../images/img_become_referrer.png"></image>
+  </button>
   <block wx:if="{{showReferrerPopup}}">
     <view class="box-referrerPopupMask"></view>
     <view class="box-referrerPopup">

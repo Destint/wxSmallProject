@@ -5,12 +5,23 @@
   height: 100vh;
 }
 
-.img-becomeReferrer {
+.btn-becomeReferrer {
   position: fixed;
-  width: 311rpx;
+  width: 311rpx !important;
   height: 70rpx;
   left: 220rpx;
   bottom: 14rpx;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.img-becomeReferrer {
+  width: 311rpx;
+  height: 70rpx;
 }
 
 .box-referrerPopupMask {

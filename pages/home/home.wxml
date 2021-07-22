@@ -34,7 +34,9 @@
     </view>
     <view class="box-recruitReferrer">
       <image class="img-recruitReferrer" src="../../images/img_recruit_referrer.png" bindtap="goToOtherPage"></image>
-      <image class="img-becomeReferrer" src="../../images/img_become_referrer.png" bindtap="becomeReferrer"></image>
+      <button class="btn-becomeReferrer" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+        <image class="img-becomeReferrer" src="../../images/img_become_referrer.png"></image>
+      </button>
       <image class="img-knowDetail" src="../../images/img_know_detail.png" bindtap="referrerDetail"></image>
     </view>
   </block>
