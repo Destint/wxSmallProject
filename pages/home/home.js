@@ -8,14 +8,15 @@ Page({
   // 初始数据
   data: {
     showReferrerInterface: 0, // 显示游戏界面
-    areaArray: ['奉化地区', '宁波地区', '象山地区', '宁海地区'], // 切换的区域
-    currentArea: '奉化地区', // 当前区域
+    areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 切换的区域
+    currentArea: '宁波地区', // 当前区域
+    gameSharePicture: '../../images/img_game_picture.png', // 游戏分享图片
   },
 
   platformArr: [], // 不同地区平台列表
   lastPlatform: '', // 上一次登录平台
   baseID: '', // 游戏基础ID
-  url: '', // 二维码链接
+  qrcodePath: '', // 二维码路径
 
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
@@ -59,24 +60,28 @@ Page({
         platform: baseID
       },
       success(res) {
-        console.log(res)
         that.lastPlatform = res.data.data.platform;
-        that.url = res.data.data.url;
         that.baseID = res.data.data.base_id;
         that.setData({
           showReferrerInterface: res.data.data.is_referrer
         })
+        that.showAreaAndGamePlatformChanged();
+        that.createPathFromQrcode(res.data.data.url, 200);
       }
     })
   },
 
   // 切换区域事件
-  switchArea: function () {
-
+  switchArea: function (e) {
+    let that = this;
+    let userID = app.globalData.userID;
+    let baseID = that.platformArr[e.detail.value].platform;
+    that.getUserReferrerOrGameInfo(userID, baseID);
   },
 
   // 生成二维码图片返回路径
-  returnPathFromQrcode: function (link, width) {
+  createPathFromQrcode: function (link, width) {
+    let that = this;
     let qrcode_w = width / rate; // 160rpx 在6s上为 80px
     new QRCode('qrcode', {
       text: link, // 扫二维码之后跳转的链接
@@ -87,9 +92,14 @@ Page({
       padding: 2, // 生成二维码四周自动留边宽度，不传入默认为0
       correctLevel: QRCode.CorrectLevel.L, // 二维码可辨识度 L M Q H
       callback: res => {
-        return res.path;
+        that.qrcodePath = res.path;
       }
     });
+  },
+
+  // 合成二维码和背景图
+  drawPictureByQrcodeAndBg: function () {
+    let that = this;
   },
 
   // 点击轮播图跳转到其他页面
@@ -127,6 +137,18 @@ Page({
         platform: 1264,
         baseID: 888
       }
-    ]
+    ];
+    for (var i = 0; i < platformArr.length; i++) {
+      if (that.baseID == platformArr[i].baseID) {
+        if (that.lastPlatform != platformArr[i].platform) {
+          platformArr[i].platform = that.lastPlatform;
+        }
+        that.platformArr = platformArr;
+        that.setData({
+          currentArea: platformArr[i].name,
+        })
+        break;
+      }
+    }
   },
 })

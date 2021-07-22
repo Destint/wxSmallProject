@@ -1,6 +1,7 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”[添加到我的小程序],下次轻松找到它" duration="3" />
   <canvas class='canvas-qrcode' canvas-id='qrcode'></canvas>
+  <canvas class="canvas-sharePicture" canvas-id="sharePicture"></canvas>
   <block wx:if="{{showReferrerInterface}}">
     <view class="box-referrer">
       <image class="img-location" src="../../images/img_location.png"></image>
@@ -23,7 +24,7 @@
         <text class="text-currentArea">{{currentArea}}</text>
         <image class="img-switchMark" src="../../images/img_switch_mark.png"></image>
       </picker>
-      <image class="img-gamePicture" src="../../images/img_game_picture.png" show-menu-by-longpress="true"></image>
+      <image class="img-gamePicture" src="{{gameSharePicture}}" show-menu-by-longpress="true"></image>
       <image class="img-savePhone" src="../../images/img_save_phone.png"></image>
       <text class="text-savePhone">保存图片</text>
       <text class="text-line"></text>

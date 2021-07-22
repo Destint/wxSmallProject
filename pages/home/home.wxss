@@ -8,6 +8,11 @@
   left: 10000rpx
 }
 
+.canvas-sharePicture {
+  position: fixed;
+  left: 10000rpx;
+}
+
 .box-game {
   position: absolute;
   width: 702rpx;
