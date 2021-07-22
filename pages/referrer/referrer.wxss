@@ -1,0 +1,90 @@
+.img-becomeReferrerDetail {
+  position: absolute;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.img-becomeReferrer {
+  position: fixed;
+  width: 311rpx;
+  height: 70rpx;
+  left: 220rpx;
+  bottom: 14rpx;
+}
+
+.box-referrerPopupMask {
+  position: absolute;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: #333333;
+  opacity: 0.6;
+}
+
+.box-referrerPopup {
+  position: absolute;
+  width: 702rpx;
+  height: 686rpx;
+  background: #ffffff;
+  border: 0rpx solid #000000;
+  box-shadow: 0px 3rpx 5rpx 0rpx rgba(0, 0, 0, 0.15);
+  border-radius: 12rpx;
+  left: 24rpx;
+  top: 272rpx;
+}
+
+.img-referrerPicture {
+  position: absolute;
+  width: 654rpx;
+  height: 500rpx;
+  left: 24rpx;
+  top: 26rpx;
+}
+
+.img-savePhone {
+  position: absolute;
+  width: 72rpx;
+  height: 72rpx;
+  left: 101rpx;
+  top: 554rpx;
+}
+
+.text-savePhone {
+  position: absolute;
+  font-size: 24rpx;
+  font-weight: 300;
+  color: #808080;
+  left: 90rpx;
+  top: 635rpx;
+}
+
+.text-line {
+  position: absolute;
+  width: 2rpx;
+  height: 116rpx;
+  background: #f0f0f0;
+  border: 0rpx solid #000000;
+  border-radius: 1rpx;
+  left: 270rpx;
+  top: 552rpx;
+}
+
+.text-tip {
+  position: absolute;
+  width: 316rpx;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #333333;
+  line-height: 40rpx;
+  left: 327rpx;
+  top: 569rpx;
+}
+
+.img-closePopup {
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  left: 345rpx;
+  top: 1004rpx;
+}

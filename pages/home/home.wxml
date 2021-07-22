@@ -1,7 +1,8 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”[添加到我的小程序],下次轻松找到它" duration="3" />
   <canvas type="2d" style="width: {{qrcode_w}}px; height: {{qrcode_w}}px;" class='canvas-qrcode' id='qrcode'></canvas>
-  <canvas type="2d"  style="width: {{sharePic_w}}px; height: {{sharePic_h}}px;" class='canvas-sharePic' id='sharePic'></canvas>
+  <canvas type="2d" style="width: {{sharePic_w}}px; height: {{sharePic_h}}px;" class='canvas-sharePic'
+    id='sharePic'></canvas>
   <block wx:if="{{showReferrerInterface}}">
     <view class="box-referrer">
       <image class="img-location" src="../../images/img_location.png"></image>
@@ -11,7 +12,8 @@
       </picker>
       <image class="img-referrerPicture" src="{{referrerSharePicture}}" show-menu-by-longpress="true">
       </image>
-      <image class="img-savePhone" src="../../images/img_save_phone.png" style="top:605rpx" bindtap="saveReferrerPicInPhone"></image>
+      <image class="img-savePhone" src="../../images/img_save_phone.png" style="top:605rpx"
+        bindtap="saveReferrerPicInPhone"></image>
       <text class="text-savePhone" style="top:686rpx">保存图片</text>
       <text class="text-line" style="top:603rpx"></text>
       <text class="text-tip" style="top:620rpx">保存图片到手机，微信识别二维码即可进入游戏</text>
@@ -31,10 +33,22 @@
       <text class="text-tip">保存图片到手机，微信识别二维码即可进入游戏</text>
     </view>
     <view class="box-recruitReferrer">
-      <image class="img-recruitReferrer" src="../../images/img_recruit_referrer.png"></image>
-      <image class="img-becomeReferrer" src="../../images/img_become_referrer.png"></image>
-      <image class="img-knowDetail" src="../../images/img_know_detail.png"></image>
+      <image class="img-recruitReferrer" src="../../images/img_recruit_referrer.png" bindtap="goToOtherPage"></image>
+      <image class="img-becomeReferrer" src="../../images/img_become_referrer.png" bindtap="becomeReferrer"></image>
+      <image class="img-knowDetail" src="../../images/img_know_detail.png" bindtap="referrerDetail"></image>
     </view>
   </block>
-  <!-- <image class="aaa" src="../../images/img_pic.png"></image> -->
+  <block wx:if="{{showReferrerPopup}}">
+    <view class="box-referrerPopupMask"></view>
+    <view class="box-referrerPopup">
+      <image class="img-referrerPicture" src="{{referrerSharePicture}}" show-menu-by-longpress="true" style="top:26rpx">
+      </image>
+      <image class="img-savePhone" src="../../images/img_save_phone.png" style="top:554rpx"
+        bindtap="saveReferrerPicInPhone"></image>
+      <text class="text-savePhone" style="top:635rpx">保存图片</text>
+      <text class="text-line" style="top:552rpx"></text>
+      <text class="text-tip" style="top:569rpx">保存图片到手机，微信识别二维码即可进入游戏</text>
+    </view>
+    <image class="img-closePopup" src="../../images/img_close.png" bindtap="closePopup"></image>
+  </block>
 </view>

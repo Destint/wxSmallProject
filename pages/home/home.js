@@ -15,6 +15,7 @@ Page({
     qrcode_w: '', // 二维码的宽高
     sharePic_w: '', // 分享的图片的宽
     sharePic_h: '', // 分享的图片的高
+    showReferrerPopup: '', // 注册发展人成功弹窗
   },
 
   platformArr: [], // 不同地区平台列表
@@ -216,9 +217,9 @@ Page({
   },
 
   // 点击轮播图跳转到其他页面
-  goToOtherPage: function (e) {
-    wx.switchTab({
-      url: `${e.currentTarget.dataset.url}`,
+  goToOtherPage: function () {
+    wx.navigateTo({
+      url: '/pages/referrer/referrer',
       success: function (res) {}
     })
   },
@@ -330,4 +331,29 @@ Page({
       }
     })
   },
+
+  // 了解发展人详情事件
+  referrerDetail: function () {
+    wx.navigateTo({
+      url: '/pages/referrer/referrer',
+      success: function (res) {}
+    })
+  },
+
+  // 立即成为发展人事件
+  becomeReferrer: function () {
+    let that = this;
+    that.setData({
+      showReferrerPopup: 1
+    })
+  },
+
+  // 关闭发展人弹窗事件
+  closePopup: function () {
+    let that = this;
+    that.setData({
+      showReferrerPopup: 0
+    })
+  },
+
 })

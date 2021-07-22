@@ -1,0 +1,15 @@
+<view class="page-referrer">
+  <image class="img-becomeReferrerDetail" src="../../images/img_recruit_referrer_detail.png"></image>
+  <image class="img-becomeReferrer" src="../../images/img_become_referrer.png" bindtap="becomeReferrer"></image>
+  <block wx:if="{{showReferrerPopup}}">
+    <view class="box-referrerPopupMask"></view>
+    <view class="box-referrerPopup">
+      <image class="img-referrerPicture" src="{{referrerSharePicture}}" show-menu-by-longpress="true"></image>
+      <image class="img-savePhone" src="../../images/img_save_phone.png" bindtap="saveReferrerPicInPhone"></image>
+      <text class="text-savePhone">保存图片</text>
+      <text class="text-line"></text>
+      <text class="text-tip">保存图片到手机，微信识别二维码即可进入游戏</text>
+    </view>
+    <image class="img-closePopup" src="../../images/img_close.png" bindtap="closePopup"></image>
+  </block>
+</view>
