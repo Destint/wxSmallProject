@@ -7,25 +7,36 @@ const rate = 750.0 / W; // rpx转为px
 Page({
   // 初始数据
   data: {
-    showGameInterface: true, // 显示游戏界面
+    showReferrerInterface: 0, // 显示游戏界面
     areaArray: ['奉化地区', '宁波地区', '象山地区', '宁海地区'], // 切换的区域
     currentArea: '奉化地区', // 当前区域
   },
+
+  platformArr: [], // 不同地区平台列表
+  lastPlatform: '', // 上一次登录平台
+  baseID: '', // 游戏基础ID
+  url: '', // 二维码链接
 
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
     let that = this;
     wx.showShareMenu(); // 开启分享
+    if (app.globalData.userID == '') {
+      app.isLoginReadyCallback = res => {
+        if (res != '') {
+          console.log("登录获取ID成功" + app.globalData.userID);
+          that.getUserReferrerOrGameInfo(app.globalData.userID);
+        }
+      }
+    } else {
+      console.log("缓存获取ID成功" + app.globalData.userID);
+      that.getUserReferrerOrGameInfo(app.globalData.userID);
+    }
   },
 
   // 页面加载（每次都调用）
   onShow: function () {
     let that = this;
-    // if (wx.getStorageSync('userGameID') == '') {
-    //   app.isLoginReadyCallback = res => {
-    //     if (res != '') {}
-    //   }
-    // }
   },
 
   // 分享给朋友的页面设置
@@ -37,8 +48,30 @@ Page({
     }
   },
 
+  // 获取用户发展人或游戏信息（是否是发展人和上次登录的链接）
+  getUserReferrerOrGameInfo: function (userID, baseID) {
+    let that = this;
+    baseID = baseID || '';
+    wx.request({
+      url: 'http://bjtest.bianjiwangluo.cn/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
+      data: {
+        user_id: 10998793,
+        platform: baseID
+      },
+      success(res) {
+        console.log(res)
+        that.lastPlatform = res.data.data.platform;
+        that.url = res.data.data.url;
+        that.baseID = res.data.data.base_id;
+        that.setData({
+          showReferrerInterface: res.data.data.is_referrer
+        })
+      }
+    })
+  },
+
   // 切换区域事件
-  switchArer: function () {
+  switchArea: function () {
 
   },
 

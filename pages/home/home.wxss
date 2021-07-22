@@ -127,3 +127,23 @@
   left: 420rpx;
   top: 356rpx;
 }
+
+.box-referrer {
+  position: absolute;
+  width: 702rpx;
+  height: 737rpx;
+  background: #ffffff;
+  border: 0rpx solid #000000;
+  box-shadow: 0rpx 3rpx 5rpx 0rpx rgba(0, 0, 0, 0.15);
+  border-radius: 12rpx;
+  left: 24rpx;
+  top: 27rpx;
+}
+
+.img-referrerPicture {
+  position: absolute;
+  width: 654rpx;
+  height: 500rpx;
+  left: 24rpx;
+  top: 77rpx;
+}

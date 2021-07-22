@@ -3,8 +3,8 @@ App({
   // 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
   onLaunch() {
     let that = this;
-    that.checkForUpdate();
     that.checkForIDByStorage();
+    that.checkForUpdate();
   },
 
   // 当小程序切到后台时执行
@@ -13,9 +13,11 @@ App({
   // 检测本地缓存中有无用户uid
   checkForIDByStorage: function () {
     let that = this;
-    let userGameID = wx.getStorageSync('userGameID');
-    if (userGameID == '') {
+    let userID = wx.getStorageSync('userID');
+    if (userID == '') {
       that.getLoginForUserID();
+    } else {
+      that.globalData.userID = userID;
     }
   },
 
@@ -35,9 +37,10 @@ App({
                   iv: res_userInfo.iv
                 },
                 success(res) {
-                  wx.setStorageSync('userGameID', res.data.data.uid);
+                  wx.setStorageSync('userID', res.data.data.uid);
+                  that.globalData.userID = res.data.data.uid;
                   if (that.isLoginReadyCallback) {
-                    console.log('登录完成');
+                    console.log('登录完成' + res.data.data.uid);
                     that.isLoginReadyCallback(res);
                   }
                 }
@@ -68,5 +71,6 @@ App({
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
     baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
+    userID: '', // 用户ID
   }
 })

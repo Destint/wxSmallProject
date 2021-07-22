@@ -1,7 +1,22 @@
 <view class="page-home">
   <add-applet-tip text="点击“•●•”[添加到我的小程序],下次轻松找到它" duration="3" />
   <canvas class='canvas-qrcode' canvas-id='qrcode'></canvas>
-  <block wx:if="{{showGameInterface}}">
+  <block wx:if="{{showReferrerInterface}}">
+    <view class="box-referrer">
+      <image class="img-location" src="../../images/img_location.png"></image>
+      <picker bindchange="switchArea" value="{{index}}" range="{{areaArray}}">
+        <text class="text-currentArea">{{currentArea}}</text>
+        <image class="img-switchMark" src="../../images/img_switch_mark.png"></image>
+      </picker>
+      <image class="img-referrerPicture" src="../../images/img_referrer_picture.png" show-menu-by-longpress="true">
+      </image>
+      <image class="img-savePhone" src="../../images/img_save_phone.png" style="top:605rpx"></image>
+      <text class="text-savePhone" style="top:686rpx">保存图片</text>
+      <text class="text-line" style="top:603rpx"></text>
+      <text class="text-tip" style="top:620rpx">保存图片到手机，微信识别二维码即可进入游戏</text>
+    </view>
+  </block>
+  <block wx:else>
     <view class="box-game">
       <image class="img-location" src="../../images/img_location.png"></image>
       <picker bindchange="switchArea" value="{{index}}" range="{{areaArray}}">
@@ -19,7 +34,5 @@
       <image class="img-becomeReferrer" src="../../images/img_become_referrer.png"></image>
       <image class="img-knowDetail" src="../../images/img_know_detail.png"></image>
     </view>
-  </block>
-  <block wx:else>
   </block>
 </view>
