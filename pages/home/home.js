@@ -7,9 +7,9 @@ const rate = 750.0 / W; // rpx转为px
 Page({
   // 初始数据
   data: {
-    showReferrerInterface: 0, // 显示发展人界面
+    showReferrerInterface: wx.getStorageSync('isReferrer'), // 显示发展人界面
     areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 切换的区域
-    currentArea: '宁波地区', // 当前区域
+    currentArea: '', // 当前区域
     gameSharePicture: '../../images/img_game_picture.png', // 游戏分享图片
     referrerSharePicture: '../../images/img_referrer_picture.png', // 发展人分享图片
     qrcode_w: '', // 二维码的宽高
@@ -19,23 +19,34 @@ Page({
   },
 
   platformArr: [], // 不同地区平台列表
-  lastPlatform: '', // 上一次登录平台
   baseID: '', // 游戏基础ID
+  becomeReferrer: '', // 成为发展人成功
 
   // 页面加载（一个页面只会调用一次）
   onLoad: function () {
-    let that = this;
     wx.showShareMenu(); // 开启分享
-    if (app.globalData.userID == '') {
-      app.isLoginReadyCallback = res => {
-        if (res) {
-          console.log("登录获取ID成功" + app.globalData.userID);
-          that.getUserReferrerOrGameInfo(app.globalData.userID);
-        }
-      }
+  },
+
+  // 页面加载（每次都会调用）
+  onShow: function () {
+    let that = this;
+    let userID = wx.getStorageSync('userID');
+    let isReferrer = wx.getStorageSync('isReferrer');
+    if (userID && isReferrer) {
+      console.log('缓存登录' + userID)
+      that.getUserReferrerOrGameInfo(userID);
     } else {
-      console.log("缓存获取ID成功" + app.globalData.userID);
-      that.getUserReferrerOrGameInfo(app.globalData.userID);
+      if (app.globalData.userInfo.uid == '') {
+        app.isLoginReadyCallback = res => {
+          if (res) {
+            console.log('延迟登录' + app.globalData.userInfo.uid)
+            that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
+          }
+        }
+      } else {
+        console.log('直接登录' + app.globalData.userInfo.uid)
+        that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
+      }
     }
   },
 
@@ -53,20 +64,22 @@ Page({
     let that = this;
     wx.showLoading({
       title: '图片生成中...',
+      mask: true
     })
     platform = platform || '';
     wx.request({
       url: 'http://bjtest.bianjiwangluo.cn/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
       data: {
-        user_id: 10998793,
+        user_id: userID,
         platform: platform
       },
       success(res) {
-        that.lastPlatform = res.data.data.platform;
+        app.globalData.lastPlatform = res.data.data.platform;
         that.baseID = res.data.data.base_id;
         that.setData({
           showReferrerInterface: res.data.data.is_referrer
         })
+        wx.setStorageSync('isReferrer', res.data.data.is_referrer);
         that.showAreaAndGamePlatformChanged();
         if (res.data.data.is_referrer) that.createPathFromQrcode(res.data.data.url, 140);
         else that.createPathFromQrcode(res.data.data.url, 110);
@@ -77,7 +90,7 @@ Page({
   // 切换区域事件
   switchArea: function (e) {
     let that = this;
-    let userID = app.globalData.userID;
+    let userID = app.globalData.userInfo.uid;
     let platform = that.platformArr[e.detail.value].platform;
     that.getUserReferrerOrGameInfo(userID, platform);
   },
@@ -195,9 +208,17 @@ Page({
           canvasId: 'sharePic',
           success(res) {
             if (that.data.showReferrerInterface) {
-              that.setData({
-                referrerSharePicture: res.tempFilePath
-              })
+              if (app.globalData.showReferrerPopup != '') {
+                app.globalData.showReferrerPopup = '';
+                that.setData({
+                  referrerSharePicture: res.tempFilePath,
+                  showReferrerPopup: 1,
+                })
+              } else {
+                that.setData({
+                  referrerSharePicture: res.tempFilePath
+                })
+              }
             } else {
               that.setData({
                 gameSharePicture: res.tempFilePath
@@ -250,8 +271,8 @@ Page({
     ];
     for (var i = 0; i < platformArr.length; i++) {
       if (that.baseID == platformArr[i].baseID) {
-        if (that.lastPlatform != platformArr[i].platform) {
-          platformArr[i].platform = that.lastPlatform;
+        if (app.globalData.lastPlatform != platformArr[i].platform) {
+          platformArr[i].platform = app.globalData.lastPlatform;
         }
         that.platformArr = platformArr;
         that.setData({
@@ -347,26 +368,30 @@ Page({
   // 获取用户手机号
   getPhoneNumber: function (e) {
     let that = this;
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
     if (e.detail.errMsg == "getPhoneNumber:ok") {
-      wx.login({
-        success: function (res_login) {
-          if (res_login.code) {
-            wx.request({
-              url: 'http://nbmjtest.fhabc.com:8001/?s=ApiWxApp.WxaAuth.GetUserPhoneRegisterReferrer',
-              data: {
-                js_code: res_login.code,
-                encrypted_data: e.detail.encryptedData,
-                iv: e.detail.iv
-              },
-              success(res) {
-                console.log(res)
-              }
-            })
-          }
+      wx.request({
+        url: 'http://nbmjtest.fhabc.com:8001/?s=ApiWxApp.WxaAuth.GetUserPhoneRegisterReferrer',
+        data: {
+          session_key: app.globalData.userInfo.session_key,
+          encrypted_data: e.detail.encryptedData,
+          iv: e.detail.iv,
+          union_id: app.globalData.userInfo.union_id,
+          open_id: app.globalData.userInfo.open_id,
+          nick_name: app.globalData.userInfo.name,
+          head_img: app.globalData.userInfo.userface,
+          sex: app.globalData.userInfo.sexid,
+          platform: app.globalData.lastPlatform
+        },
+        success(res) {
+          app.globalData.showReferrerPopup = 1;
+          that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
         }
+      })
+    } else {
+      wx.showToast({
+        title: '您拒绝了授权',
+        icon: 'error',
+        duration: 1500
       })
     }
   },

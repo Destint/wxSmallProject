@@ -3,21 +3,22 @@ App({
   // 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
   onLaunch() {
     let that = this;
-    that.checkForIDByStorage();
+    that.getLoginForUserID();
     that.checkForUpdate();
   },
 
   // 当小程序切到后台时执行
   onHide() {},
 
-  // 检测本地缓存中有无用户uid
-  checkForIDByStorage: function () {
+  // 检测是否需要重新登录
+  checkForLoginByStorage: function () {
     let that = this;
     let userID = wx.getStorageSync('userID');
-    if (userID == '') {
-      that.getLoginForUserID();
+    let isReferrer = wx.getStorageSync('isReferrer');
+    if (userID && isReferrer) {
+
     } else {
-      that.globalData.userID = userID;
+      that.getLoginForUserID();
     }
   },
 
@@ -30,7 +31,7 @@ App({
           wx.getUserInfo({
             success: function (res_userInfo) {
               wx.request({
-                url: that.globalData.baseUrl1 + 'ApiWxApp.WxaAuth.GetUserInfoByJsCode',
+                url: 'http://bjtest.bianjiwangluo.cn/h5agency/phpTransfer/gameApi.php?service=ApiWxApp.WxaAuth.GetUserInfoByJsCode',
                 data: {
                   js_code: res_login.code,
                   encrypted_data: res_userInfo.encryptedData,
@@ -38,7 +39,7 @@ App({
                 },
                 success(res) {
                   wx.setStorageSync('userID', res.data.data.uid);
-                  that.globalData.userID = res.data.data.uid;
+                  that.globalData.userInfo = res.data.data;
                   if (that.isLoginReadyCallback) {
                     console.log('登录完成' + res.data.data.uid);
                     that.isLoginReadyCallback(res);
@@ -71,6 +72,10 @@ App({
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
     baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
-    userID: '', // 用户ID
+    userInfo: {
+      uid: ''
+    }, // 用户信息
+    showReferrerPopup: '', // 显示发展人弹窗
+    lastPlatform: '', // 用户上一次登录的平台号
   }
 })
