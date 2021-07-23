@@ -7,14 +7,6 @@ Page({
     referrerSharePicture: '../../images/img_referrer_picture.png', // 发展人分享图片
   },
 
-  // 关闭发展人弹窗事件
-  closePopup: function () {
-    let that = this;
-    that.setData({
-      showReferrerPopup: 0
-    })
-  },
-
   // 获取用户手机号
   getPhoneNumber: function (e) {
     let that = this;

@@ -10,18 +10,6 @@ App({
   // 当小程序切到后台时执行
   onHide() {},
 
-  // 检测是否需要重新登录
-  checkForLoginByStorage: function () {
-    let that = this;
-    let userID = wx.getStorageSync('userID');
-    let isReferrer = wx.getStorageSync('isReferrer');
-    if (userID && isReferrer) {
-
-    } else {
-      that.getLoginForUserID();
-    }
-  },
-
   // 登录获取用户uid
   getLoginForUserID: function () {
     let that = this;
@@ -38,7 +26,6 @@ App({
                   iv: res_userInfo.iv
                 },
                 success(res) {
-                  wx.setStorageSync('userID', res.data.data.uid);
                   that.globalData.userInfo = res.data.data;
                   if (that.isLoginReadyCallback) {
                     console.log('登录完成' + res.data.data.uid);
@@ -72,9 +59,7 @@ App({
   globalData: {
     baseUrl1: 'https://me.txy78.com/h5agency/phpTransfer/gameApi.php?service=', // 基础请求链接1
     baseUrl2: 'https://me.txy78.com/h5agency/phpTransfer/mgApi.php?service=', // 基础请求链接2
-    userInfo: {
-      uid: ''
-    }, // 用户信息
+    userInfo: '', // 用户信息
     showReferrerPopup: '', // 显示发展人弹窗
     lastPlatform: '', // 用户上一次登录的平台号
   }

@@ -9,7 +9,7 @@ Page({
   data: {
     showReferrerInterface: wx.getStorageSync('isReferrer'), // 显示发展人界面
     areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 切换的区域
-    currentArea: '', // 当前区域
+    currentArea: wx.getStorageSync('currentArea'), // 当前区域
     gameSharePicture: '../../images/img_game_picture.png', // 游戏分享图片
     referrerSharePicture: '../../images/img_referrer_picture.png', // 发展人分享图片
     qrcode_w: '', // 二维码的宽高
@@ -30,23 +30,16 @@ Page({
   // 页面加载（每次都会调用）
   onShow: function () {
     let that = this;
-    let userID = wx.getStorageSync('userID');
-    let isReferrer = wx.getStorageSync('isReferrer');
-    if (userID && isReferrer) {
-      console.log('缓存登录' + userID)
-      that.getUserReferrerOrGameInfo(userID);
-    } else {
-      if (app.globalData.userInfo.uid == '') {
-        app.isLoginReadyCallback = res => {
-          if (res) {
-            console.log('延迟登录' + app.globalData.userInfo.uid)
-            that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
-          }
+    if (app.globalData.userInfo == '') {
+      app.isLoginReadyCallback = res => {
+        if (res) {
+          console.log('延迟登录' + app.globalData.userInfo.uid)
+          that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
         }
-      } else {
-        console.log('直接登录' + app.globalData.userInfo.uid)
-        that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
       }
+    } else {
+      console.log('直接登录' + app.globalData.userInfo.uid)
+      that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
     }
   },
 
@@ -68,7 +61,7 @@ Page({
     })
     platform = platform || '';
     wx.request({
-      url: 'http://bjtest.bianjiwangluo.cn/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetPlatformUrlInfo',
+      url: 'http://bjtest.bianjiwangluo.cn/h5agency/phpTransfer/mgApi.php?service=App.Referrer_ReferrerInfo.GetGameOrReferrerUrlInfo',
       data: {
         user_id: userID,
         platform: platform
@@ -170,6 +163,7 @@ Page({
         canvas.width = mainW * dpr;
         canvas.height = mainH * dpr;
         ctx.scale(dpr, dpr);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0)';
         ctx.drawImage(mainImgPo, 0, 0, mainW, mainH); // 绘制背景
 
         const qrcodeImg = canvas.createImage();
@@ -278,6 +272,7 @@ Page({
         that.setData({
           currentArea: platformArr[i].name,
         })
+        wx.setStorageSync('currentArea', platformArr[i].name);
         break;
       }
     }
