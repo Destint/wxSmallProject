@@ -28,7 +28,6 @@ App({
                 success(res) {
                   that.globalData.userInfo = res.data.data;
                   if (that.isLoginReadyCallback) {
-                    console.log('登录完成' + res.data.data.uid);
                     that.isLoginReadyCallback(res);
                   }
                 }

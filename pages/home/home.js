@@ -9,7 +9,7 @@ Page({
   data: {
     showReferrerInterface: wx.getStorageSync('isReferrer'), // 显示发展人界面
     areaArray: ['宁波地区', '象山地区', '宁海地区', '奉化地区'], // 切换的区域
-    currentArea: wx.getStorageSync('currentArea'), // 当前区域
+    currentArea: wx.getStorageSync('currentArea')?wx.getStorageSync('currentArea'):'宁波地区', // 当前区域
     gameSharePicture: '../../images/img_game_picture.png', // 游戏分享图片
     referrerSharePicture: '../../images/img_referrer_picture.png', // 发展人分享图片
     qrcode_w: '', // 二维码的宽高
@@ -33,12 +33,10 @@ Page({
     if (app.globalData.userInfo == '') {
       app.isLoginReadyCallback = res => {
         if (res) {
-          console.log('延迟登录' + app.globalData.userInfo.uid)
           that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
         }
       }
     } else {
-      console.log('直接登录' + app.globalData.userInfo.uid)
       that.getUserReferrerOrGameInfo(app.globalData.userInfo.uid);
     }
   },
@@ -163,7 +161,6 @@ Page({
         canvas.width = mainW * dpr;
         canvas.height = mainH * dpr;
         ctx.scale(dpr, dpr);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0)';
         ctx.drawImage(mainImgPo, 0, 0, mainW, mainH); // 绘制背景
 
         const qrcodeImg = canvas.createImage();

@@ -56,6 +56,7 @@
   height: 400rpx;
   left: 24rpx;
   top: 77rpx;
+  border-radius: 12rpx;
 }
 
 .img-savePhone {
@@ -162,6 +163,7 @@
   height: 500rpx;
   left: 24rpx;
   top: 77rpx;
+  border-radius: 12rpx;
 }
 
 .box-referrerPopupMask {
